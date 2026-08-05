@@ -266,7 +266,7 @@
     <p>Estas son las mejores hosterías en Santa Fe de Antioquia que ofrecen pasadía con todo incluido. Cada una tiene su propio estilo y rango de precios:</p>
 
     <div class="hosteria-grid" style="margin-top:var(--space-md);">
-      <div class="hosteria-card" data-animate>
+      <a class="hosteria-card" href="hosteria-florida-tropical.html" data-animate>
         <div class="hosteria-card-img">
           <img src="assets/images/florida-tropical-03.webp" alt="Hostería Florida Tropical — lago, 3 piscinas y kayak en Santa Fe de Antioquia" loading="lazy">
           <span class="hosteria-card-price">$85.000 p/p</span>
@@ -282,9 +282,9 @@
           </div>
           <p class="desc">El lago más grande del occidente antioqueño. 3 piscinas, kayak, pesca y zonas verdes inmensas. Día de sol completo con almuerzo típico incluido. Ideal para familias y grupos grandes.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="hosteria-card" data-animate data-delay="1">
+      <a class="hosteria-card" href="hosteria-tonusco-campestre.html" data-animate data-delay="1">
         <div class="hosteria-card-img">
           <img src="assets/images/tonusco-jacuzzi.webp" alt="Hostería Tonusco Campestre — 33 cabañas, jacuzzi y parque infantil" loading="lazy">
           <span class="hosteria-card-price">$90.000 p/p</span>
@@ -300,9 +300,9 @@
           </div>
           <p class="desc">33 cabañas con jacuzzi, parque infantil y piscina para toda la familia. Día de sol con actividades recreativas incluidas y almuerzo campestre.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="hosteria-card" data-animate data-delay="2">
+      <a class="hosteria-card" href="hotel-spa-santa-fe-colonial.html" data-animate data-delay="2">
         <div class="hosteria-card-img">
           <img src="assets/images/sancol-03.webp" alt="Hotel y Spa Santa Fe Colonial SanCOL — spa, piscinas y plan todo incluido" loading="lazy">
           <span class="hosteria-card-price">$110.000 p/p</span>
@@ -318,9 +318,9 @@
           </div>
           <p class="desc">Día de sol con spa en el corazón del Patrimonio Histórico. Piscinas, zonas húmedas, almuerzo gourmet y coctelería junto a la piscina. Ideal para parejas.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="hosteria-card" data-animate data-delay="3">
+      <a class="hosteria-card" href="ivanna-hotel-campestre.html" data-animate data-delay="3">
         <div class="hosteria-card-img">
           <img src="assets/images/ivanna-03.webp" alt="Ivanna Hotel Campestre — 4.5 estrellas, todo incluido" loading="lazy">
           <span class="hosteria-card-price">$100.000 p/p</span>
@@ -336,9 +336,9 @@
           </div>
           <p class="desc">4.5 estrellas con día de sol que incluye alimentación completa, actividades recreativas y atención personalizada. Ambiente campestre a pocos minutos del pueblo.</p>
         </div>
-      </div>
+      </a>
 
-      <div class="hosteria-card" data-animate>
+      <a class="hosteria-card" href="hosteria-fundadores.html" data-animate>
         <div class="hosteria-card-img">
           <img src="assets/images/fundadores-03.webp" alt="Hostería Fundadores — central y económica, desde $75.000" loading="lazy">
           <span class="hosteria-card-price">$75.000 p/p</span>
@@ -354,7 +354,7 @@
           </div>
           <p class="desc">La opción más económica con excelente ubicación. Día de sol con almuerzo casero, piscina y la comodidad de estar a 7 cuadras del Parque Principal.</p>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -667,6 +667,166 @@
   <a href="tel:+573170000000" class="float-btn float-call" aria-label="Llamar">
     <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
   </a>
+</div>
+
+<!-- ================================================
+      MODAL — Verificar Disponibilidad (4 pasos)
+      ================================================ -->
+<div class="wa-modal" id="dispoModal" role="dialog" aria-modal="true" hidden>
+  <div class="wa-modal__backdrop" data-wa-close></div>
+  <div class="wa-modal__box">
+
+    <!-- Header -->
+    <div class="wa-modal__hdr">
+      <div class="wa-modal__hdr-icon">
+        <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+      </div>
+      <div>
+        <div class="wa-modal__hdr-title">Verificar Disponibilidad</div>
+        <div class="wa-modal__hdr-sub">Sin compromiso · Respuesta rápida</div>
+      </div>
+      <button class="wa-modal__close" data-wa-close aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- Progress dots -->
+    <div class="wa-dots" aria-label="Paso 1 de 4">
+      <span class="wa-dot active" data-dot="1"></span>
+      <span class="wa-dot" data-dot="2"></span>
+      <span class="wa-dot" data-dot="3"></span>
+      <span class="wa-dot" data-dot="4"></span>
+    </div>
+
+    <!-- Steps -->
+    <div class="wa-body">
+
+      <!-- Step 1: Tipo de plan -->
+      <div class="wa-step active" data-wstep="1">
+        <p class="wa-step__q">¿Qué tipo de plan buscas?</p>
+        <div class="wa-choices">
+          <button class="wa-choice" data-val="dia-de-sol">
+            <span class="wa-choice__icon">☀️</span>
+            <span class="wa-choice__label">Día de Sol</span>
+            <span class="wa-choice__hint">Pasadía con piscina y almuerzo</span>
+          </button>
+          <button class="wa-choice" data-val="alojamiento">
+            <span class="wa-choice__icon">🛏️</span>
+            <span class="wa-choice__label">Alojamiento</span>
+            <span class="wa-choice__hint">1 o más noches de hospedaje</span>
+          </button>
+          <button class="wa-choice" data-val="todo-incluido">
+            <span class="wa-choice__icon">🍽️</span>
+            <span class="wa-choice__label">Todo Incluido</span>
+            <span class="wa-choice__hint">Alimentación + actividades + hospedaje</span>
+          </button>
+          <button class="wa-choice" data-val="evento">
+            <span class="wa-choice__icon">🎉</span>
+            <span class="wa-choice__label">Evento / Celebración</span>
+            <span class="wa-choice__hint">Cumpleaños, bodas, empresarial</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Step 2: Personas y fechas -->
+      <div class="wa-step" data-wstep="2">
+        <p class="wa-step__q">¿Cuántas personas y cuándo?</p>
+        <div class="wa-choices">
+          <button class="wa-choice" data-val="1-2 personas">
+            <span class="wa-choice__icon">👤</span>
+            <span class="wa-choice__label">1 - 2 personas</span>
+          </button>
+          <button class="wa-choice" data-val="3-5 personas">
+            <span class="wa-choice__icon">👥</span>
+            <span class="wa-choice__label">3 - 5 personas</span>
+          </button>
+          <button class="wa-choice" data-val="6-10 personas">
+            <span class="wa-choice__icon">👨‍👩‍👧‍👦</span>
+            <span class="wa-choice__label">6 - 10 personas</span>
+          </button>
+          <button class="wa-choice" data-val="10+ personas">
+            <span class="wa-choice__icon">🎊</span>
+            <span class="wa-choice__label">Más de 10 personas</span>
+          </button>
+        </div>
+        <div class="wa-field" style="margin-top:1rem;">
+          <label class="wa-label">¿Cuándo planeas visitarnos? (opcional)</label>
+          <select class="wa-select" id="waFecha">
+            <option value="">Selecciona una opción</option>
+            <option value="Este fin de semana">Este fin de semana</option>
+            <option value="Próxima semana">Próxima semana</option>
+            <option value="Este mes">Este mes</option>
+            <option value="Próximo mes">Próximo mes</option>
+            <option value="Aún no defino la fecha">Aún no defino la fecha</option>
+          </select>
+        </div>
+        <div class="wa-field">
+          <label class="wa-label">Presupuesto aproximado por persona (opcional)</label>
+          <select class="wa-select" id="waPresupuesto">
+            <option value="">Selecciona un rango</option>
+            <option value="$75.000 - $100.000">$75.000 - $100.000</option>
+            <option value="$100.000 - $150.000">$100.000 - $150.000</option>
+            <option value="$150.000 - $250.000">$150.000 - $250.000</option>
+            <option value="$250.000+">Más de $250.000</option>
+            <option value="Sin presupuesto definido">Sin presupuesto definido</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Step 3: Datos de contacto -->
+      <div class="wa-step" data-wstep="3">
+        <p class="wa-step__q">¿Cómo te contactamos?</p>
+        <!-- Honeypot -->
+        <input type="text" id="wa_honeypot" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off">
+        <div class="wa-field">
+          <label class="wa-label">Nombre completo *</label>
+          <input class="wa-input" type="text" id="waNombre" placeholder="Tu nombre" required>
+        </div>
+        <div class="wa-field">
+          <label class="wa-label">WhatsApp *</label>
+          <input class="wa-input" type="tel" id="waTelefono" placeholder="+57 300 000 0000" required>
+        </div>
+        <div class="wa-field">
+          <label class="wa-label">Correo electrónico (opcional)</label>
+          <input class="wa-input" type="email" id="waEmail" placeholder="tu@correo.com">
+        </div>
+        <div class="wa-field">
+          <label class="wa-label">¿Algo más que quieras contarnos? (opcional)</label>
+          <textarea class="wa-input wa-textarea" id="waNotas" placeholder="Ej: Necesito transporte desde Medellín, tengo mascota, celebramos un cumpleaños..." rows="2"></textarea>
+        </div>
+      </div>
+
+      <!-- Step 4: Confirmar -->
+      <div class="wa-step" data-wstep="4">
+        <p class="wa-step__q">Confirma y te conectamos</p>
+        <div class="wa-summary" id="waSummary">
+          <div class="wa-summary__row"><span class="wa-summary__key">Establecimiento</span><span class="wa-summary__val" id="waSumEstablecimiento">—</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Tipo de plan</span><span class="wa-summary__val" id="waSumPlan">—</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Personas</span><span class="wa-summary__val" id="waSumPersonas">—</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Fecha</span><span class="wa-summary__val" id="waSumFecha">—</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Presupuesto</span><span class="wa-summary__val" id="waSumPresupuesto">—</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Nombre</span><span class="wa-summary__val" id="waSumNombre">—</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">WhatsApp</span><span class="wa-summary__val" id="waSumTel">—</span></div>
+        </div>
+        <div class="wa-habeas">
+          <input type="checkbox" id="waHabeas" checked>
+          <label for="waHabeas">Autorizo el tratamiento de mis datos personales según la <a href="habeas-data.html" target="_blank">Política de Habeas Data</a> y confirmo que quiero recibir información sobre día de sol en Santa Fe de Antioquia.</label>
+        </div>
+        <p class="wa-redirect-msg" id="waRedirectMsg" style="display:none;">Conectándote con el establecimiento...</p>
+      </div>
+
+    </div>
+
+    <!-- Footer buttons -->
+    <div class="wa-modal__foot">
+      <button class="wa-btn wa-btn--back" id="waBtnBack" style="display:none;">← Volver</button>
+      <button class="wa-btn wa-btn--next" id="waBtnNext">Continuar</button>
+      <button class="wa-btn wa-btn--submit" id="waBtnSubmit" style="display:none;">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
+        Iniciar WhatsApp
+      </button>
+    </div>
+  </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>

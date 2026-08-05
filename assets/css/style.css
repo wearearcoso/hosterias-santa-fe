@@ -1061,3 +1061,158 @@ body.has-top-bar .field-header { top: 44px; }
 .mb-lg { margin-bottom: var(--space-lg); }
 .py-xl { padding-top: var(--space-xl); padding-bottom: var(--space-xl); }
 .bg-gallery { background: var(--gallery); }
+
+/* ======================
+   WHATSAPP AVAILABILITY MODAL
+   Adapted from RepararYa Cartagena
+   Colors: #F5C800 + #0A0A0A
+   ====================== */
+.wa-modal {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .3s ease;
+}
+.wa-modal.open { opacity: 1; pointer-events: auto; }
+.wa-modal__backdrop {
+  position: absolute; inset: 0; background: rgba(0,0,0,.55);
+  backdrop-filter: blur(4px);
+}
+.wa-modal__box {
+  position: relative; z-index: 1;
+  background: var(--white); border-radius: var(--card-radius);
+  max-width: 520px; width: 92vw; max-height: 90vh;
+  overflow-y: auto; box-shadow: var(--shadow-4);
+  transform: translateY(20px);
+  transition: transform .35s cubic-bezier(.4,0,.2,1);
+}
+.wa-modal.open .wa-modal__box { transform: translateY(0); }
+
+/* Modal header */
+.wa-modal__hdr {
+  display: flex; align-items: center; gap: .75rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--theme-color);
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+}
+.wa-modal__hdr-icon {
+  width: 42px; height: 42px; border-radius: 50%;
+  background: var(--black); display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.wa-modal__hdr-title { font-size: var(--body-lg); font-weight: 600; color: var(--black); }
+.wa-modal__hdr-sub { font-size: 12px; color: rgba(0,0,0,.55); }
+.wa-modal__close {
+  margin-left: auto; background: none; border: none; cursor: pointer;
+  width: 36px; height: 36px; display: flex; align-items: center;
+  justify-content: center; color: rgba(0,0,0,.5); border-radius: 50%;
+  transition: background .2s;
+}
+.wa-modal__close:hover { background: rgba(0,0,0,.1); }
+
+/* Progress dots */
+.wa-dots {
+  display: flex; justify-content: center; gap: .5rem;
+  padding: 1rem 0;
+}
+.wa-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--alto); transition: background .3s;
+}
+.wa-dot.active { background: var(--theme-color); }
+.wa-dot.done { background: var(--theme-color-dark); }
+
+/* Body / Steps */
+.wa-body { padding: 0 1.5rem; }
+.wa-step { display: none; }
+.wa-step.active { display: block; }
+.wa-step__q {
+  font-size: var(--h5); font-weight: 500; color: var(--mine-shaft);
+  margin-bottom: 1.25rem; text-align: center;
+}
+
+/* Choice buttons */
+.wa-choices {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .6rem;
+}
+.wa-choice {
+  display: flex; flex-direction: column; align-items: center;
+  gap: .3rem; padding: 1rem .75rem;
+  background: var(--gallery); border: 2px solid transparent;
+  border-radius: 12px; cursor: pointer; font-family: var(--font-family);
+  text-align: center; transition: all .2s;
+}
+.wa-choice:hover { border-color: var(--theme-color); background: rgba(245,200,0,.08); }
+.wa-choice.selected { border-color: var(--theme-color); background: rgba(245,200,0,.12); }
+.wa-choice__icon { font-size: 1.6rem; }
+.wa-choice__label { font-size: var(--body-md); font-weight: 500; color: var(--mine-shaft); }
+.wa-choice__hint { font-size: 11px; color: var(--mountain-mist); }
+
+/* Fields */
+.wa-field { margin-bottom: .75rem; }
+.wa-label {
+  display: block; font-size: 12px; font-weight: 500;
+  color: var(--dove-gray); margin-bottom: .3rem;
+}
+.wa-input, .wa-select {
+  width: 100%; padding: .7rem .85rem;
+  border: 1.5px solid var(--alto); border-radius: 10px;
+  font-family: var(--font-family); font-size: var(--body-md);
+  color: var(--mine-shaft); background: white;
+  transition: border-color .2s; outline: none;
+}
+.wa-input:focus, .wa-select:focus { border-color: var(--theme-color); }
+.wa-textarea { resize: vertical; min-height: 60px; }
+
+/* Summary */
+.wa-summary {
+  background: var(--gallery); border-radius: 12px;
+  padding: 1rem; margin-bottom: 1rem;
+}
+.wa-summary__row {
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: .35rem 0; border-bottom: 1px solid rgba(0,0,0,.05);
+  font-size: var(--body-sm);
+}
+.wa-summary__row:last-child { border-bottom: none; }
+.wa-summary__key { color: var(--mountain-mist); }
+.wa-summary__val { color: var(--mine-shaft); font-weight: 500; text-align: right; }
+
+/* Habeas Data */
+.wa-habeas {
+  display: flex; align-items: flex-start; gap: .6rem;
+  font-size: 11px; color: var(--dove-gray); margin-bottom: .5rem;
+}
+.wa-habeas input { margin-top: 2px; flex-shrink: 0; accent-color: var(--theme-color); }
+.wa-habeas a { color: var(--theme-color-dark); text-decoration: underline; }
+
+.wa-redirect-msg {
+  text-align: center; font-size: var(--body-sm); color: var(--theme-color-dark);
+  font-weight: 500; padding: .5rem 0;
+}
+
+/* Footer buttons */
+.wa-modal__foot {
+  padding: 1rem 1.5rem 1.5rem;
+  display: flex; gap: .75rem; justify-content: center;
+}
+.wa-btn {
+  padding: .75rem 1.5rem; border-radius: 9999px;
+  border: none; font-family: var(--font-family);
+  font-size: var(--body-md); font-weight: 500; cursor: pointer;
+  display: inline-flex; align-items: center; gap: .5rem;
+  transition: all .2s;
+}
+.wa-btn--back {
+  background: var(--gallery); color: var(--dove-gray);
+}
+.wa-btn--back:hover { background: var(--alto); }
+.wa-btn--next {
+  background: var(--theme-color); color: var(--black);
+}
+.wa-btn--next:hover { background: var(--theme-color-dark); }
+.wa-btn--submit {
+  background: var(--black); color: white;
+}
+.wa-btn--submit:hover { background: #333; }
+.wa-btn:disabled { opacity: .5; cursor: not-allowed; }
