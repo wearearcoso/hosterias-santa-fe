@@ -15,6 +15,9 @@ assets/images/*.jpeg
 assets/images/*.png
 !assets/images/*.webp
 
+# Claude
+.claude/
+
 # Temp
 /tmp/
 *.tmp
