@@ -121,7 +121,7 @@
   if (btns[0]) btns[0].click();
 })();
 
-/* ---- WhatsApp Availability Modal (4 steps) ---- */
+/* ---- WhatsApp Availability Modal (5 steps + confetti) ---- */
 (function () {
   const modal = document.getElementById('dispoModal');
   if (!modal) return;
@@ -131,33 +131,37 @@
   const WA_DESTINO = '573170000000';
 
   const state = {
-    establecimiento: '',
-    plan: '',
-    personas: '',
-    fecha: '',
-    presupuesto: '',
-    nombre: '',
-    tel: '',
-    email: '',
-    notas: ''
+    establecimiento: '', plan: '', adultos: 2, ninos: 0,
+    fechaLlegada: '', fechaSalida: '', presupuesto: '',
+    nombre: '', tel: '', email: '', notas: '', step: 0
   };
 
   function trackEvent(name, data) {
-    if (window.dataLayer) {
-      window.dataLayer.push({ event: name, ...data });
-    }
+    if (window.dataLayer) window.dataLayer.push({ event: name, ...data });
   }
 
   function waOpen(estName) {
     state.establecimiento = estName || '';
+    state.plan = ''; state.adultos = 2; state.ninos = 0;
+    state.fechaLlegada = ''; state.fechaSalida = ''; state.presupuesto = '';
+    state.nombre = ''; state.tel = ''; state.email = ''; state.notas = '';
     state.step = 1;
+
     document.querySelectorAll('.wa-choice.selected').forEach(b => b.classList.remove('selected'));
-    ['waNombre','waTelefono','waEmail','waNotas','waHabeas','wa_honeypot'].forEach(id => {
+    ['waNombre','waTelefono','waEmail','waNotas','waHabeas','wa_honeypot','waFechaLlegada','waFechaSalida','waPresupuesto'].forEach(id => {
       const el = document.getElementById(id);
       if (el) { if (id === 'waHabeas') el.checked = true; else el.value = ''; }
     });
-    document.getElementById('waFecha').value = '';
-    document.getElementById('waPresupuesto').value = '';
+    document.getElementById('waAdultosVal').textContent = '2';
+    document.getElementById('waNinosVal').textContent = '0';
+
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('waFechaLlegada').setAttribute('min', today);
+    document.getElementById('waFechaSalida').setAttribute('min', today);
+
+    document.getElementById('waModalEstName').textContent = estName || 'Sin compromiso · Respuesta rapida';
+    document.getElementById('waSuccessStep').classList.remove('active');
+
     modal.removeAttribute('hidden');
     requestAnimationFrame(() => modal.classList.add('open'));
     document.body.style.overflow = 'hidden';
@@ -171,6 +175,7 @@
   }
 
   function waSetStep(n) {
+    state.step = n;
     document.querySelectorAll('.wa-step').forEach(s => s.classList.remove('active'));
     const stepEl = document.querySelector(`.wa-step[data-wstep="${n}"]`);
     if (stepEl) stepEl.classList.add('active');
@@ -181,9 +186,15 @@
       else if (+d.dataset.dot < n) d.classList.add('done');
     });
 
-    document.getElementById('waBtnBack').style.display = n > 1 ? '' : 'none';
-    document.getElementById('waBtnNext').style.display = n < 4 ? '' : 'none';
-    document.getElementById('waBtnSubmit').style.display = n === 4 ? '' : 'none';
+    const foot = document.getElementById('waModalFoot');
+    if (n >= 5) {
+      foot.style.display = 'none';
+    } else {
+      foot.style.display = '';
+      document.getElementById('waBtnBack').style.display = n > 1 ? '' : 'none';
+      document.getElementById('waBtnNext').style.display = n < 4 ? '' : 'none';
+      document.getElementById('waBtnSubmit').style.display = n === 4 ? '' : 'none';
+    }
 
     if (n === 4) waRenderSummary();
   }
@@ -191,93 +202,231 @@
   function waRenderSummary() {
     document.getElementById('waSumEstablecimiento').textContent = state.establecimiento || 'No especificado';
     document.getElementById('waSumPlan').textContent = state.plan;
-    document.getElementById('waSumPersonas').textContent = state.personas;
-    document.getElementById('waSumFecha').textContent = document.getElementById('waFecha').value || 'No especificada';
-    document.getElementById('waSumPresupuesto').textContent = document.getElementById('waPresupuesto').value || 'No especificado';
+    document.getElementById('waSumAdultos').textContent = state.adultos;
+    document.getElementById('waSumNinos').textContent = state.ninos;
+    document.getElementById('waSumNinosRow').style.display = state.ninos > 0 ? '' : 'none';
+    document.getElementById('waSumFechaLlegada').textContent = formatDate(state.fechaLlegada) || 'No especificada';
+    document.getElementById('waSumFechaSalida').textContent = formatDate(state.fechaSalida) || '—';
+    document.getElementById('waSumSalidaRow').style.display = state.fechaSalida ? '' : 'none';
+    document.getElementById('waSumPresupuesto').textContent = state.presupuesto || 'No especificado';
     document.getElementById('waSumNombre').textContent = state.nombre;
     document.getElementById('waSumTel').textContent = state.tel;
   }
 
+  function formatDate(d) {
+    if (!d) return '';
+    const months = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+    const [y, m, day] = d.split('-');
+    return `${parseInt(day)} de ${months[parseInt(m)-1]} de ${y}`;
+  }
+
   function waValidate() {
-    if (!state.plan) { alert('Por favor selecciona el tipo de plan'); return false; }
-    if (!state.personas) { alert('Por favor indica cuántas personas'); return false; }
+    state.plan = state.plan || '';
+    if (!state.plan) { showError('Por favor selecciona el tipo de plan'); return false; }
+    if (state.adultos < 1) { showError('Debe haber al menos 1 adulto'); return false; }
     state.nombre = document.getElementById('waNombre').value.trim();
     state.tel = document.getElementById('waTelefono').value.trim().replace(/\D/g,'');
-    if (!state.nombre) { alert('Ingresa tu nombre completo'); return false; }
-    if (state.tel.length < 7) { alert('Ingresa un número de WhatsApp válido'); return false; }
+    state.fechaLlegada = document.getElementById('waFechaLlegada').value;
+    state.fechaSalida = document.getElementById('waFechaSalida').value;
+    state.presupuesto = document.getElementById('waPresupuesto').value;
+    state.email = document.getElementById('waEmail').value.trim();
+    state.notas = document.getElementById('waNotas').value.trim();
+    if (!state.nombre) { showError('Ingresa tu nombre completo'); return false; }
+    if (state.tel.length < 7) { showError('Ingresa un numero de WhatsApp valido'); return false; }
     return true;
+  }
+
+  function showError(msg) {
+    alert(msg);
   }
 
   async function waSubmit() {
     if (!waValidate()) return;
-    const honeypot = document.getElementById('wa_homeypot')?.value;
+    const honeypot = document.getElementById('wa_honeypot')?.value;
     if (honeypot) { waClose(); return; }
     const habeasOk = document.getElementById('waHabeas').checked;
-    if (!habeasOk) { alert('Debes aceptar la política de tratamiento de datos'); return; }
+    if (!habeasOk) { showError('Debes aceptar la politica de tratamiento de datos'); return; }
 
     const btn = document.getElementById('waBtnSubmit');
     btn.disabled = true;
-    document.getElementById('waRedirectMsg').style.display = 'block';
+    btn.textContent = 'Enviando...';
 
     const payload = {
       session_id: sessionStorage.getItem('hsfa_session') || crypto.randomUUID(),
       establecimiento: state.establecimiento,
       tipo_plan: state.plan,
-      personas: state.personas,
-      fecha_estimada: document.getElementById('waFecha').value,
-      presupuesto: document.getElementById('waPresupuesto').value,
+      personas: `${state.adultos} adultos` + (state.ninos > 0 ? `, ${state.ninos} ninos` : ''),
+      fecha_estimada: state.fechaLlegada + (state.fechaSalida ? ' → ' + state.fechaSalida : ''),
+      presupuesto: state.presupuesto,
       nombre: state.nombre,
       whatsapp_tel: state.tel,
-      correo: document.getElementById('waEmail').value,
-      preferencias: document.getElementById('waNotas').value,
+      correo: state.email,
+      preferencias: state.notas,
       habeas_data: true,
       habeas_data_timestamp: new Date().toISOString(),
       completado: true
     };
 
-    // Save to Supabase
     try {
-      const sbRes = await fetch(`${SUPABASE_URL}/rest/v1/leads_hospedaje`, {
+      await fetch(`${SUPABASE_URL}/rest/v1/leads_hospedaje`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Prefer': 'return=minimal' },
         body: JSON.stringify(payload)
       });
-      if (!sbRes.ok) console.warn('Supabase save warning:', sbRes.status);
-    } catch (e) {
-      console.warn('Supabase error:', e);
-    }
-
-    // Build WhatsApp message
-    const msg = [
-      `¡Hola! Vi ${state.establecimiento ? state.establecimiento + ' en' : ''} hosteriassantafe.com y quiero verificar disponibilidad.`,
-      ``,
-      `🏨 Establecimiento: ${state.establecimiento || 'Por definir'}`,
-      `📋 Plan: ${state.plan}`,
-      `👥 Personas: ${state.personas}`,
-      `📅 Cuándo: ${document.getElementById('waFecha').value || 'Por definir'}`,
-      `💰 Presupuesto: ${document.getElementById('waPresupuesto').value || 'No especificado'}`,
-      `👤 Nombre: ${state.nombre}`,
-      `📱 Mi WhatsApp: ${state.tel}`,
-      state.email ? `📧 Email: ${state.email}` : '',
-      document.getElementById('waNotas').value ? `📝 Notas: ${document.getElementById('waNotas').value}` : '',
-      ``,
-      `¿Tienen disponibilidad?`
-    ].filter(Boolean).join('\n');
-
-    trackEvent('whatsapp_disponibilidad_enviado', { establecimiento: state.establecimiento, tipo_plan: state.plan });
+    } catch (e) { console.warn('Supabase error:', e); }
 
     sessionStorage.setItem('hsfa_session', payload.session_id);
+    trackEvent('whatsapp_disponibilidad_enviado', { establecimiento: state.establecimiento, tipo_plan: state.plan });
 
-    setTimeout(() => {
-      window.open(`https://wa.me/${WA_DESTINO}?text=${encodeURIComponent(msg)}`, '_blank');
-      waClose();
-    }, 1500);
+    // Build success message
+    const estName = state.establecimiento || 'la hosteria';
+    document.getElementById('waSuccessTitle').textContent = 'Solicitud recibida';
+    document.getElementById('waSuccessMsg').innerHTML = 
+      `Un asesor de <strong>${estName}</strong> te contactara en breve a tu WhatsApp <strong>${state.tel}</strong>.`;
+
+    // Build WhatsApp link for the secondary CTA
+    const waMsg = [
+      `Hola! Vi ${state.establecimiento ? state.establecimiento + ' en' : ''} hosteriassantafe.com`,
+      `Plan: ${state.plan} | Personas: ${state.adultos} adultos` + (state.ninos > 0 ? `, ${state.ninos} ninos` : ''),
+      state.fechaLlegada ? `Fecha: ${formatDate(state.fechaLlegada)}` : '',
+      `Nombre: ${state.nombre} | WhatsApp: ${state.tel}`,
+      `Quiero confirmar disponibilidad.`
+    ].filter(Boolean).join('\n');
+    document.getElementById('waSuccessWA').href = `https://wa.me/${WA_DESTINO}?text=${encodeURIComponent(waMsg)}`;
+
+    // Go to success step
+    waSetStep(5);
+
+    // Launch confetti
+    launchConfetti();
   }
 
-  // Event bindings
+  /* ---- Confetti Animation ---- */
+  function launchConfetti() {
+    const canvas = document.getElementById('waConfetti');
+    if (!canvas) return;
+    const box = canvas.parentElement;
+    canvas.width = box.offsetWidth;
+    canvas.height = box.offsetHeight;
+    const ctx = canvas.getContext('2d');
+
+    const colors = ['#F5C800','#0A0A0A','#25D366','#DB9A2E','#E74C3C','#3498DB'];
+    const particles = [];
+
+    for (let i = 0; i < 120; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        w: Math.random() * 10 + 5,
+        h: Math.random() * 6 + 3,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        vx: (Math.random() - 0.5) * 2,
+        vy: Math.random() * 3 + 1,
+        rot: Math.random() * 360,
+        rotV: (Math.random() - 0.5) * 10,
+        opacity: 1
+      });
+    }
+
+    let frame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        ctx.save();
+        ctx.translate(p.x, p.y);
+        ctx.rotate(p.rot * Math.PI / 180);
+        ctx.globalAlpha = p.opacity;
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+        ctx.restore();
+
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.rotV;
+        p.vy += 0.05;
+        p.opacity -= 0.003;
+        p.vx *= 0.99;
+      });
+
+      frame++;
+      if (frame < 150) {
+        requestAnimationFrame(draw);
+      } else {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  /* ---- Counter buttons ---- */
+  document.querySelectorAll('.wa-counter__btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.dataset.counter;
+      const action = btn.dataset.action;
+      const valEl = document.getElementById(type === 'adultos' ? 'waAdultosVal' : 'waNinosVal');
+      let val = parseInt(valEl.textContent);
+
+      if (action === 'plus') val++;
+      else val--;
+
+      const min = type === 'adultos' ? 1 : 0;
+      const max = type === 'adultos' ? 20 : 15;
+      val = Math.max(min, Math.min(max, val));
+      valEl.textContent = val;
+
+      if (type === 'adultos') state.adultos = val;
+      else state.ninos = val;
+
+      // Update sibling button disabled state
+      const row = btn.closest('.wa-counter-row');
+      const minusBtn = row.querySelector('[data-action="minus"]');
+      const plusBtn = row.querySelector('[data-action="plus"]');
+      minusBtn.disabled = val <= min;
+      plusBtn.disabled = val >= max;
+    });
+  });
+
+  // Initialize button states
+  document.querySelectorAll('.wa-counter-row').forEach(row => {
+    const type = row.querySelector('.wa-counter__btn').dataset.counter;
+    const valEl = document.getElementById(type === 'adultos' ? 'waAdultosVal' : 'waNinosVal');
+    const val = parseInt(valEl.textContent);
+    const min = type === 'adultos' ? 1 : 0;
+    const max = type === 'adultos' ? 20 : 15;
+    const minusBtn = row.querySelector('[data-action="minus"]');
+    const plusBtn = row.querySelector('[data-action="plus"]');
+    if (minusBtn) minusBtn.disabled = val <= min;
+    if (plusBtn) plusBtn.disabled = val >= max;
+  });
+
+  /* ---- Choice buttons (step 1: plan) ---- */
+  document.querySelectorAll('.wa-step[data-wstep="1"] .wa-choice').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.wa-choice').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      state.plan = btn.dataset.val;
+      waSetStep(2);
+    });
+  });
+
+  // Step 3: collect name+tel before advancing
+  ['waNombre','waTelefono','waEmail','waNotas','waFechaLlegada','waFechaSalida','waPresupuesto'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('change', () => {
+        if (id === 'waNombre') state.nombre = el.value.trim();
+        if (id === 'waTelefono') state.tel = el.value.trim();
+        if (id === 'waFechaLlegada') state.fechaLlegada = el.value;
+        if (id === 'waFechaSalida') state.fechaSalida = el.value;
+      });
+    }
+  });
+
+  /* ---- Navigation buttons ---- */
   document.querySelectorAll('[data-wa-trigger]').forEach(btn => {
     btn.addEventListener('click', () => {
-      const est = btn.dataset.waEstablecimiento || state.establecimiento || '';
+      const est = btn.dataset.waEstablecimiento || '';
       waOpen(est);
     });
   });
@@ -287,71 +436,39 @@
   });
 
   document.getElementById('waBtnNext').addEventListener('click', () => {
-    let next = 1;
-    if (state.plan) next = 2;
-    if (state.personas) next = 3;
-    if (state.nombre) next = 4;
-    next = Math.min(next + 1, 4);
-    waSetStep(next);
+    const current = state.step;
+    if (current === 1 && !state.plan) { showError('Selecciona un tipo de plan'); return; }
+    if (current === 2) {
+      state.adultos = parseInt(document.getElementById('waAdultosVal').textContent);
+      state.ninos = parseInt(document.getElementById('waNinosVal').textContent);
+      if (state.adultos < 1) { showError('Debe haber al menos 1 adulto'); return; }
+    }
+    if (current === 3) {
+      const n = document.getElementById('waNombre').value.trim();
+      const t = document.getElementById('waTelefono').value.trim();
+      if (!n) { showError('Ingresa tu nombre completo'); return; }
+      if (t.replace(/\D/g,'').length < 7) { showError('Ingresa un WhatsApp valido'); return; }
+    }
+    waSetStep(Math.min(current + 1, 4));
   });
 
   document.getElementById('waBtnBack').addEventListener('click', () => {
-    let prev = 4;
-    if (state.plan) prev = 2;
-    if (state.personas) prev = 3;
-    prev = Math.max(prev - 1, 1);
-    waSetStep(prev);
+    waSetStep(Math.max(state.step - 1, 1));
   });
 
   document.getElementById('waBtnSubmit').addEventListener('click', waSubmit);
-
-  // Choice buttons
-  document.querySelectorAll('.wa-choice').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const parent = btn.parentElement;
-      parent.querySelectorAll('.wa-choice').forEach(b => b.classList.remove('selected'));
-      btn.classList.add('selected');
-      const val = btn.dataset.val;
-
-      // Determine which step we're on
-      const activeStep = document.querySelector('.wa-step.active');
-      if (!activeStep) return;
-      const stepNum = +activeStep.dataset.wstep;
-
-      if (stepNum === 1) { state.plan = val; waSetStep(2); }
-      else if (stepNum === 2) { state.personas = val; waSetStep(3); }
-    });
-  });
-
-  // Auto-advance on step 3: move to step 4 when name and phone are filled
-  const waNombreEl = document.getElementById('waNombre');
-  const waTelEl = document.getElementById('waTelefono');
-  if (waNombreEl && waTelEl) {
-    const checkStep3 = () => {
-      if (state.personas && waNombreEl.value.trim() && waTelEl.value.trim().length >= 7) {
-        state.nombre = waNombreEl.value.trim();
-        state.tel = waTelEl.value.trim();
-        waSetStep(4);
-      }
-    };
-    waNombreEl.addEventListener('input', checkStep3);
-    waTelEl.addEventListener('input', checkStep3);
-  }
 
   // Escape key
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape' && modal.classList.contains('open')) waClose();
   });
 
-  // Float button on detail pages triggers with establishment name
+  // Float button on detail pages
   const floatWA = document.querySelector('.float-wa');
   if (floatWA) {
     floatWA.addEventListener('click', function(e) {
       const estName = this.dataset.waEstablecimiento || document.querySelector('h1')?.textContent?.trim() || '';
-      if (estName) {
-        e.preventDefault();
-        waOpen(estName);
-      }
+      if (estName) { e.preventDefault(); waOpen(estName); }
     });
   }
 })();

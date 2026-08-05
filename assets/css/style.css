@@ -1216,3 +1216,77 @@ body.has-top-bar .field-header { top: 44px; }
 }
 .wa-btn--submit:hover { background: #333; }
 .wa-btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Counter rows (adults/children) */
+.wa-counter-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .65rem 0; border-bottom: 1px solid var(--gallery);
+}
+.wa-counter-info { display: flex; flex-direction: column; }
+.wa-counter-label { font-size: var(--body-md); font-weight: 500; color: var(--mine-shaft); }
+.wa-counter-hint { font-size: 11px; color: var(--mountain-mist); }
+.wa-counter {
+  display: flex; align-items: center; gap: .75rem;
+}
+.wa-counter__btn {
+  width: 36px; height: 36px; border-radius: 50%;
+  border: 1.5px solid var(--alto); background: white;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .2s; color: var(--dove-gray);
+}
+.wa-counter__btn:hover { border-color: var(--theme-color); color: var(--black); }
+.wa-counter__btn:disabled { opacity: .3; cursor: not-allowed; }
+.wa-counter__btn .material-icons { font-size: 18px; }
+.wa-counter__val {
+  font-size: var(--body-lg); font-weight: 600; color: var(--mine-shaft);
+  min-width: 28px; text-align: center;
+}
+
+/* Date row */
+.wa-date-row {
+  display: flex; gap: .75rem; margin-top: .75rem;
+}
+.wa-date-row .wa-input[type="date"] {
+  -webkit-appearance: none; appearance: none;
+  color-scheme: light; cursor: pointer;
+}
+
+/* Choice button icons (Material Icons instead of emojis) */
+.wa-choice__icon .material-icons {
+  font-size: 1.8rem; color: var(--theme-color);
+}
+.wa-choice:hover .wa-choice__icon .material-icons,
+.wa-choice.selected .wa-choice__icon .material-icons { color: var(--theme-color-dark); }
+
+/* Success step */
+.wa-success {
+  text-align: center; padding: 1rem 0;
+}
+.wa-success__icon {
+  margin-bottom: .75rem; animation: waSuccessBounce .6s ease;
+}
+@keyframes waSuccessBounce {
+  0% { transform: scale(0); }
+  60% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.wa-success__title {
+  font-size: var(--h5); font-weight: 600; color: var(--mine-shaft);
+  margin-bottom: .5rem;
+}
+.wa-success__msg {
+  font-size: var(--body-md); color: var(--dove-gray);
+  line-height: 1.6; margin-bottom: 1.25rem;
+}
+.wa-success__actions {
+  display: flex; flex-direction: column; gap: .6rem;
+}
+
+/* Confetti canvas */
+.wa-confetti {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 2; border-radius: var(--card-radius);
+}
+
+/* Material Icons inside modal header */
+.wa-modal__hdr .material-icons { font-size: 22px; }
