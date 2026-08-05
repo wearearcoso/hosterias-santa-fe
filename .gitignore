@@ -1,0 +1,24 @@
+# Dependencies
+node_modules/
+
+# CSV research files
+*.csv
+!*.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Large images (keep processed webp)
+assets/images/*.jpg
+assets/images/*.jpeg
+assets/images/*.png
+!assets/images/*.webp
+
+# Temp
+/tmp/
+*.tmp
+
+# .env (never commit)
+.env
+*.env
