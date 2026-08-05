@@ -104,6 +104,24 @@
   });
 })();
 
+/* ---- FAQ Accordion ---- */
+(function () {
+  document.querySelectorAll('.faq-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item   = trigger.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      trigger.setAttribute('aria-expanded', !isOpen);
+      if (isOpen) {
+        item.classList.remove('open');
+        item.querySelector('.faq-answer').setAttribute('aria-hidden', 'true');
+      } else {
+        item.classList.add('open');
+        item.querySelector('.faq-answer').removeAttribute('aria-hidden');
+      }
+    });
+  });
+})();
+
 /* ---- Office selector (contact page) ---- */
 (function () {
   const btns = document.querySelectorAll('.office-btn');
