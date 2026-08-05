@@ -132,7 +132,7 @@
 
   const state = {
     establecimiento: '', plan: '', adultos: 2, ninos: 0,
-    fechaLlegada: '', fechaSalida: '', presupuesto: '',
+    fechaLlegada: '', fechaSalida: '',
     nombre: '', tel: '', email: '', notas: '', step: 0
   };
 
@@ -143,12 +143,12 @@
   function waOpen(estName) {
     state.establecimiento = estName || '';
     state.plan = ''; state.adultos = 2; state.ninos = 0;
-    state.fechaLlegada = ''; state.fechaSalida = ''; state.presupuesto = '';
+    state.fechaLlegada = ''; state.fechaSalida = '';
     state.nombre = ''; state.tel = ''; state.email = ''; state.notas = '';
     state.step = 1;
 
     document.querySelectorAll('.wa-choice.selected').forEach(b => b.classList.remove('selected'));
-    ['waNombre','waTelefono','waEmail','waNotas','waHabeas','wa_honeypot','waFechaLlegada','waFechaSalida','waPresupuesto'].forEach(id => {
+    ['waNombre','waTelefono','waEmail','waNotas','waHabeas','wa_honeypot','waFechaLlegada','waFechaSalida'].forEach(id => {
       const el = document.getElementById(id);
       if (el) { if (id === 'waHabeas') el.checked = true; else el.value = ''; }
     });
@@ -208,7 +208,6 @@
     document.getElementById('waSumFechaLlegada').textContent = formatDate(state.fechaLlegada) || 'No especificada';
     document.getElementById('waSumFechaSalida').textContent = formatDate(state.fechaSalida) || '—';
     document.getElementById('waSumSalidaRow').style.display = state.fechaSalida ? '' : 'none';
-    document.getElementById('waSumPresupuesto').textContent = state.presupuesto || 'No especificado';
     document.getElementById('waSumNombre').textContent = state.nombre;
     document.getElementById('waSumTel').textContent = state.tel;
   }
@@ -228,7 +227,6 @@
     state.tel = document.getElementById('waTelefono').value.trim().replace(/\D/g,'');
     state.fechaLlegada = document.getElementById('waFechaLlegada').value;
     state.fechaSalida = document.getElementById('waFechaSalida').value;
-    state.presupuesto = document.getElementById('waPresupuesto').value;
     state.email = document.getElementById('waEmail').value.trim();
     state.notas = document.getElementById('waNotas').value.trim();
     if (!state.nombre) { showError('Ingresa tu nombre completo'); return false; }
@@ -255,9 +253,8 @@
       session_id: sessionStorage.getItem('hsfa_session') || crypto.randomUUID(),
       establecimiento: state.establecimiento,
       tipo_plan: state.plan,
-      personas: `${state.adultos} adultos` + (state.ninos > 0 ? `, ${state.ninos} ninos` : ''),
+      personas: `${state.adultos} adultos` + (state.ninos > 0 ? `, ${state.ninos} ni&ntilde;os` : ''),
       fecha_estimada: state.fechaLlegada + (state.fechaSalida ? ' → ' + state.fechaSalida : ''),
-      presupuesto: state.presupuesto,
       nombre: state.nombre,
       whatsapp_tel: state.tel,
       correo: state.email,
@@ -280,9 +277,9 @@
 
     // Build success message
     const estName = state.establecimiento || 'la hosteria';
-    document.getElementById('waSuccessTitle').textContent = 'Solicitud recibida';
+    document.getElementById('waSuccessTitle').textContent = '¡Solicitud recibida!';
     document.getElementById('waSuccessMsg').innerHTML = 
-      `Un asesor de <strong>${estName}</strong> te contactara en breve a tu WhatsApp <strong>${state.tel}</strong>.`;
+      `Un asesor de <strong>${estName}</strong> te contactará en breve a tu WhatsApp <strong>${state.tel}</strong>.`;
 
     // Build WhatsApp link for the secondary CTA
     const waMsg = [

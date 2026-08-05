@@ -222,7 +222,7 @@
     </div>
   </div>
 </footer>
-<div class="footer-bottom"><p>© 2026 Hosterías Santa Fe de Antioquia | <a href="contacto.html">Contacto</a> | <a href="politica-privacidad.html">Privacidad</a> | <a href="habeas-data.html">Habeas Data</a> | <a href="terminos.html">Términos</a></p></div>
+<div class="footer-bottom"><p>© 2026 Hosterías Santa Fe de Antioquia | <a href="contacto.html">Contacto</a> | <a href="politica-privacidad.html">Privacidad</a> | <a href="habeas-data.html">Habeas data</a> | <a href="terminos.html">Términos</a></p></div>
 
 <div class="floating-ctas">
   <a href="#" class="float-btn float-wa" aria-label="WhatsApp" data-wa-trigger data-wa-establecimiento="Hostería Paraíso de Santa Fe">
@@ -236,27 +236,25 @@
 <!-- MODAL DISPONIBILIDAD -->
 <!-- ================================================
      MODAL — Verificar Disponibilidad
-     Material Icons (no emojis) · Colores #F5C800 + #0A0A0A
+     Material Icons · Colores #F5C800 + #0A0A0A
      ================================================ -->
 <div class="wa-modal" id="dispoModal" role="dialog" aria-modal="true" hidden>
   <div class="wa-modal__backdrop" data-wa-close></div>
   <div class="wa-modal__box">
 
-    <!-- Header -->
     <div class="wa-modal__hdr">
       <div class="wa-modal__hdr-icon">
         <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
       </div>
       <div>
-        <div class="wa-modal__hdr-title">Verificar Disponibilidad</div>
-        <div class="wa-modal__hdr-sub" id="waModalEstName">Sin compromiso · Respuesta rapida</div>
+        <div class="wa-modal__hdr-title">Verificar disponibilidad</div>
+        <div class="wa-modal__hdr-sub" id="waModalEstName">Sin compromiso · Respuesta rápida</div>
       </div>
       <button class="wa-modal__close" data-wa-close aria-label="Cerrar">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
       </button>
     </div>
 
-    <!-- Progress dots -->
     <div class="wa-dots" role="progressbar" aria-valuemin="1" aria-valuemax="4" aria-valuenow="1">
       <span class="wa-dot active" data-dot="1"></span>
       <span class="wa-dot" data-dot="2"></span>
@@ -264,45 +262,43 @@
       <span class="wa-dot" data-dot="4"></span>
     </div>
 
-    <!-- Steps body -->
     <div class="wa-body">
 
       <!-- Step 1: Plan type -->
       <div class="wa-step active" data-wstep="1">
-        <p class="wa-step__q">Que tipo de plan buscas?</p>
+        <p class="wa-step__q">&iquest;Qu&eacute; tipo de plan buscas?</p>
         <div class="wa-choices">
           <button class="wa-choice" data-val="dia-de-sol">
             <span class="wa-choice__icon"><span class="material-icons">wb_sunny</span></span>
-            <span class="wa-choice__label">Dia de Sol</span>
-            <span class="wa-choice__hint">Pasadia con piscina y almuerzo</span>
+            <span class="wa-choice__label">D&iacute;a de sol</span>
+            <span class="wa-choice__hint">Pasad&iacute;a con piscina y almuerzo</span>
           </button>
           <button class="wa-choice" data-val="alojamiento">
             <span class="wa-choice__icon"><span class="material-icons">hotel</span></span>
             <span class="wa-choice__label">Alojamiento</span>
-            <span class="wa-choice__hint">1 o mas noches de hospedaje</span>
+            <span class="wa-choice__hint">Una o m&aacute;s noches de hospedaje</span>
           </button>
           <button class="wa-choice" data-val="todo-incluido">
             <span class="wa-choice__icon"><span class="material-icons">restaurant</span></span>
-            <span class="wa-choice__label">Todo Incluido</span>
-            <span class="wa-choice__hint">Alimentacion + actividades + hospedaje</span>
+            <span class="wa-choice__label">Todo incluido</span>
+            <span class="wa-choice__hint">Alimentaci&oacute;n + actividades + hospedaje</span>
           </button>
           <button class="wa-choice" data-val="evento">
             <span class="wa-choice__icon"><span class="material-icons">celebration</span></span>
-            <span class="wa-choice__label">Evento / Celebracion</span>
-            <span class="wa-choice__hint">Cumpleanos, bodas, empresarial</span>
+            <span class="wa-choice__label">Evento / Celebraci&oacute;n</span>
+            <span class="wa-choice__hint">Cumplea&ntilde;os, bodas, empresarial</span>
           </button>
         </div>
       </div>
 
-      <!-- Step 2: People + Dates + Budget -->
+      <!-- Step 2: People + Dates -->
       <div class="wa-step" data-wstep="2">
-        <p class="wa-step__q">Cuantas personas y cuando?</p>
+        <p class="wa-step__q">&iquest;Cu&aacute;ntas personas y cu&aacute;ndo?</p>
 
-        <!-- Adults counter -->
         <div class="wa-counter-row">
           <div class="wa-counter-info">
             <span class="wa-counter-label">Adultos</span>
-            <span class="wa-counter-hint">Mayores de 12 anos</span>
+            <span class="wa-counter-hint">Mayores de 12 a&ntilde;os</span>
           </div>
           <div class="wa-counter">
             <button class="wa-counter__btn" data-counter="adultos" data-action="minus" aria-label="Reducir adultos">
@@ -315,24 +311,22 @@
           </div>
         </div>
 
-        <!-- Children counter -->
         <div class="wa-counter-row">
           <div class="wa-counter-info">
-            <span class="wa-counter-label">Ninos</span>
-            <span class="wa-counter-hint">De 0 a 12 anos</span>
+            <span class="wa-counter-label">Ni&ntilde;os</span>
+            <span class="wa-counter-hint">De 0 a 12 a&ntilde;os</span>
           </div>
           <div class="wa-counter">
-            <button class="wa-counter__btn" data-counter="ninos" data-action="minus" aria-label="Reducir ninos">
+            <button class="wa-counter__btn" data-counter="ninos" data-action="minus" aria-label="Reducir ni&ntilde;os">
               <span class="material-icons">remove</span>
             </button>
             <span class="wa-counter__val" id="waNinosVal">0</span>
-            <button class="wa-counter__btn" data-counter="ninos" data-action="plus" aria-label="Aumentar ninos">
+            <button class="wa-counter__btn" data-counter="ninos" data-action="plus" aria-label="Aumentar ni&ntilde;os">
               <span class="material-icons">add</span>
             </button>
           </div>
         </div>
 
-        <!-- Date pickers -->
         <div class="wa-date-row">
           <div class="wa-field" style="flex:1;">
             <label class="wa-label">Fecha de llegada</label>
@@ -343,40 +337,37 @@
             <input class="wa-input" type="date" id="waFechaSalida" min="">
           </div>
         </div>
-
-        <!-- Budget -->
-        <div class="wa-field" style="margin-top:.25rem;">
-          <label class="wa-label">Presupuesto aproximado por persona (opcional)</label>
-          <select class="wa-select" id="waPresupuesto">
-            <option value="">Selecciona un rango</option>
-            <option value="$75.000 - $100.000">$75.000 - $100.000</option>
-            <option value="$100.000 - $150.000">$100.000 - $150.000</option>
-            <option value="$150.000 - $250.000">$150.000 - $250.000</option>
-            <option value="$250.000+">Mas de $250.000</option>
-            <option value="Sin presupuesto definido">Sin presupuesto definido</option>
-          </select>
-        </div>
       </div>
 
       <!-- Step 3: Contact details -->
       <div class="wa-step" data-wstep="3">
         <p class="wa-step__q">Tus datos de contacto</p>
         <input type="text" id="wa_honeypot" style="position:absolute;left:-9999px;opacity:0;" tabindex="-1" autocomplete="off">
+
         <div class="wa-field">
           <label class="wa-label">Nombre completo *</label>
           <input class="wa-input" type="text" id="waNombre" placeholder="Tu nombre completo" required autocomplete="name">
         </div>
+
         <div class="wa-field">
           <label class="wa-label">WhatsApp *</label>
-          <input class="wa-input" type="tel" id="waTelefono" placeholder="+57 300 000 0000" required autocomplete="tel">
+          <input class="wa-input" type="tel" id="waTelefono" inputmode="numeric" pattern="[0-9+\- ]*" placeholder="+57 300 000 0000" required autocomplete="tel">
         </div>
+
         <div class="wa-field">
-          <label class="wa-label">Correo electronico (opcional)</label>
-          <input class="wa-input" type="email" id="waEmail" placeholder="tu@correo.com" autocomplete="email">
+          <label class="wa-label">Correo electr&oacute;nico (opcional)</label>
+          <input class="wa-input" type="email" id="waEmail" list="waEmailList" placeholder="tu@correo.com" autocomplete="email" inputmode="email">
+          <datalist id="waEmailList">
+            <option value="@gmail.com">
+            <option value="@hotmail.com">
+            <option value="@yahoo.com">
+            <option value="@outlook.com">
+          </datalist>
         </div>
+
         <div class="wa-field">
-          <label class="wa-label">Algo mas que quieras contarnos? (opcional)</label>
-          <textarea class="wa-input wa-textarea" id="waNotas" placeholder="Ej: Necesito transporte desde Medellin, tengo mascota, celebramos un cumpleanos..." rows="2"></textarea>
+          <label class="wa-label">&iquest;Algo m&aacute;s que quieras contarnos? (opcional)</label>
+          <textarea class="wa-input wa-textarea" id="waNotas" placeholder="Ej: necesito transporte desde Medell&iacute;n, tengo máscota, celebramos un cumplea&ntilde;os..." rows="2"></textarea>
         </div>
       </div>
 
@@ -384,19 +375,18 @@
       <div class="wa-step" data-wstep="4">
         <p class="wa-step__q">Confirma tus datos</p>
         <div class="wa-summary" id="waSummary">
-          <div class="wa-summary__row"><span class="wa-summary__key">Establecimiento</span><span class="wa-summary__val" id="waSumEstablecimiento">—</span></div>
-          <div class="wa-summary__row"><span class="wa-summary__key">Tipo de plan</span><span class="wa-summary__val" id="waSumPlan">—</span></div>
-          <div class="wa-summary__row"><span class="wa-summary__key">Adultos</span><span class="wa-summary__val" id="waSumAdultos">—</span></div>
-          <div class="wa-summary__row" id="waSumNinosRow"><span class="wa-summary__key">Ninos</span><span class="wa-summary__val" id="waSumNinos">—</span></div>
-          <div class="wa-summary__row"><span class="wa-summary__key">Llegada</span><span class="wa-summary__val" id="waSumFechaLlegada">—</span></div>
-          <div class="wa-summary__row" id="waSumSalidaRow"><span class="wa-summary__key">Salida</span><span class="wa-summary__val" id="waSumFechaSalida">—</span></div>
-          <div class="wa-summary__row"><span class="wa-summary__key">Presupuesto</span><span class="wa-summary__val" id="waSumPresupuesto">—</span></div>
-          <div class="wa-summary__row"><span class="wa-summary__key">Nombre</span><span class="wa-summary__val" id="waSumNombre">—</span></div>
-          <div class="wa-summary__row"><span class="wa-summary__key">WhatsApp</span><span class="wa-summary__val" id="waSumTel">—</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Establecimiento</span><span class="wa-summary__val" id="waSumEstablecimiento">&mdash;</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Tipo de plan</span><span class="wa-summary__val" id="waSumPlan">&mdash;</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Adultos</span><span class="wa-summary__val" id="waSumAdultos">&mdash;</span></div>
+          <div class="wa-summary__row" id="waSumNinosRow"><span class="wa-summary__key">Ni&ntilde;os</span><span class="wa-summary__val" id="waSumNinos">&mdash;</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Llegada</span><span class="wa-summary__val" id="waSumFechaLlegada">&mdash;</span></div>
+          <div class="wa-summary__row" id="waSumSalidaRow"><span class="wa-summary__key">Salida</span><span class="wa-summary__val" id="waSumFechaSalida">&mdash;</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">Nombre</span><span class="wa-summary__val" id="waSumNombre">&mdash;</span></div>
+          <div class="wa-summary__row"><span class="wa-summary__key">WhatsApp</span><span class="wa-summary__val" id="waSumTel">&mdash;</span></div>
         </div>
         <div class="wa-habeas">
           <input type="checkbox" id="waHabeas" checked>
-          <label for="waHabeas">Autorizo el tratamiento de mis datos personales segun la <a href="habeas-data.html" target="_blank">Politica de Habeas Data</a> y confirmo que quiero recibir informacion sobre hosterias en Santa Fe de Antioquia.</label>
+          <label for="waHabeas">Autorizo el tratamiento de mis datos personales seg&uacute;n la <a href="habeas-data.html" target="_blank">Pol&iacute;tica de habeas data</a> y confirmo que quiero recibir informaci&oacute;n sobre hoster&iacute;as en Santa Fe de Antioquia.</label>
         </div>
       </div>
 
@@ -406,12 +396,12 @@
           <div class="wa-success__icon">
             <span class="material-icons" style="font-size:3rem;color:var(--theme-color);">check_circle</span>
           </div>
-          <p class="wa-success__title" id="waSuccessTitle">Solicitud recibida</p>
+          <p class="wa-success__title" id="waSuccessTitle">&iexcl;Solicitud recibida!</p>
           <p class="wa-success__msg" id="waSuccessMsg"></p>
           <div class="wa-success__actions">
             <a id="waSuccessWA" href="#" target="_blank" class="wa-btn wa-btn--submit" style="width:100%;justify-content:center;">
               <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-              Quieres contactarnos directamente? Escribenos aqui
+              &iquest;Quieres contactarnos directamente? Escribenos aqu&iacute;
             </a>
             <button class="wa-btn wa-btn--back" data-wa-close style="width:100%;justify-content:center;">Cerrar</button>
           </div>
@@ -421,13 +411,12 @@
 
     </div>
 
-    <!-- Footer buttons (steps 1-4 only) -->
     <div class="wa-modal__foot" id="waModalFoot">
       <button class="wa-btn wa-btn--back" id="waBtnBack" style="display:none;">Volver</button>
       <button class="wa-btn wa-btn--next" id="waBtnNext">Continuar</button>
       <button class="wa-btn wa-btn--submit" id="waBtnSubmit" style="display:none;">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
-        Contactame
+        Env&iacute;ame cotizaci&oacute;n
       </button>
     </div>
 

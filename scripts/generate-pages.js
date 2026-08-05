@@ -41,7 +41,7 @@ const ESTABLECIMIENTOS = [
   { slug: 'hosteria-fundadores', nombre: 'Hostería Fundadores', tipo: 'hosteria',
     title: 'Hostería Fundadores Santa Fe de Antioquia — Económica y Céntrica',
     desc: 'Hostería Fundadores: económica, céntrica a 7 cuadras del Parque Principal. Piscina, restaurante y WiFi. Desde $87.000.',
-    h1: 'Hostería Fundadores — La Mejor Opción Económica en Santa Fe de Antioquia',
+    h1: 'Hostería Fundadores — La mejor opción económica en Santa Fe de Antioquia',
     description: 'La Hostería Fundadores es la opción ideal para viajeros con presupuesto ajustado que no quieren sacrificar comodidad. Ubicada a solo 7 cuadras del Parque Principal, ofrece piscina, restaurante, WiFi y habitaciones cómodas. La mejor relación calidad-precio en Santa Fe de Antioquia.',
     precio: 'Desde $87.000 por persona',
     ubicacion: 'Centro, a 7 cuadras del Parque Principal',
