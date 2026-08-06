@@ -113,9 +113,6 @@
 </header>
 
 <!-- ================================================
-     MOBILE MENU OVERLAY
-     ================================================ -->
-<!-- ================================================
      MEGA MENU (Turaturizm-style)
      ================================================ -->
 <nav class="field-menu" id="field-menu" aria-label="Menú principal">
@@ -330,13 +327,13 @@
             </div>
             <div class="card-images">
               <div class="card-img-back card-img-back-1">
-                <img src="assets/images/sancol-02.webp" alt="" aria-hidden="true" loading="lazy">
+                 <img src="assets/images/real-01.webp" alt="" aria-hidden="true" loading="lazy">
               </div>
               <div class="card-img-back card-img-back-2">
-                <img src="assets/images/sancol-03.webp" alt="" aria-hidden="true" loading="lazy">
+                 <img src="assets/images/real-02.webp" alt="" aria-hidden="true" loading="lazy">
               </div>
               <div class="card-img-main">
-                <img src="assets/images/sancol-04.webp" alt="Hotel y Spa Santa Fe Colonial — SanCol en Santa Fe de Antioquia" loading="lazy">
+                 <img src="assets/images/real-03.webp" alt="Hostería Real — bar restaurante con piscina en Santa Fe de Antioquia" loading="lazy">
               </div>
             </div>
             <div class="card-info">
@@ -434,8 +431,12 @@
       <p class="section-tag" style="justify-content:center;">¿Por qué reservar con nosotros?</p>
       <h2 class="section-title text-center" data-animate style="color:white;">Directo. Rápido. Sin comisiones.</h2>
     </div>
-    <div style="display:grid;grid-template-columns:1fr;gap:var(--space-lg);max-width:960px;margin-inline:auto;">
-      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:var(--space-lg);" data-animate>
+    <style>
+      .why-us-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-lg); }
+      @media (min-width: 768px) { .why-us-grid { grid-template-columns:repeat(4,1fr); } }
+    </style>
+    <div style="max-width:960px;margin-inline:auto;">
+      <div class="why-us-grid" data-animate>
         <div style="text-align:center;">
           <div style="width:52px;height:52px;border-radius:50%;background:rgba(232,182,0,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;">
             <span class="material-icons" style="color:#E8B600;font-size:26px;">sell</span>
@@ -484,6 +485,8 @@
 
     <div class="hosteria-grid">
       <a class="hosteria-card" href="hosteria-fundadores.html" data-animate>
+        <div class="hosteria-card-img">
+          <img src="assets/images/fundadores-01.webp" alt="Hostería Fundadores" loading="lazy">
           <span class="hosteria-card-price">Desde $95.000</span>
         </div>
         <div class="hosteria-card-body">
@@ -506,6 +509,8 @@
       </a>
 
       <a class="hosteria-card" href="hosteria-real.html" data-animate data-delay="1">
+        <div class="hosteria-card-img">
+          <img src="assets/images/real-01.webp" alt="Hostería Real" loading="lazy">
           <span class="hosteria-card-price">Desde $110.000</span>
         </div>
         <div class="hosteria-card-body">
@@ -528,6 +533,8 @@
       </a>
 
       <a class="hosteria-card" href="hotel-santa-fe-del-parque.html" data-animate data-delay="2">
+        <div class="hosteria-card-img">
+          <img src="assets/images/santa-fe-parque-01.webp" alt="Hotel Santa Fe del Parque" loading="lazy">
           <span class="hosteria-card-price">Desde $80.000</span>
         </div>
         <div class="hosteria-card-body">
@@ -567,6 +574,8 @@
 
     <div class="hosteria-grid">
       <a class="hosteria-card" href="hotel-mariscal-robledo.html" data-animate>
+        <div class="hosteria-card-img">
+          <img src="assets/images/mariscal-robledo-01.webp" alt="Hotel Mariscal Robledo" loading="lazy">
           <span class="hosteria-card-price">Desde $320.000</span>
         </div>
         <div class="hosteria-card-body">
@@ -590,6 +599,8 @@
       </a>
 
       <a class="hosteria-card" href="hotel-porton-del-sol.html" data-animate data-delay="1">
+        <div class="hosteria-card-img">
+          <img src="assets/images/porton-del-sol-01.webp" alt="Hotel Portón del Sol" loading="lazy">
           <span class="hosteria-card-price">Desde $250.000</span>
         </div>
         <div class="hosteria-card-body">
@@ -612,6 +623,8 @@
       </a>
 
       <a class="hosteria-card" href="casa-hotel-guaracu.html" data-animate data-delay="2">
+        <div class="hosteria-card-img">
+          <img src="assets/images/guaracu-01.webp" alt="Casa Hotel Guaracú" loading="lazy">
           <span class="hosteria-card-price">Desde $180.000</span>
         </div>
         <div class="hosteria-card-body">
