@@ -93,17 +93,6 @@ const ESTABLECIMIENTOS = [
     imagenes: 'ivanna-02,ivanna-03,ivanna-04,ivanna-05',
     faq: '¿Qué significa 4.5 estrellas en Ivanna Hotel Campestre?|Es la calificación de los huéspedes, reflejando la alta calidad del servicio, instalaciones y atención.|¿Qué incluye el todo incluido?|Incluye alojamiento, desayuno, almuerzo, cena, acceso a piscina y actividades recreativas programadas.|¿Es apto para parejas?|Sí, es ideal para parejas que buscan una experiencia premium con atención personalizada.' },
 
-  { slug: 'hotel-spa-santa-fe-colonial', nombre: 'Hotel y Spa Santa Fe Colonial (SanCOL)', tipo: 'hosteria',
-    title: 'Hotel y Spa Santa Fe Colonial (SanCOL) — Spa, Piscina y Todo Incluido',
-    desc: 'SanCOL: Hotel y Spa en el centro histórico de Santa Fe de Antioquia. Piscinas, spa, plan todo incluido. Reserva directa.',
-    h1: 'Hotel y Spa Santa Fe Colonial — Relax y Bienestar en el Centro Histórico',
-    description: 'El Hotel y Spa Santa Fe Colonial, conocido como SanCOL, es una experiencia única en el corazón del centro histórico. Combina el confort de un hotel boutique con un spa completo, piscinas y planes todo incluido. Ideal para parejas y quienes buscan una escapada de bienestar.',
-    precio: 'Desde $180.000 por persona',
-    ubicacion: 'Centro Histórico, Santa Fe de Antioquia',
-    amenities: 'Spa,Piscina,Todo incluido,Jacuzzi,Restaurante,Boutique,Centro histórico',
-    imagenes: 'sancol-01,sancol-02,sancol-03,sancol-04,sancol-05',
-    faq: '¿Qué tratamientos ofrece el spa de SanCOL?|Ofrece masajes, tratamientos faciales y corporales, y zonas húmedas con jacuzzi. Consulta la carta completa.|¿Es solo para parejas?|Es ideal para parejas pero también reciben huéspedes individuales y grupos pequeños.|¿Está en el centro histórico?|Sí, está ubicado en pleno centro histórico, a pocos pasos de la Plaza Mayor y la Catedral.' },
-
   { slug: 'finca-hotel-tropical-palser', nombre: 'Finca Hotel Tropical PalSer', tipo: 'hosteria',
     title: 'Finca Hotel Tropical PalSer Santa Fe de Antioquia — Resort y Naturaleza',
     desc: 'Finca Hotel Tropical PalSer: tipo resort con privacidad total, naturaleza y confort. Desde $490.000 la noche en Santa Fe de Antioquia.',
