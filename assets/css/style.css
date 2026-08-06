@@ -289,7 +289,7 @@ a   { text-decoration: none; color: inherit; }
 }
 .hero-bg {
   position: absolute; inset: 0;
-  background: url('../images/tonusco-hero.webp') center/cover no-repeat;
+  background: url('../images/hero-home.webp') center/cover no-repeat;
 }
 .hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
@@ -325,8 +325,119 @@ a   { text-decoration: none; color: inherit; }
 .hero-subtitle {
   font-size: var(--body-xl); color: rgba(255,255,255,.82);
   margin-bottom: var(--space-md); font-weight: 300;
-  max-width: 480px; line-height: 1.55;
+  max-width: 520px; line-height: 1.55;
 }
+
+/* Hero search bar */
+.hero-search {
+  display: flex; gap: .5rem; max-width: 480px; margin-top: .5rem;
+}
+.hero-search__select {
+  flex: 1; padding: .85rem 1rem; border-radius: 9999px;
+  border: 2px solid rgba(255,255,255,.3); background: rgba(255,255,255,.12);
+  color: white; font-family: var(--font-family); font-size: var(--body-md);
+  outline: none; cursor: pointer; backdrop-filter: blur(4px);
+  -webkit-appearance: none; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='white'%3E%3Cpath d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 1rem center;
+  padding-right: 2.5rem; transition: border-color .3s, background .3s;
+}
+.hero-search__select option { color: var(--mine-shaft); background: white; }
+.hero-search__select:focus { border-color: var(--theme-color); background: rgba(255,255,255,.2); }
+.hero-search__btn {
+  padding: .85rem 1.5rem; border-radius: 9999px; border: none;
+  background: var(--theme-color); color: var(--black);
+  font-family: var(--font-family); font-size: var(--body-md);
+  font-weight: 600; cursor: pointer; display: inline-flex;
+  align-items: center; gap: .5rem; white-space: nowrap;
+  transition: background .2s, transform .2s;
+}
+.hero-search__btn:hover { background: #C49B00; transform: scale(1.02); }
+
+/* Resultados section */
+.resultados-section {
+  padding: var(--space-xl) var(--gap);
+  max-width: var(--container-max); margin-inline: auto; width: 100%;
+}
+.resultados-section .section-header {
+  text-align: center; margin-bottom: var(--space-lg);
+}
+.resultados-grid {
+  display: grid; grid-template-columns: 1fr; gap: var(--space-md);
+}
+@media (min-width:640px)  { .resultados-grid { grid-template-columns: repeat(2,1fr); } }
+@media (min-width:1024px) { .resultados-grid { grid-template-columns: repeat(3,1fr); } }
+
+/* Premium result card */
+.resultado-card {
+  background: white; border-radius: 24px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.resultado-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.1); border-color: var(--theme-color); }
+.resultado-card-img-stack {
+  position: relative; height: 220px; overflow: hidden; background: var(--gallery);
+}
+.resultado-card-img-stack .img-back {
+  position: absolute; top: 5%; width: 79%; height: 90%;
+  border-radius: 16px; overflow: hidden;
+}
+.resultado-card-img-stack .img-back img { width: 100%; height: 100%; object-fit: cover; }
+.resultado-card-img-stack .img-back-1 { right: -6%; z-index: 2; transform: rotate(5deg); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+.resultado-card-img-stack .img-back-2 { left: -6%; z-index: 1; transform: rotate(-5deg); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
+.resultado-card-img-stack .img-main {
+  position: relative; z-index: 3; width: 100%; height: 100%;
+  border-radius: 0; overflow: hidden;
+}
+.resultado-card-img-stack .img-main img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.resultado-card:hover .img-main img { transform: scale(1.05); }
+.resultado-card-img-stack .r-badge-rating {
+  position: absolute; bottom: 10px; right: 10px; z-index: 5;
+  background: white; border-radius: 9999px; padding: .2rem .65rem;
+  font-size: 13px; font-weight: 700; color: var(--mine-shaft);
+  display: flex; align-items: center; gap: .2rem; box-shadow: 0 2px 8px rgba(0,0,0,.1);
+}
+.resultado-card-body { padding: 1rem; }
+.resultado-card-body .r-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .5rem; }
+.resultado-card-body .r-tag {
+  font-size: 10px; font-weight: 600; padding: .15rem .55rem;
+  border-radius: 9999px; background: rgba(232,182,0,.1); color: #7A6000;
+  text-transform: uppercase; letter-spacing: .02em;
+}
+.resultado-card-body .r-name {
+  font-size: var(--body-lg); font-weight: 600; color: var(--mine-shaft);
+  margin-bottom: .2rem; text-decoration: none; display: block;
+}
+.resultado-card-body .r-name:hover { color: var(--theme-color-dark); }
+.resultado-card-body .r-amenities-text {
+  font-size: 11px; color: var(--mountain-mist); margin-bottom: .5rem;
+  line-height: 1.3;
+}
+.resultado-card-body .r-desc {
+  font-size: var(--body-sm); color: var(--dove-gray); line-height: 1.5;
+  margin-bottom: .75rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+.resultado-card-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-top: .75rem; border-top: 1px solid rgba(0,0,0,.05);
+}
+.resultado-card-footer .r-price-label { font-size: 10px; color: var(--mountain-mist); display: block; }
+.resultado-card-footer .r-price-val { font-size: var(--body-md); font-weight: 700; color: var(--mine-shaft); }
+.resultado-card-footer .r-actions { display: flex; align-items: center; gap: .5rem; }
+.resultado-card-footer .r-wa-bubble {
+  width: 38px; height: 38px; border-radius: 50%; background: #25D366;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s; flex-shrink: 0;
+}
+.resultado-card-footer .r-wa-bubble:hover { background: #1EBE5A; }
+.resultado-card-footer .r-wa-bubble svg { width: 19px; height: 19px; fill: white; }
+.resultado-card-footer .r-ver-btn {
+  padding: .5rem 1.1rem; border-radius: 9999px; font-size: 13px; font-weight: 600;
+  color: var(--black); background: var(--theme-color); border: none; cursor: pointer;
+  white-space: nowrap; text-decoration: none; transition: background .2s;
+  font-family: var(--font-family);
+}
+.resultado-card-footer .r-ver-btn:hover { background: var(--theme-color-dark); }
+.resultado-card[data-categoria="dia-de-sol"] .r-price-val { color: var(--theme-color-dark); }
 
 /* ======================
    BUTTONS
