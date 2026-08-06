@@ -1,0 +1,154 @@
+[
+  {
+    "slug": "fundadores-oficial",
+    "name": "Hostería Fundadores",
+    "type": "hosteria",
+    "url": "https://hosteriafundadores.com/",
+    "prices": [],
+    "images": 2,
+    "description": "Saltar al contenido\nInicio\nServicios\nHabitaciones\nCabañas\nSuperior Cuádrupe\nEstándar doble\nSanta Fe\nSanta Fe de Antioquia\nFerias y Eventos\nSitios turisticos\nPlanes\nOfertas\nGalería\nImágenes\nVideos\nF.A."
+  },
+  {
+    "slug": "paraiso-oficial",
+    "name": "Hostería Paraíso de Santa Fe",
+    "type": "hosteria",
+    "url": "https://www.hosteriaparaisodesantafe.com/",
+    "prices": [
+      "$100",
+      "$150",
+      "$300"
+    ],
+    "images": 2,
+    "description": "Home\nHabitaciones\nDía De Sol\nContacto\nEnglish\nEnglish\nFrench\nSpanish\nHosteria\nParaiso\nAduls\nAduls\n0 Adul\n1 Adul\n2 Aduls\n3 Aduls\n4 Aduls\n5 Aduls\nChildrens\nChildrens\n0 Children\n1 Children\n2 Childrens\n3 "
+  },
+  {
+    "slug": "porton-del-sol-oficial",
+    "name": "Hotel Portón del Sol",
+    "type": "hotel",
+    "url": "https://www.hotelportondelsol.com.co/",
+    "prices": [],
+    "images": 4,
+    "description": "Check In Online\nCOP\nIniciar Sesión\nEL LODGE\nHABITACIONES\nSERVICIOS\nPROMOCIONES\nGALERIA\nUBICACION Y CONTACTO\nFecha de Llegada\nFecha de Salida\nCódigo Promocional\n2 adultos • 1 habitación\nVER TARIFAS\nHab"
+  },
+  {
+    "slug": "real-oficial",
+    "name": "Hostería Real",
+    "type": "hosteria",
+    "url": "https://hosteriareal.com/",
+    "prices": [],
+    "images": 0,
+    "description": "Saltar al contenido\nHOME\nBLOG\nReservar\nLa Hostería Real\nReservar Ahora\n\n La Hostería Real se erige como un destino imprescindible para quienes buscan una experiencia que combine la calidez de la hospi"
+  },
+  {
+    "slug": "arena",
+    "name": "Hotel Arena Santa Fe",
+    "type": "hotel",
+    "url": "https://bernalohotels.com/hotel-arena-santa-fe-de-antioquia/",
+    "prices": [],
+    "images": 5,
+    "description": "Ir al contenido\nInicio\nQuiénes somos\nNuestros Hoteles\nCoveñas\nTolú\nCartagena\nMedellín\nSanta fe de Antioquia\nSan Jerónimo\nGuatapé\nJardín\nTours\nEventos\nEvento Dj\nBodas\nContáctanos\nMares SPA\nPromos\nFaceb"
+  },
+  {
+    "slug": "angel",
+    "name": "Hotel Ángel",
+    "type": "hotel",
+    "url": "https://bernalohotels.com/hotel-angel/",
+    "prices": [],
+    "images": 5,
+    "description": "Ir al contenido\nInicio\nQuiénes somos\nNuestros Hoteles\nCoveñas\nTolú\nCartagena\nMedellín\nSanta fe de Antioquia\nSan Jerónimo\nGuatapé\nJardín\nTours\nEventos\nEvento Dj\nBodas\nContáctanos\nMares SPA\nPromos\nFaceb"
+  },
+  {
+    "slug": "iguana-oficial",
+    "name": "Hotel La Iguana",
+    "type": "hotel",
+    "url": "https://bernalohotels.com/hotel-iguana/",
+    "prices": [],
+    "images": 5,
+    "description": "Ir al contenido\nInicio\nQuiénes somos\nNuestros Hoteles\nCoveñas\nTolú\nCartagena\nMedellín\nSanta fe de Antioquia\nSan Jerónimo\nGuatapé\nJardín\nTours\nEventos\nEvento Dj\nBodas\nContáctanos\nMares SPA\nPromos\nFaceb"
+  },
+  {
+    "slug": "mariscal-oficial",
+    "name": "Hotel Mariscal Robledo",
+    "type": "hotel",
+    "url": "https://www.hotelmariscalrobledo.com/es/index.html",
+    "prices": [],
+    "images": 4,
+    "description": "ESPAÑOL\nRESERVAR AHORA\nHOTEL MARISCAL ROBLEDO\nSANTA FE DE ANTIOQUIA\nCONCEPTO\nBIBLIOTECA\nHOTEL MARISCAL ROBLEDO\nNuestro hotel esta diseñado para quienes aman el silencio, los espacios tranquilos, la le"
+  },
+  {
+    "slug": "santa-fe-colonial-real",
+    "name": "Hotel Spa Santa Fe Colonial",
+    "type": "hosteria",
+    "url": "https://hotelspasantafecolonial.com/",
+    "prices": [],
+    "images": 4,
+    "description": "Saltar al contenido\nInicio\nHabitaciones\nServicios\nContáctanos\nHotel / Spa.\nSanta Fe Colonial.\nDonde el tiempo No Existe\nHotel en Santa Fe de Antioquia\nNuestro Hotel\n\nHotel y Spa Santa Fe Colonial es u"
+  },
+  {
+    "slug": "villa-del-marques",
+    "name": "Hotel Villa del Marqués",
+    "type": "hotel",
+    "url": "https://www.hotelvilladelmarques.com/",
+    "prices": [],
+    "images": 2,
+    "description": "Ir al contenido principal\n\nInicio\n\nHabitaciones\n\nBodas del Marqués\n\nActividades\n\nNosotros\n\nContacto\n\nTour Virtual\nBeneficios exclusivos en tu e-mail\nSuscribirse\nHabitaciones\n\nNuestro Hotel Villa del M"
+  },
+  {
+    "slug": "casa-bixa",
+    "name": "Hotel Boutique Casa Bixa",
+    "type": "hotel",
+    "url": "https://hotelesmemorables.com/es/hotel-boutique-casa-bixa/",
+    "prices": [],
+    "images": 5,
+    "description": "Saltar al contenido\nHoteles Memorables\nCasa Bixa\nÓleo Bistró\nSanta Fe de Antioquia\nFAQ’s\nReserva ahora\nFacebook\nInstagram\nWhatsapp\nCONOCE MÁS SOBRE NOSOTROS\nOtra Historia para Contar\nHOTEL BOUTIQUE EN"
+  },
+  {
+    "slug": "entre-palmas",
+    "name": "Entre Palmas Casa Hotel",
+    "type": "hotel",
+    "url": "https://www.entrepalmascasahotel.com/",
+    "prices": [],
+    "images": 2,
+    "description": "Skip to Main Content\n\nINICIO\n\nNOSOTROS\n\nHABITACIONES\n\nSERVICIOS\n\nGALERÍA\n\nCONTÁCTANOS\n\nRESERVA AHORA\nNOSOTROS\n\nEntre Palmas es una casa hotel ubicada cerca al centro histórico de Santa Fe de Antioquia"
+  },
+  {
+    "slug": "caserón-del-parque",
+    "name": "Hotel Caserón del Parque",
+    "type": "hotel",
+    "url": "https://www.caserondelparque.com/",
+    "prices": [],
+    "images": 3,
+    "description": "Inicio\nNosotros\nHabitaciones\nRestaurante\nZona húmeda\nTarifas\nContáctenos\nUNA ESTADÍA INOLVIDABLE\nLLEGADA\nSALIDA\nPERSONAS\n1 Persona\n2 Personas\n3 Personas\n4+ Personas\nRESERVAR AHORA\n— Tradición y relaja"
+  },
+  {
+    "slug": "casa-de-verano",
+    "name": "Casa de Verano",
+    "type": "hotel",
+    "url": "https://casadeverano.com.co/",
+    "prices": [
+      "$160.000",
+      "$160",
+      "$215"
+    ],
+    "images": 5,
+    "description": "Skip to content\nCasa de Verano\n\nThe Best Hotel in Santa Fe de Antioquia\n\nInicio\nHabitaciones\nAgenda\n\nSanta Fe de Antioquia · Colombia · 55 min de Medellín\n\nTu escape colonial,\ndonde el tiempo\nsí se de"
+  },
+  {
+    "slug": "campestre-real",
+    "name": "Hotel Campestre Real",
+    "type": "hotel",
+    "url": "https://hotelcampestrereal.com/",
+    "prices": [],
+    "images": 5,
+    "description": "Inicio\nHabitaciones\nServicios\nRestaurante\nGalería\nReseñas\nUbicación\nReservar\nSANTA FE DE ANTIOQUIA, COLOMBIA\nVive una experiencia inolvidable en Santa Fe de Antioquia\n\nDescansa rodeado de naturaleza, "
+  },
+  {
+    "slug": "santa-maria-villa",
+    "name": "Santa María Villa",
+    "type": "hosteria",
+    "url": "https://santamaria.villa.family/",
+    "prices": [],
+    "images": 0,
+    "description": "Villa\nPopular Сities\nBest Hotels\nUSD/EN\nHotel Villa Santa Maria Santa Fe de Antioquia\nSanta Fe De Antioquia-San Jeronimo\n6 Aug, 2026\n—\n7 Aug, 2026\n2 guests\n\nAdults:\n\n2\n\nChildren:\n\n0\nCheck Availability"
+  }
+]
