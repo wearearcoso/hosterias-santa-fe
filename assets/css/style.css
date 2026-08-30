@@ -368,76 +368,129 @@ a   { text-decoration: none; color: inherit; }
 @media (min-width:640px)  { .resultados-grid { grid-template-columns: repeat(2,1fr); } }
 @media (min-width:1024px) { .resultados-grid { grid-template-columns: repeat(3,1fr); } }
 
-/* Premium result card */
+/* ── Tarjeta de resultado (home grid) ─────────────────────── */
 .resultado-card {
-  background: white; border-radius: 24px; overflow: hidden;
-  border: 1px solid rgba(0,0,0,.06); transition: transform .3s, box-shadow .3s, border-color .3s;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid #ebebeb;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .25s, transform .25s;
 }
-.resultado-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.1); border-color: var(--theme-color); }
-.resultado-card-img-stack {
-  position: relative; height: 220px; overflow: hidden; background: var(--gallery);
+.resultado-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.1);
 }
-.resultado-card-img-stack .img-back {
-  position: absolute; top: 5%; width: 79%; height: 90%;
-  border-radius: 16px; overflow: hidden;
+
+/* Imagen */
+.rc-img-wrap {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  background: #f0f0f0;
+  flex-shrink: 0;
 }
-.resultado-card-img-stack .img-back img { width: 100%; height: 100%; object-fit: cover; }
-.resultado-card-img-stack .img-back-1 { right: -6%; z-index: 2; transform: rotate(5deg); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
-.resultado-card-img-stack .img-back-2 { left: -6%; z-index: 1; transform: rotate(-5deg); box-shadow: 0 4px 12px rgba(0,0,0,.1); }
-.resultado-card-img-stack .img-main {
-  position: relative; z-index: 3; width: 100%; height: 100%;
-  border-radius: 0; overflow: hidden;
+.rc-img-wrap img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s ease;
 }
-.resultado-card-img-stack .img-main img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
-.resultado-card:hover .img-main img { transform: scale(1.05); }
-.resultado-card-img-stack .r-badge-rating {
-  position: absolute; bottom: 10px; right: 10px; z-index: 5;
-  background: white; border-radius: 9999px; padding: .2rem .65rem;
-  font-size: 13px; font-weight: 700; color: var(--mine-shaft);
-  display: flex; align-items: center; gap: .2rem; box-shadow: 0 2px 8px rgba(0,0,0,.1);
+.resultado-card:hover .rc-img-wrap img { transform: scale(1.04); }
+
+/* Badge de rating (★ 4.5) */
+.rc-badge-rating {
+  position: absolute; bottom: 8px; right: 8px;
+  background: rgba(255,255,255,.95);
+  border-radius: 999px;
+  padding: .2rem .55rem;
+  font-size: 12px; font-weight: 700;
+  display: flex; align-items: center; gap: .25rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,.12);
+  color: #111;
 }
-.resultado-card-body { padding: 1rem; }
-.resultado-card-body .r-tags { display: flex; flex-wrap: wrap; gap: .3rem; margin-bottom: .5rem; }
-.resultado-card-body .r-tag {
-  font-size: 10px; font-weight: 600; padding: .15rem .55rem;
-  border-radius: 9999px; background: rgba(232,182,0,.1); color: #7A6000;
-  text-transform: uppercase; letter-spacing: .02em;
+
+/* Badge de categoría (Hostería / Hotel / Día de sol) */
+.rc-cat-badge {
+  position: absolute; top: 8px; left: 8px;
+  background: rgba(0,0,0,.62);
+  color: #fff;
+  border-radius: 6px;
+  padding: .18rem .6rem;
+  font-size: 11px; font-weight: 600;
+  letter-spacing: .02em;
 }
-.resultado-card-body .r-name {
-  font-size: var(--body-lg); font-weight: 600; color: var(--mine-shaft);
-  margin-bottom: .2rem; text-decoration: none; display: block;
+.resultado-card[data-categoria="dia-de-sol"] .rc-cat-badge {
+  background: #E8B600; color: #111;
 }
-.resultado-card-body .r-name:hover { color: var(--theme-color-dark); }
-.resultado-card-body .r-amenities-text {
-  font-size: 11px; color: var(--mountain-mist); margin-bottom: .5rem;
-  line-height: 1.3;
+
+/* Cuerpo */
+.rc-body { padding: .85rem 1rem .6rem; flex: 1; display: flex; flex-direction: column; }
+
+.rc-tags {
+  display: flex; flex-wrap: wrap; gap: .25rem; margin-bottom: .45rem;
 }
-.resultado-card-body .r-desc {
-  font-size: var(--body-sm); color: var(--dove-gray); line-height: 1.5;
-  margin-bottom: .75rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+.r-tag {
+  font-size: 10px; font-weight: 600; padding: .12rem .5rem;
+  border-radius: 999px; background: rgba(232,182,0,.12); color: #7A6000;
+  text-transform: uppercase; letter-spacing: .03em;
 }
-.resultado-card-footer {
+
+.rc-name {
+  font-size: 1rem; font-weight: 700; margin: 0 0 .25rem; line-height: 1.3;
+}
+.rc-name a {
+  color: #111; text-decoration: none;
+}
+.rc-name a:hover { color: #C49B00; }
+
+.rc-amenities {
+  font-size: 11px; color: #888; margin: 0 0 .4rem; line-height: 1.4;
+}
+
+.rc-desc {
+  font-size: 13px; color: #555; line-height: 1.5; margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  flex: 1;
+}
+
+/* Footer */
+.rc-footer {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: .75rem; border-top: 1px solid rgba(0,0,0,.05);
+  padding: .65rem 1rem .85rem;
+  border-top: 1px solid #f0f0f0;
+  gap: .5rem; flex-wrap: wrap;
 }
-.resultado-card-footer .r-price-label { font-size: 10px; color: var(--mountain-mist); display: block; }
-.resultado-card-footer .r-price-val { font-size: var(--body-md); font-weight: 700; color: var(--mine-shaft); }
-.resultado-card-footer .r-actions { display: flex; align-items: center; gap: .5rem; }
-.resultado-card-footer .r-wa-bubble {
-  width: 38px; height: 38px; border-radius: 50%; background: #25D366;
-  display: flex; align-items: center; justify-content: center;
-  transition: background .2s; flex-shrink: 0;
+
+.rc-price { display: flex; align-items: baseline; gap: .25rem; }
+.rc-price-label { font-size: 10px; color: #999; }
+.rc-price-val { font-size: 15px; font-weight: 800; color: #111; }
+.rc-price-unit { font-size: 10px; color: #999; }
+
+.rc-actions { display: flex; align-items: center; gap: .4rem; }
+
+.rc-btn-consult {
+  padding: .42rem .9rem;
+  background: #F5C800; color: #111;
+  border: none; border-radius: 8px;
+  font-size: 12.5px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+  transition: background .15s;
+  white-space: nowrap;
 }
-.resultado-card-footer .r-wa-bubble:hover { background: #1EBE5A; }
-.resultado-card-footer .r-wa-bubble svg { width: 19px; height: 19px; fill: white; }
-.resultado-card-footer .r-ver-btn {
-  padding: .5rem 1.1rem; border-radius: 9999px; font-size: 13px; font-weight: 600;
-  color: var(--black); background: var(--theme-color); border: none; cursor: pointer;
-  white-space: nowrap; text-decoration: none; transition: background .2s;
-  font-family: var(--font-family);
+.rc-btn-consult:hover { background: #E8B600; }
+
+.rc-btn-detail {
+  padding: .42rem .75rem;
+  border: 1.5px solid #ddd; border-radius: 8px;
+  font-size: 12.5px; font-weight: 600; color: #333;
+  text-decoration: none;
+  transition: border-color .15s, color .15s;
+  white-space: nowrap;
 }
-.resultado-card-footer .r-ver-btn:hover { background: var(--theme-color-dark); }
-.resultado-card[data-categoria="dia-de-sol"] .r-price-val { color: var(--theme-color-dark); }
+.rc-btn-detail:hover { border-color: #aaa; color: #111; }
 
 /* ======================
    BUTTONS

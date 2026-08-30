@@ -197,24 +197,26 @@ var DIA_DE_SOL_DATA = [
 ];
 
 function buildCard(e) {
+  var tags = e.tags.split(',').slice(0, 3).map(function(t) {
+    return '<span class="r-tag">'+t.trim()+'</span>';
+  }).join('');
   return '<article class="resultado-card" data-categoria="'+e.cat+'">'
-    + '<a href="'+e.url+'" class="resultado-card-img-stack">'
-    + '<div class="img-back img-back-1"><img src="assets/images/'+e.img1+'.webp" alt="'+e.name+'" loading="lazy"></div>'
-    + '<div class="img-back img-back-2"><img src="assets/images/'+e.img2+'.webp" alt="" aria-hidden="true" loading="lazy"></div>'
-    + '<div class="img-main"><img src="assets/images/'+e.img3+'.webp" alt="'+e.name+'" loading="lazy"></div>'
-    + '<div class="r-badge-rating"><svg width="13" height="13" viewBox="0 0 24 24" fill="#E8B600"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg> '+e.stars+'</div>'
+    + '<a href="'+e.url+'" class="rc-img-wrap" tabindex="-1" aria-hidden="true">'
+    + '<img src="assets/images/'+e.img1+'.webp" alt="'+e.name+'" loading="lazy" width="400" height="267">'
+    + '<div class="rc-badge-rating"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E8B600"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'+e.stars+'</div>'
+    + '<div class="rc-cat-badge">'+( e.cat==='dia-de-sol' ? 'Día de sol' : e.cat==='hosterias' ? 'Hostería' : 'Hotel' )+'</div>'
     + '</a>'
-    + '<div class="resultado-card-body">'
-    + '<div class="r-tags">'+e.tags.split(',').map(function(t){return '<span class="r-tag">'+t.trim()+'</span>';}).join('')+'</div>'
-    + '<a href="'+e.url+'" class="r-name">'+e.name+'</a>'
-    + '<div class="r-amenities-text">'+e.amText+'</div>'
-    + '<p class="r-desc">'+e.desc+'</p>'
+    + '<div class="rc-body">'
+    + '<div class="rc-tags">'+tags+'</div>'
+    + '<h3 class="rc-name"><a href="'+e.url+'">'+e.name+'</a></h3>'
+    + '<p class="rc-amenities">'+e.amText+'</p>'
+    + '<p class="rc-desc">'+e.desc+'</p>'
     + '</div>'
-    + '<div class="resultado-card-footer">'
-    + '<div><span class="r-price-label">Desde</span><span class="r-price-val">'+e.price+' /'+e.unit+'</span></div>'
-    + '<div class="r-actions">'
-    + '<button type="button" class="btn-consult" data-lw-open data-lw-property-id="'+e.id+'" data-lw-property-name="'+e.name+'">Consultar</button>'
-    + '<a href="'+e.url+'" class="r-ver-btn">Ver detalles</a>'
+    + '<div class="rc-footer">'
+    + '<div class="rc-price"><span class="rc-price-label">Desde</span><span class="rc-price-val">'+e.price+'</span><span class="rc-price-unit">/'+e.unit+'</span></div>'
+    + '<div class="rc-actions">'
+    + '<button class="rc-btn-consult" data-lw-open data-lw-property-id="'+e.id+'" data-lw-property-name="'+e.name+'">Consultar</button>'
+    + '<a href="'+e.url+'" class="rc-btn-detail">Ver →</a>'
     + '</div>'
     + '</div>'
     + '</article>';
