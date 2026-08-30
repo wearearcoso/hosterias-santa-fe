@@ -1,0 +1,53 @@
+# Páginas principales — URLs limpias sin .html
+/hosterias                                        /hosterias.html                                         200
+/hoteles                                          /hoteles.html                                           200
+/dia-de-sol                                       /dia-de-sol.html                                        200
+/que-hacer                                        /que-hacer.html                                         200
+/como-llegar                                      /como-llegar.html                                       200
+/contacto                                         /contacto.html                                          200
+/blog                                             /blog.html                                              200
+/servicios                                        /servicios.html                                         200
+/habeas-data                                      /habeas-data.html                                       200
+/politica-privacidad                              /politica-privacidad.html                               200
+/terminos                                         /terminos.html                                          200
+
+# Páginas de establecimientos existentes
+/hosteria-florida-tropical                        /hosteria-florida-tropical.html                         200
+/hosteria-tonusco-campestre                       /hosteria-tonusco-campestre.html                        200
+/hosteria-el-castellano                           /hosteria-el-castellano.html                            200
+/hosteria-fundadores                              /hosteria-fundadores.html                               200
+/hosteria-paraiso-santa-fe                        /hosteria-paraiso-santa-fe.html                         200
+/hosteria-bohios-bar                              /hosteria-bohios-bar.html                               200
+/hosteria-real                                    /hosteria-real.html                                     200
+/ivanna-hotel-campestre                           /ivanna-hotel-campestre.html                            200
+/finca-hotel-tropical-palser                      /finca-hotel-tropical-palser.html                       200
+/hotel-mariscal-robledo                           /hotel-mariscal-robledo.html                            200
+/hotel-porton-del-sol                             /hotel-porton-del-sol.html                              200
+/hotel-santa-fe-del-parque                        /hotel-santa-fe-del-parque.html                         200
+/hotel-santa-barbara-colonial                     /hotel-santa-barbara-colonial.html                      200
+/hotel-la-iguana                                  /hotel-la-iguana.html                                   200
+/casa-hotel-guaracu                               /casa-hotel-guaracu.html                                200
+/nueva-granada-hotel-colonial                     /nueva-granada-hotel-colonial.html                      200
+/selva-maria-hotel-boutique                       /selva-maria-hotel-boutique.html                        200
+
+# Páginas de categoría SEO (nuevas)
+/hoteles-santa-fe-de-antioquia                    /hoteles-santa-fe-de-antioquia.html                     200
+/dia-de-sol-santa-fe-de-antioquia                 /dia-de-sol-santa-fe-de-antioquia.html                  200
+/hoteles-todo-incluido-santa-fe-de-antioquia      /hoteles-todo-incluido-santa-fe-de-antioquia.html       200
+/hoteles-boutique-santa-fe-de-antioquia           /hoteles-boutique-santa-fe-de-antioquia.html            200
+/hoteles-coloniales-santa-fe-de-antioquia         /hoteles-coloniales-santa-fe-de-antioquia.html          200
+/hoteles-economicos-santa-fe-de-antioquia         /hoteles-economicos-santa-fe-de-antioquia.html          200
+/hosterias-para-parejas-santa-fe-de-antioquia     /hosterias-para-parejas-santa-fe-de-antioquia.html      200
+/hoteles-para-familias-santa-fe-de-antioquia      /hoteles-para-familias-santa-fe-de-antioquia.html       200
+/hoteles-con-piscina-santa-fe-de-antioquia        /hoteles-con-piscina-santa-fe-de-antioquia.html         200
+/hoteles-cerca-parque-santa-fe-de-antioquia       /hoteles-cerca-parque-santa-fe-de-antioquia.html        200
+/hoteles-para-eventos-santa-fe-de-antioquia       /hoteles-para-eventos-santa-fe-de-antioquia.html        200
+/guia-santa-fe-de-antioquia                       /guia-santa-fe-de-antioquia.html                        200
+
+# Blog
+/blog-dia-de-sol-medellin                         /blog-dia-de-sol-medellin.html                          200
+/blog-hosterias-economicas                        /blog-hosterias-economicas.html                         200
+/blog-hosterias-parejas                           /blog-hosterias-parejas.html                            200
+
+# Fallback SPA
+/*                                                /index.html                                             404

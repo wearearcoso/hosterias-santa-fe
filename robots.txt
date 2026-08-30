@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-Disallow: /assets/
-Sitemap: https://hosteriassantafe.com/sitemap.xml
+Disallow: /

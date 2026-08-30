@@ -1,0 +1,13 @@
+/*
+  X-Robots-Tag: noindex, nofollow
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/api/*
+  Access-Control-Allow-Origin: https://hosterias-santa-fe.pages.dev
+  Access-Control-Allow-Methods: POST, OPTIONS
+  Access-Control-Allow-Headers: Content-Type
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: no-store
