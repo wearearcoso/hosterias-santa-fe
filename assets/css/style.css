@@ -1867,3 +1867,57 @@ body.has-top-bar .field-header { top: 44px; }
   font-weight: 600; cursor: pointer; transition: background .15s;
 }
 .btn-consult:hover { background: #e8b600; }
+
+/* ── Fase 7: Accesibilidad de movimiento ─────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Stagger en tarjetas del grid ────────────────────────── */
+.resultados-grid .resultado-card {
+  animation: cardIn .35s ease both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .resultados-grid .resultado-card { animation: none; }
+}
+
+/* ── Lead wizard — responsive 360px ─────────────────────── */
+@media (max-width: 480px) {
+  .lw-dialog {
+    margin: 0;
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    max-height: 92dvh;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+  }
+  .lw-modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+  .lw-plan-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: .5rem;
+  }
+  .lw-plan-btn {
+    padding: .65rem .4rem;
+    font-size: 13px;
+  }
+  .lw-plan-icon .material-icons { font-size: 20px; }
+  .lw-occasion-grid { grid-template-columns: repeat(2, 1fr); }
+  .lw-pref-grid { grid-template-columns: repeat(2, 1fr); }
+  .lw-occasion-btn, .lw-pref-btn { font-size: 12px; padding: .4rem .5rem; }
+}

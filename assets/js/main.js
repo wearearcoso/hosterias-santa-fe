@@ -227,6 +227,9 @@ function initResultadosGrid() {
   if (!grid) return;
   var all = ESTABLECIMIENTOS_DATA.concat(DIA_DE_SOL_DATA);
   grid.innerHTML = all.map(buildCard).join('');
+  grid.querySelectorAll('.resultado-card').forEach(function(card, i) {
+    card.style.setProperty('--i', i);
+  });
 }
 
 /* Filter by category */
