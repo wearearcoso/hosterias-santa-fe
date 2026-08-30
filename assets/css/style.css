@@ -1671,24 +1671,32 @@ body.has-top-bar .field-header { top: 44px; }
   border-color: #F5C800; background: #fffbe6;
   outline: none;
 }
-.lw-plan-icon { font-size: 1.4rem; }
+.lw-plan-icon { line-height: 1; }
+.lw-plan-icon .material-icons { font-size: 22px; color: #555; }
+.lw-plan-btn[aria-pressed="true"] .lw-plan-icon .material-icons { color: #C49B00; }
 .lw-plan-label { font-size: .9rem; font-weight: 600; }
 .lw-plan-hint  { font-size: .75rem; color: #777; }
-/* Occasion grid */
+/* Occasion grid — touch target min 44px */
 .lw-occasion-grid { display: flex; flex-wrap: wrap; gap: .5rem; }
 .lw-occasion-btn {
+  min-height: 44px;
   padding: .5rem .85rem; border: 2px solid #e8e8e8;
   border-radius: 999px; background: #fafafa; cursor: pointer;
   font-size: .88rem; transition: border-color .15s, background .15s;
+  display: inline-flex; align-items: center; gap: .3rem;
 }
+.lw-occasion-btn .material-icons { font-size: 16px; }
 .lw-occasion-btn[aria-pressed="true"] { border-color: #F5C800; background: #fffbe6; }
-/* Pref grid */
+/* Pref grid — touch target min 44px */
 .lw-pref-grid { display: flex; flex-wrap: wrap; gap: .5rem; }
 .lw-pref-btn {
+  min-height: 44px;
   padding: .45rem .75rem; border: 2px solid #e8e8e8;
   border-radius: 999px; background: #fafafa; cursor: pointer;
   font-size: .85rem; transition: border-color .15s, background .15s;
+  display: inline-flex; align-items: center; gap: .3rem;
 }
+.lw-pref-btn .material-icons { font-size: 16px; }
 .lw-pref-btn[aria-pressed="true"] { border-color: #F5C800; background: #fffbe6; }
 /* Counters */
 .lw-counter-row { display: flex; align-items: center; justify-content: space-between; padding: .6rem 0; border-bottom: 1px solid #f0f0f0; }
