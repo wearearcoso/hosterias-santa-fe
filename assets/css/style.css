@@ -1758,6 +1758,55 @@ body.has-top-bar .field-header { top: 44px; }
   border: none; border-radius: 12px; font-size: 1rem;
   font-weight: 700; cursor: pointer;
 }
+/* ============================================================
+   CATEGORY PAGES
+   ============================================================ */
+.cat-hero {
+  padding: 5rem 1.25rem 2.5rem;
+  background: #0a0a0a; color: #fff;
+}
+.cat-breadcrumb { font-size: .82rem; color: rgba(255,255,255,.55); margin-bottom: 1rem; }
+.cat-breadcrumb a { color: rgba(255,255,255,.55); text-decoration: none; }
+.cat-breadcrumb a:hover { color: #F5C800; }
+.cat-hero-h1 { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 900; margin: 0 0 .75rem; line-height: 1.2; }
+.cat-hero-intro { font-size: 1rem; color: rgba(255,255,255,.75); max-width: 620px; margin: 0 0 1.5rem; line-height: 1.6; }
+.cat-hero-cta { display: flex; gap: .75rem; flex-wrap: wrap; }
+.cat-grid-section { padding: 3rem 1.25rem; }
+.cat-count { font-size: .85rem; color: #888; margin-bottom: 1.5rem; }
+.cat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.cat-card {
+  background: #fff; border: 1px solid #e8e8e8; border-radius: 16px;
+  overflow: hidden; display: flex; flex-direction: column;
+  transition: box-shadow .2s;
+}
+.cat-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,.1); }
+.cat-card-img-link { display: block; aspect-ratio: 4/3; overflow: hidden; }
+.cat-card-img-link img { width: 100%; height: 100%; object-fit: cover; transition: transform .3s; }
+.cat-card:hover .cat-card-img-link img { transform: scale(1.03); }
+.cat-card-body { padding: 1rem; flex: 1; }
+.cat-card-badges { display: flex; gap: .4rem; margin-bottom: .5rem; flex-wrap: wrap; }
+.cat-card-type, .cat-card-sector {
+  font-size: .72rem; padding: .2rem .6rem; border-radius: 999px;
+  background: #f0f0f0; color: #555; font-weight: 500;
+}
+.cat-card-name { font-size: 1rem; font-weight: 700; margin: 0 0 .4rem; }
+.cat-card-name a { color: inherit; text-decoration: none; }
+.cat-card-name a:hover { color: #E8B600; }
+.cat-card-desc { font-size: .85rem; color: #555; margin: 0 0 .75rem; line-height: 1.5; }
+.cat-card-amenities { display: flex; flex-wrap: wrap; gap: .3rem; }
+.cat-card-amenity { font-size: .75rem; padding: .2rem .5rem; background: #fffbe6; color: #7a5c00; border-radius: 4px; }
+.cat-card-footer {
+  padding: .75rem 1rem; border-top: 1px solid #f0f0f0;
+  display: flex; align-items: center; justify-content: space-between; gap: .5rem; flex-wrap: wrap;
+}
+.cat-card-price { font-size: .82rem; color: #333; font-weight: 600; }
+.cat-card-actions { display: flex; gap: .5rem; }
+.cat-price-disclaimer { font-size: .78rem; color: #aaa; text-align: center; margin-top: 1.5rem; }
+
 /* Btn-consult in result cards */
 .btn-consult {
   padding: .45rem .9rem; background: #F5C800; color: #111;

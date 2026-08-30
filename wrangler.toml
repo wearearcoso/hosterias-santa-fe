@@ -1,0 +1,12 @@
+name = "hosterias-santa-fe"
+compatibility_date = "2024-09-23"
+pages_build_output_dir = "."
+
+# Para pruebas locales:
+# npx wrangler pages dev . --port 3000
+#
+# Variables de entorno de prueba (agrega las reales en Cloudflare Dashboard):
+# npx wrangler pages dev . --port 3000 \
+#   --binding ENVIRONMENT=preview \
+#   --binding GESTIONALEADS_MODE=mock \
+#   --binding WHATSAPP_ENABLED=false
