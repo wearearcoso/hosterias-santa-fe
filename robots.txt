@@ -1,2 +1,13 @@
+# Sitio en construcción — indexación desactivada hasta dominio final
 User-agent: *
 Disallow: /
+
+# Cuando el dominio final esté activo, cambiar a:
+# Allow: /
+# Disallow: /api/
+# Disallow: /contacto
+# Disallow: /habeas-data
+# Disallow: /politica-privacidad
+# Disallow: /terminos
+
+Sitemap: https://hosterias-santa-fe.pages.dev/sitemap.xml
