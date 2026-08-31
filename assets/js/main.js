@@ -172,6 +172,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ---- Compact Carousel Día de Sol (Variante C) ---- */
   initCompactCarousel();
+
+  /* ---- Hero chip bar + bottom-sheet filtros ---- */
+  initHeroChips();
+  initBottomSheet();
 });
 
 /* ---- Resultados Grid Data & Render ---- */
@@ -193,6 +197,13 @@ var DIA_DE_SOL_DATA = [
   { id:"ds-fundadores",name:"Día de Sol en Hostería Fundadores",    cat:"dia-de-sol", stars:"4.2", ratingSrc:"Google", price:"$75.000", unit:"persona", tags:"Económica,Central,Piscina",amText:"Económica · Central · Piscina · Almuerzo",       url:"/hosteria-fundadores",        img1:"fundadores-04",       img2:"fundadores-05",        img3:"fundadores-01",         desc:"Piscina, almuerzo típico y ubicación céntrica a 7 cuadras del Parque Principal." },
 ];
 
+function priceRange(e) {
+  var n = parseInt(e.price.replace(/\D/g, ''), 10);
+  if (n < 90000) return 'low';
+  if (n <= 160000) return 'mid';
+  return 'high';
+}
+
 /* ---- Variante B: Tarjeta resultado (con galería in-card) ---- */
 function buildCard(e) {
   var tags = e.tags.split(',').slice(0, 3).map(function(t) {
@@ -200,7 +211,7 @@ function buildCard(e) {
   }).join('');
   var catLabel = e.cat==='dia-de-sol' ? 'Día de sol' : e.cat==='hosterias' ? 'Hostería' : 'Hotel';
   var imgs = [e.img1, e.img2, e.img3].filter(Boolean).join(',');
-  return '<article class="resultado-card" data-categoria="'+e.cat+'">'
+  return '<article class="resultado-card" data-categoria="'+e.cat+'" data-price-range="'+priceRange(e)+'" data-tags="'+e.tags.toLowerCase()+'">'
     + '<a href="'+e.url+'" class="rc-img-wrap" data-imgs="'+imgs+'" tabindex="-1" aria-hidden="true">'
     + '<img src="assets/images/'+e.img1+'.webp" alt="'+e.name+'" loading="lazy" width="400" height="300">'
     + '<div class="rc-badge-rating"><svg width="12" height="12" viewBox="0 0 24 24" fill="#E8B600"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>'+e.stars+'</div>'
@@ -330,18 +341,123 @@ function initCompactCarousel() {
   wrap.innerHTML = DIA_DE_SOL_DATA.map(buildCompactCard).join('');
 }
 
-/* Filter by category */
+/* ---- Hero chip bar (quick category filter) ---- */
+function initHeroChips() {
+  var chips = document.querySelectorAll('.hc-chip[data-filter]');
+  if (!chips.length) return;
+
+  chips.forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      chips.forEach(function(c) { c.classList.remove('hc-chip--active'); });
+      chip.classList.add('hc-chip--active');
+      var filter = chip.dataset.filter;
+      applyFilters({ cat: filter });
+      var sec = document.getElementById('resultados');
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+}
+
+/* ---- Bottom-sheet filtros ---- */
+var _activeFilters = { cat: 'todas', budget: null, amenidades: [] };
+
+function applyFilters(overrides) {
+  if (overrides) Object.assign(_activeFilters, overrides);
+  var f = _activeFilters;
+
+  document.querySelectorAll('.resultado-card').forEach(function(card) {
+    var catOk = f.cat === 'todas' || card.dataset.categoria === f.cat;
+    var budgetOk = !f.budget || card.dataset.priceRange === f.budget;
+    var amOk = !f.amenidades.length || f.amenidades.every(function(am) {
+      return (card.dataset.tags || '').indexOf(am.toLowerCase()) !== -1;
+    });
+    card.style.display = catOk && budgetOk && amOk ? '' : 'none';
+  });
+
+  // Update apply button count
+  var visible = document.querySelectorAll('.resultado-card:not([style*="none"])').length;
+  var btn = document.getElementById('bsApplyBtn');
+  if (btn) btn.textContent = 'Ver ' + visible + ' resultado' + (visible !== 1 ? 's' : '');
+
+  // Badge on filter chip
+  var filterChip = document.getElementById('heroFiltrosBtn');
+  if (filterChip) {
+    var hasExtra = f.budget || f.amenidades.length;
+    filterChip.classList.toggle('has-filters', !!hasExtra);
+    var badge = filterChip.querySelector('.bs-badge');
+    if (badge) badge.textContent = (f.budget ? 1 : 0) + f.amenidades.length || '';
+  }
+}
+
+function initBottomSheet() {
+  var sheet = document.getElementById('filtrosSheet');
+  if (!sheet) return;
+
+  var openBtn = document.getElementById('heroFiltrosBtn');
+  var closeBtn = sheet.querySelector('.bs-close-btn');
+  var overlay = sheet.querySelector('.bs-overlay');
+  var applyBtn = document.getElementById('bsApplyBtn');
+
+  function open() { sheet.removeAttribute('hidden'); requestAnimationFrame(function() { sheet.classList.add('bs-open'); }); document.body.style.overflow = 'hidden'; }
+  function close() { sheet.classList.remove('bs-open'); document.body.style.overflow = ''; setTimeout(function() { sheet.setAttribute('hidden', ''); }, 350); }
+
+  if (openBtn) openBtn.addEventListener('click', open);
+  if (closeBtn) closeBtn.addEventListener('click', close);
+  if (overlay) overlay.addEventListener('click', close);
+
+  // Category chips inside sheet
+  sheet.querySelectorAll('.bs-chip[data-cat]').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      sheet.querySelectorAll('.bs-chip[data-cat]').forEach(function(c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      // Also sync hero chips
+      document.querySelectorAll('.hc-chip[data-filter]').forEach(function(hc) {
+        hc.classList.toggle('hc-chip--active', hc.dataset.filter === chip.dataset.cat);
+      });
+      applyFilters({ cat: chip.dataset.cat });
+    });
+  });
+
+  // Budget chips inside sheet
+  sheet.querySelectorAll('.bs-chip[data-budget]').forEach(function(chip) {
+    chip.addEventListener('click', function() {
+      var already = chip.classList.contains('active');
+      sheet.querySelectorAll('.bs-chip[data-budget]').forEach(function(c) { c.classList.remove('active'); });
+      if (!already) { chip.classList.add('active'); applyFilters({ budget: chip.dataset.budget }); }
+      else { applyFilters({ budget: null }); }
+    });
+  });
+
+  // Amenidades checkboxes
+  sheet.querySelectorAll('.bs-am-check').forEach(function(cb) {
+    cb.addEventListener('change', function() {
+      _activeFilters.amenidades = Array.from(sheet.querySelectorAll('.bs-am-check:checked')).map(function(c) { return c.value; });
+      applyFilters();
+    });
+  });
+
+  // Apply & close
+  if (applyBtn) applyBtn.addEventListener('click', function() {
+    close();
+    var sec = document.getElementById('resultados');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Keyboard close
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && sheet.classList.contains('bs-open')) close();
+  });
+
+  // Initial count
+  applyFilters();
+}
+
+/* ---- Legacy filter (disabled — replaced by chips + bottom-sheet) ---- */
 var searchBtn = document.getElementById('heroSearchBtn');
 if (searchBtn) {
   searchBtn.addEventListener('click', function() {
     var cat = document.getElementById('heroSelect').value;
-    document.querySelectorAll('.resultado-card').forEach(function(card) {
-      if (cat === 'todas' || card.dataset.categoria === cat) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
+    applyFilters({ cat: cat });
     document.getElementById('resultados').scrollIntoView({ behavior: 'smooth' });
   });
 }

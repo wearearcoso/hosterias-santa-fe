@@ -183,43 +183,43 @@
 
   <div class="hero-content">
     <div class="hero-text-main">
-      <p class="hero-eyebrow" data-animate>Escapadas desde Medellín</p>
-      <h1 class="hero-title" data-animate data-delay="1">
+      <div class="hero-ornament" data-animate aria-hidden="true"></div>
+      <p class="hero-eyebrow" data-animate data-delay="1">Escapadas desde Medellín</p>
+      <h1 class="hero-title" data-animate data-delay="2">
         Encuentra la hostería ideal<br>en Santa Fe de Antioquia
       </h1>
-      <p class="hero-subtitle" data-animate data-delay="2">
-        Compara opciones verificadas para alojamiento, día de sol, familia, pareja o celebraciones. Te mostramos precios orientativos y un asesor humano confirma la mejor alternativa disponible.
+      <p class="hero-subtitle" data-animate data-delay="3">
+        Compara opciones verificadas y recibe orientación de un asesor humano que confirma disponibilidad, precio y condiciones para tus fechas.
       </p>
 
-      <!-- CTAs hero -->
-      <div class="hero-ctas" data-animate data-delay="3">
-        <button class="btn btn-primary hero-cta-main" data-lw-open aria-label="Encontrar mi opción">
+      <!-- CTA principal único -->
+      <div style="display:flex;flex-direction:column;gap:.85rem;margin-bottom:.25rem;" data-animate data-delay="4">
+        <button class="btn btn-primary hero-cta-main" data-lw-open aria-label="Encontrar mi opción" style="align-self:flex-start;">
           <div class="btn-bg"></div>
           <span>Encontrar mi opción</span>
         </button>
-        <button class="btn btn-secondary hero-cta-sec" data-lw-open data-lw-step="7" aria-label="Hablar con un asesor">
-          <div class="btn-bg"></div>
-          <span>Hablar con un asesor</span>
+        <button class="hero-cta-text" data-lw-open data-lw-step="7" aria-label="Hablar con un asesor">
+          Hablar con un asesor
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" width="14" height="14"><line x1="3" y1="8" x2="13" y2="8"/><polyline points="9,4 13,8 9,12"/></svg>
         </button>
       </div>
 
-      <!-- Filtro por categoría -->
-      <div class="hero-search" data-animate data-delay="4">
-        <select class="hero-search__select" id="heroSelect">
-          <option value="todas">Todas las categorías</option>
-          <option value="hosterias">Hosterías</option>
-          <option value="hoteles">Hoteles</option>
-          <option value="dia-de-sol">Día de Sol</option>
-        </select>
-        <button class="hero-search__btn" id="heroSearchBtn">
-          <span class="material-icons" style="font-size:20px;">search</span>
-          Ver opciones
+      <!-- Chips de filtro rápido -->
+      <div class="hero-chips" data-animate data-delay="5" role="group" aria-label="Filtrar por tipo">
+        <button class="hc-chip hc-chip--active" data-filter="todas">Todo</button>
+        <button class="hc-chip" data-filter="hosterias">Hosterías</button>
+        <button class="hc-chip" data-filter="hoteles">Hoteles</button>
+        <button class="hc-chip" data-filter="dia-de-sol">Día de sol</button>
+        <button class="hc-chip hc-chip--filter" id="heroFiltrosBtn" aria-label="Más filtros" aria-haspopup="dialog">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="13" height="13" aria-hidden="true"><line x1="4" y1="6" x2="20" y2="6"/><line x1="7" y1="12" x2="17" y2="12"/><line x1="10" y1="18" x2="14" y2="18"/></svg>
+          Filtros
+          <span class="bs-badge" aria-hidden="true"></span>
         </button>
       </div>
     </div>
 
     <!-- Franja de confianza -->
-    <div class="hero-trust" data-animate data-delay="5">
+    <div class="hero-trust" data-animate data-delay="6">
       <span class="hero-trust-icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="1.5"/></svg>
       </span>
@@ -1135,6 +1135,63 @@
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
     Consultar opciones
   </button>
+</div>
+
+<!-- ================================================
+     BOTTOM-SHEET FILTROS
+     ================================================ -->
+<div id="filtrosSheet" class="bs-filtros" role="dialog" aria-modal="true" aria-labelledby="bsSheetTitle" hidden>
+  <div class="bs-overlay" aria-hidden="true"></div>
+  <div class="bs-panel">
+    <div class="bs-handle" aria-hidden="true"></div>
+    <div class="bs-header">
+      <h2 class="bs-title" id="bsSheetTitle">Filtrar opciones</h2>
+      <button class="bs-close-btn" aria-label="Cerrar filtros">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div class="bs-body">
+      <!-- Tipo -->
+      <div>
+        <p class="bs-section-title">Tipo de plan</p>
+        <div class="bs-chips">
+          <button class="bs-chip active" data-cat="todas">Todo</button>
+          <button class="bs-chip" data-cat="hosterias">Hosterías</button>
+          <button class="bs-chip" data-cat="hoteles">Hoteles</button>
+          <button class="bs-chip" data-cat="dia-de-sol">Día de sol</button>
+        </div>
+      </div>
+
+      <!-- Presupuesto -->
+      <div>
+        <p class="bs-section-title">Presupuesto por persona</p>
+        <div class="bs-chips">
+          <button class="bs-chip" data-budget="low">Hasta $90.000</button>
+          <button class="bs-chip" data-budget="mid">$90k – $160k</button>
+          <button class="bs-chip" data-budget="high">Más de $160k</button>
+        </div>
+      </div>
+
+      <!-- Amenidades -->
+      <div>
+        <p class="bs-section-title">Lo que necesitas</p>
+        <div class="bs-amenidades">
+          <label class="bs-am-label"><input class="bs-am-check" type="checkbox" value="piscina"> Piscina</label>
+          <label class="bs-am-label"><input class="bs-am-check" type="checkbox" value="jacuzzi"> Jacuzzi</label>
+          <label class="bs-am-label"><input class="bs-am-check" type="checkbox" value="todo incluido"> Todo incluido</label>
+          <label class="bs-am-label"><input class="bs-am-check" type="checkbox" value="campestre"> Campestre</label>
+          <label class="bs-am-label"><input class="bs-am-check" type="checkbox" value="spa"> Spa</label>
+          <label class="bs-am-label"><input class="bs-am-check" type="checkbox" value="bicicletas"> Bicicletas gratis</label>
+          <label class="bs-am-label"><input class="bs-am-check" type="checkbox" value="colonial"> Colonial</label>
+        </div>
+      </div>
+    </div>
+
+    <div class="bs-footer">
+      <button id="bsApplyBtn" class="bs-apply-btn">Ver resultados</button>
+    </div>
+  </div>
 </div>
 
 </body>
