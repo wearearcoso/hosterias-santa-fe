@@ -28,44 +28,46 @@ export async function createLead(payload, env) {
   // Modo real
   const apiUrl = env?.GESTIONALEADS_API_URL;
   const token = env?.GESTIONALEADS_API_TOKEN;
-  const workspaceId = env?.GESTIONALEADS_WORKSPACE_ID;
-  const pipelineId = env?.GESTIONALEADS_PIPELINE_ID;
 
   if (!apiUrl || !token) {
     throw new Error('GestionaLeads: credenciales no configuradas');
   }
 
-  // Mapeo del payload al esquema de GestionaLeads
-  // PENDIENTE: ajustar campos cuando se reciba documentación oficial de la API
+  // Payload plano según esquema de GestionaLeads
+  const messageParts = [
+    payload.request.notes,
+    payload.request.preferences?.length
+      ? `Preferencias: ${payload.request.preferences.join(', ')}`
+      : null,
+    payload.request.occasion ? `Ocasión: ${payload.request.occasion}` : null,
+    payload.request.checkIn
+      ? `Fechas: ${payload.request.checkIn}${payload.request.checkOut ? ' → ' + payload.request.checkOut : ''}`
+      : payload.request.flexibleDates ? 'Fechas: Flexibles' : null,
+    payload.request.adults
+      ? `Viajeros: ${payload.request.adults} adulto(s)${payload.request.children ? `, ${payload.request.children} niño(s)` : ''}`
+      : null,
+    payload.request.budgetRange ? `Presupuesto: ${payload.request.budgetRange}` : null,
+    payload.request.selectedPropertyName
+      ? `Propiedad consultada: ${payload.request.selectedPropertyName}`
+      : null,
+    payload.attribution?.utmSource ? `Origen: ${payload.attribution.utmSource}` : null,
+  ].filter(Boolean);
+
   const glPayload = {
-    workspace_id: workspaceId,
-    pipeline_id: pipelineId,
-    idempotency_key: payload.requestId,
-    contact: {
-      name: payload.contact.fullName,
-      phone: payload.contact.phoneE164,
-      email: payload.contact.email,
-    },
-    fields: {
-      plan_type: payload.request.planType,
-      check_in: payload.request.checkIn,
-      check_out: payload.request.checkOut,
-      adults: payload.request.adults,
-      children: payload.request.children,
-      budget_range: payload.request.budgetRange,
-      occasion: payload.request.occasion,
-      preferences: (payload.request.preferences || []).join(', '),
-      property_name: payload.request.selectedPropertyName,
-      notes: payload.request.notes,
-      source_page: payload.landingPage,
-      utm_source: payload.attribution?.utmSource,
-    },
+    name:    payload.contact.fullName,
+    phone:   payload.contact.phoneE164,
+    email:   payload.contact.email || '',
+    city:    'Santa Fe de Antioquia',
+    sector:  payload.request.selectedPropertyName || '',
+    service: payload.request.planType || '',
+    message: messageParts.join('\n'),
+    website: payload.landingPage || 'https://hosterias-santa-fe.pages.dev',
   };
 
   let lastError;
   for (let attempt = 1; attempt <= 3; attempt++) {
     try {
-      const res = await fetch(apiUrl + '/leads', {
+      const res = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
