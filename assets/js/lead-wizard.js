@@ -104,6 +104,17 @@
     document.body.style.overflow = 'hidden';
     focusTrap(modal, true);
 
+    // Mostrar nombre de propiedad en el header si viene de una tarjeta
+    var propCtx = document.getElementById('lwPropertyContext');
+    if (propCtx) {
+      if (state.selectedPropertyName) {
+        propCtx.textContent = 'Consultando: ' + state.selectedPropertyName;
+        propCtx.removeAttribute('hidden');
+      } else {
+        propCtx.setAttribute('hidden', '');
+      }
+    }
+
     renderStep(state.step);
     window.HSFA && window.HSFA.track('lead_form_start', {
       property: state.selectedPropertyId,
