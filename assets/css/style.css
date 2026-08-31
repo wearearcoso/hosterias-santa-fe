@@ -493,6 +493,193 @@ a   { text-decoration: none; color: inherit; }
 .rc-btn-detail:hover { border-color: #aaa; color: #111; }
 
 /* ======================
+   GALERÍA IN-CARD — dots + nav flechas (Variante B)
+   ====================== */
+.rc-gallery-dots {
+  position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 4px; pointer-events: none;
+}
+.rc-gallery-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(255,255,255,.5);
+  transition: background .2s, transform .2s;
+}
+.rc-gallery-dot.active { background: #fff; transform: scale(1.3); }
+
+.rc-gallery-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(255,255,255,.88);
+  border: none; border-radius: 50%;
+  width: 28px; height: 28px;
+  font-size: 18px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; opacity: 0;
+  transition: opacity .2s;
+  color: #111; padding: 0;
+  z-index: 2;
+}
+.rc-img-wrap:hover .rc-gallery-nav { opacity: 1; }
+.rc-gallery-prev { left: 8px; }
+.rc-gallery-next { right: 8px; }
+
+/* ======================
+   VARIANTE A — TARJETA INSPIRACIÓN
+   ====================== */
+.inspira-section { overflow: hidden; }
+.inspira-section .section-header { padding-inline: var(--gap); }
+
+.inspira-carousel-wrap {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  gap: 14px;
+  padding: .5rem var(--gap) var(--space-md);
+  scrollbar-width: none;
+}
+.inspira-carousel-wrap::-webkit-scrollbar { display: none; }
+
+.card-inspira {
+  flex: 0 0 84vw;
+  max-width: 340px;
+  scroll-snap-align: start;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 3/4;
+  background: #111;
+  flex-shrink: 0;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+@media (min-width: 480px) { .card-inspira { flex: 0 0 300px; } }
+@media (min-width: 1024px) { .card-inspira { flex: 0 0 260px; max-width: 260px; aspect-ratio: 2/3; } }
+
+.card-inspira img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.card-inspira:hover img { transform: scale(1.05); }
+
+.card-inspira-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.88) 35%, rgba(0,0,0,.08) 70%);
+}
+
+.card-inspira-badge {
+  position: absolute; top: 14px; left: 14px;
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.25);
+  color: #fff;
+  font-size: 11px; font-weight: 600;
+  border-radius: 999px;
+  padding: .2rem .65rem;
+  letter-spacing: .04em;
+}
+
+.card-inspira-body {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 1.25rem;
+  color: #fff;
+}
+
+.card-inspira-name {
+  font-size: 1.05rem; font-weight: 800;
+  line-height: 1.25; margin: 0 0 .3rem;
+  color: #fff;
+}
+
+.card-inspira-tagline {
+  font-size: 12px; color: rgba(255,255,255,.75);
+  margin: 0 0 .85rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+}
+
+.card-inspira-meta {
+  display: flex; align-items: flex-end; justify-content: space-between; gap: .5rem;
+}
+
+.card-inspira-price { line-height: 1.2; }
+.card-inspira-price-from { font-size: 10px; color: rgba(255,255,255,.6); display: block; }
+.card-inspira-price-val { font-size: 15px; font-weight: 800; color: #F5C800; }
+.card-inspira-price-unit { font-size: 10px; color: rgba(255,255,255,.6); }
+
+.card-inspira-cta {
+  background: #F5C800; color: #111;
+  border: none; border-radius: 8px;
+  padding: .45rem 1rem;
+  font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+  transition: background .15s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.card-inspira-cta:hover { background: #E8B600; }
+
+/* ======================
+   VARIANTE C — TARJETA COMPACTA
+   ====================== */
+.compact-section { overflow: hidden; }
+.compact-section .section-header-sm { padding-inline: var(--gap); margin-bottom: .75rem; }
+
+.compact-carousel-wrap {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  gap: 10px;
+  padding: 0 var(--gap) var(--space-md);
+  scrollbar-width: none;
+}
+.compact-carousel-wrap::-webkit-scrollbar { display: none; }
+
+.card-compact {
+  flex: 0 0 240px;
+  scroll-snap-align: start;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 12px;
+  border: 1.5px solid #eee;
+  overflow: hidden;
+  text-decoration: none;
+  transition: border-color .2s, box-shadow .2s;
+  flex-shrink: 0;
+}
+.card-compact:hover { border-color: #E8B600; box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+
+.card-compact-img {
+  flex-shrink: 0;
+  width: 80px; height: 80px;
+  overflow: hidden;
+}
+.card-compact-img img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+  transition: transform .35s;
+}
+.card-compact:hover .card-compact-img img { transform: scale(1.07); }
+
+.card-compact-info { flex: 1; padding: .55rem .7rem; min-width: 0; }
+.card-compact-name {
+  font-size: 12.5px; font-weight: 700; color: #111;
+  margin: 0 0 .15rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-compact-am {
+  font-size: 10.5px; color: #888; margin: 0 0 .3rem;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-compact-price { font-size: 12px; font-weight: 800; color: #111; }
+.card-compact-price span { font-weight: 400; color: #888; font-size: 10px; }
+
+/* ======================
    BUTTONS
    ====================== */
 .btn {
