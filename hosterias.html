@@ -96,7 +96,7 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg>
     Cotiza por WhatsApp
   </a>
-  <div class="top-bar-socials">
+  <div class="top-bar-socials" aria-hidden="true" style="display:none">
     <a href="#" aria-label="Instagram">Instagram</a>
     <a href="#" aria-label="Facebook">Facebook</a>
   </div>
@@ -119,7 +119,7 @@
     <div class="logo-placeholder">HOSTERÍAS<br>SFA</div>
   </a>
 
-  <div class="header-socials" role="list" aria-label="Redes sociales">
+  <div class="header-socials" role="list" aria-label="Redes sociales" aria-hidden="true" style="display:none">
     <a href="#" class="social-icon" aria-label="Facebook" role="listitem">
       <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
@@ -142,6 +142,13 @@
   <div class="menu-inner">
     <div class="menu-nav">
       <div class="menu-group">
+        <a href="/" class="menu-top-link" style="display:flex;align-items:center;gap:.75rem;padding:var(--space-sm) 0;font-size:var(--body-lg);font-weight:500;color:var(--mine-shaft);">
+          <svg class="compass-icon" viewBox="0 0 68 68" fill="none" style="width:24px;height:24px;flex-shrink:0;"><circle cx="34" cy="34" r="31" stroke="#F5C800" stroke-width="1.5"/><path d="M34 7 L29.5 30 L34 27 L38.5 30 Z" fill="#F5C800"/><path d="M34 61 L38.5 38 L34 41 L29.5 38 Z" fill="#F5C800" opacity=".4"/><path d="M7 34 L30 38.5 L27 34 L30 29.5 Z" fill="#F5C800" opacity=".4"/><path d="M61 34 L38 29.5 L41 34 L38 38.5 Z" fill="#F5C800"/><circle cx="34" cy="34" r="4" fill="#F5C800"/></svg>
+          Inicio
+        </a>
+      </div>
+
+      <div class="menu-group">
         <button class="menu-group-trigger">
           <svg class="compass-icon" viewBox="0 0 68 68" fill="none"><circle cx="34" cy="34" r="31" stroke="#F5C800" stroke-width="1.5"/><path d="M34 7 L29.5 30 L34 27 L38.5 30 Z" fill="#F5C800"/><path d="M34 61 L38.5 38 L34 41 L29.5 38 Z" fill="#F5C800" opacity=".4"/><path d="M7 34 L30 38.5 L27 34 L30 29.5 Z" fill="#F5C800" opacity=".4"/><path d="M61 34 L38 29.5 L41 34 L38 38.5 Z" fill="#F5C800"/><circle cx="34" cy="34" r="4" fill="#F5C800"/></svg>
           Hosterías
@@ -151,7 +158,7 @@
           <a href="/hosteria-florida-tropical">Hostería Florida Tropical</a>
           <a href="/hosteria-tonusco-campestre">Hostería Tonusco Campestre</a>
           <a href="/hosteria-fundadores">Hostería Fundadores</a>
-          <a href="/hosteria-real">Hostería Real</a>
+          <a href="/hosteria-el-castellano">Hostería El Castellano</a>
           <a href="/hosterias">Ver todas las hosterías →</a>
         </div></div>
       </div>
@@ -247,24 +254,6 @@
         </div>
       </a>
 
-      <a class="hosteria-card" href="/hosteria-real" data-animate data-delay="1">
-        <div class="hosteria-card-img">
-          <img src="assets/images/real-02.webp" alt="Hotel y Spa Santa Fe Colonial SanCOL — spa, piscinas y plan todo incluido" loading="lazy">
-          <span class="hosteria-card-price">Desde $180.000</span>
-        </div>
-        <div class="hosteria-card-body">
-          <p class="location">Centro Histórico · Spa + Piscinas</p>
-          <h3>Hostería Real</h3>
-          <div class="hosteria-card-amenities">
-            <span class="hosteria-amenity">Todo incluido</span>
-            <span class="hosteria-amenity">Spa</span>
-            <span class="hosteria-amenity">Piscinas</span>
-            <span class="hosteria-amenity">Restaurante</span>
-          </div>
-          <p class="desc">Spa completo, piscinas y plan todo incluido en el corazón del Patrimonio Histórico Nacional. Alimentación gourmet, zonas húmedas y coctelería. La experiencia más completa para parejas y escapadas románticas.</p>
-        </div>
-      </a>
-
       <a class="hosteria-card" href="/ivanna-hotel-campestre" data-animate data-delay="2">
         <div class="hosteria-card-img">
           <img src="assets/images/ivanna-02.webp" alt="Ivanna Hotel Campestre — 4.5 estrellas, todo incluido en Santa Fe de Antioquia" loading="lazy">
@@ -333,24 +322,6 @@
         </div>
       </a>
 
-      <a class="hosteria-card" href="/hosteria-bohios-bar" data-animate data-delay="1">
-        <div class="hosteria-card-img">
-          <img src="assets/images/bohios-02.webp" alt="Hostería Bohíos Bar — piscina y lounge en Santa Fe de Antioquia" loading="lazy">
-          <span class="hosteria-card-price">Desde $80.000</span>
-        </div>
-        <div class="hosteria-card-body">
-          <p class="location">Vía al mar · Piscina + Lounge</p>
-          <h3>Hostería Bohíos Bar</h3>
-          <div class="hosteria-card-amenities">
-            <span class="hosteria-amenity">Piscina</span>
-            <span class="hosteria-amenity">Lounge</span>
-            <span class="hosteria-amenity">Bar</span>
-            <span class="hosteria-amenity">Zonas verdes</span>
-          </div>
-          <p class="desc">Piscina con zona lounge, bar y amplias áreas verdes. Ambiente relajado con buena música y excelente relación calidad-precio. Ideal para pasar el día completo.</p>
-        </div>
-      </a>
-
       <a class="hosteria-card" href="/hosteria-el-castellano" data-animate data-delay="2">
         <div class="hosteria-card-img">
           <img src="assets/images/castellano-02.webp" alt="Hostería El Castellano — a 4km del centro de Santa Fe" loading="lazy">
@@ -399,42 +370,6 @@
           <p class="desc">La opción más económica con excelente ubicación. A sólo 7 cuadras del Parque Principal, con piscina, restaurante de comida casera y ambiente familiar. La mejor relación calidad-precio de Santa Fe.</p>
         </div>
       </a>
-
-      <a class="hosteria-card" href="/hosteria-paraiso-santa-fe" data-animate data-delay="1">
-        <div class="hosteria-card-img">
-          <img src="assets/images/paraiso-02.webp" alt="Hostería Paraíso de Santa Fe — económica desde $90.000" loading="lazy">
-          <span class="hosteria-card-price">Desde $90.000</span>
-        </div>
-        <div class="hosteria-card-body">
-          <p class="location">Zona campestre · Ambiente familiar</p>
-          <h3>Hostería Paraíso de Santa Fe</h3>
-          <div class="hosteria-card-amenities">
-            <span class="hosteria-amenity">Piscina</span>
-            <span class="hosteria-amenity">Zonas verdes</span>
-            <span class="hosteria-amenity">Restaurante</span>
-            <span class="hosteria-amenity">Juegos infantiles</span>
-          </div>
-          <p class="desc">Hostería campestre con amplias zonas verdes, piscina, restaurante y juegos infantiles. Ambiente tranquilo ideal para familias que buscan espacio y naturaleza a buen precio.</p>
-        </div>
-      </a>
-
-      <a class="hosteria-card" href="/hosteria-bohios-bar" data-animate data-delay="2">
-        <div class="hosteria-card-img">
-          <img src="assets/images/bohios-02.webp" alt="Hostería Bohíos Bar — económica desde $80.000" loading="lazy">
-          <span class="hosteria-card-price">Desde $80.000</span>
-        </div>
-        <div class="hosteria-card-body">
-          <p class="location">Vía al mar · Piscina + Lounge</p>
-          <h3>Hostería Bohíos Bar</h3>
-          <div class="hosteria-card-amenities">
-            <span class="hosteria-amenity">Piscina</span>
-            <span class="hosteria-amenity">Lounge</span>
-            <span class="hosteria-amenity">Bar</span>
-            <span class="hosteria-amenity">Económica</span>
-          </div>
-          <p class="desc">La opción más accesible para disfrutar piscina y buen ambiente en Santa Fe. Zona lounge junto a la piscina, bar con precios justos y áreas verdes para descansar.</p>
-        </div>
-      </a>
     </div>
   </div>
 </section>
@@ -449,41 +384,6 @@
     <p>Santa Fe de Antioquia es uno de los destinos románticos favoritos de los antioqueños. Estas hosterías son perfectas para una escapada en pareja:</p>
 
     <div class="hosteria-grid" style="margin-top:var(--space-md);">
-      <a class="hosteria-card" href="/hosteria-real" data-animate>
-        <div class="hosteria-card-img">
-          <img src="assets/images/real-02.webp" alt="Hostería Real — plan romántico con spa y jacuzzi para parejas" loading="lazy">
-          <span class="hosteria-card-price">Desde $180.000</span>
-        </div>
-        <div class="hosteria-card-body">
-          <p class="location">Centro Histórico · Spa romántico</p>
-          <h3>Hostería Real</h3>
-          <div class="hosteria-card-amenities">
-            <span class="hosteria-amenity">Spa de pareja</span>
-            <span class="hosteria-amenity">Piscina</span>
-            <span class="hosteria-amenity">Cena romántica</span>
-            <span class="hosteria-amenity">Jacuzzi</span>
-          </div>
-          <p class="desc">El plan romántico por excelencia en Santa Fe de Antioquia. Spa para parejas, cena a la luz de las velas, jacuzzi y piscinas en un entorno colonial mágico en pleno centro histórico.</p>
-        </div>
-      </a>
-
-      <a class="hosteria-card" href="/finca-hotel-tropical-palser" data-animate data-delay="1">
-        <div class="hosteria-card-img">
-          <img src="assets/images/palser-02.webp" alt="Finca Hotel Tropical PalSer — tipo resort, $490.000 por noche" loading="lazy">
-          <span class="hosteria-card-price">$490.000/noche</span>
-        </div>
-        <div class="hosteria-card-body">
-          <p class="location">Zona rural · Resort exclusivo</p>
-          <h3>Finca Hotel Tropical PalSer</h3>
-          <div class="hosteria-card-amenities">
-            <span class="hosteria-amenity">Tipo resort</span>
-            <span class="hosteria-amenity">Piscina privada</span>
-            <span class="hosteria-amenity">Senderismo</span>
-            <span class="hosteria-amenity">Desayuno en cama</span>
-          </div>
-          <p class="desc">El alojamiento más exclusivo de Santa Fe de Antioquia. Tipo resort con piscina privada, senderismo ecológico, desayuno en cama y el mejor servicio personalizado para una experiencia inolvidable en pareja.</p>
-        </div>
-      </a>
 
       <a class="hosteria-card" href="/hosteria-el-castellano" data-animate data-delay="2">
         <div class="hosteria-card-img">
