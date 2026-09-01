@@ -132,10 +132,36 @@
   }
 
   /* ─── Focus trap ─────────────────────────────────────────── */
+  var FOCUSABLE_SEL = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+
+  function visibleFocusables(el) {
+    return Array.prototype.filter.call(el.querySelectorAll(FOCUSABLE_SEL), function (f) {
+      return !f.closest('[hidden]') && getComputedStyle(f).display !== 'none';
+    });
+  }
+
   function focusTrap(el, enable) {
     if (enable) {
-      var first = el.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-      if (first) first.focus();
+      var list = visibleFocusables(el);
+      if (list.length) list[0].focus();
+      el._trapHandler = function (e) {
+        if (e.key !== 'Tab') return;
+        var focusables = visibleFocusables(el);
+        if (!focusables.length) { e.preventDefault(); return; }
+        var first = focusables[0];
+        var last  = focusables[focusables.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        }
+      };
+      el.addEventListener('keydown', el._trapHandler);
+    } else {
+      if (el && el._trapHandler) {
+        el.removeEventListener('keydown', el._trapHandler);
+        el._trapHandler = null;
+      }
     }
   }
 
