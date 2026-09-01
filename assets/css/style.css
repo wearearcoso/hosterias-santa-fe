@@ -2543,3 +2543,98 @@ dialog.lf-modal::backdrop {
   .lw-pref-grid { grid-template-columns: repeat(2, 1fr); }
   .lw-occasion-btn, .lw-pref-btn { font-size: 12px; padding: .4rem .5rem; }
 }
+
+/* ── Fase 7: Active filters bar + counter + empty state ──── */
+.filtros-activos-bar {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+  padding: .5rem var(--space-md);
+  margin-block: .75rem;
+}
+.filtros-activos-chips {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  flex: 1;
+}
+.fa-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .3rem;
+  background: var(--mine-shaft);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  padding: .3rem .75rem;
+  font-size: .8rem;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.4;
+  transition: background .15s;
+}
+.fa-chip:hover { background: #333; }
+.filtros-clear-btn {
+  background: none;
+  border: 1px solid var(--mine-shaft);
+  border-radius: 100px;
+  padding: .3rem .9rem;
+  font-size: .8rem;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background .15s;
+}
+.filtros-clear-btn:hover { background: #f0f0f0; }
+
+.resultados-count {
+  text-align: center;
+  font-size: .85rem;
+  color: #666;
+  margin-block: .25rem .75rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  max-width: 440px;
+  margin-inline: auto;
+}
+.empty-state-icon { font-size: 2.5rem; margin-bottom: .5rem; }
+.empty-state-title { font-size: var(--h3); margin-bottom: .5rem; }
+.empty-state-body { color: #555; margin-bottom: 1.5rem; line-height: 1.6; }
+.empty-state-actions { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── Fase 8: Inspiration carousel nav arrows ──────────────── */
+.inspira-nav-host { position: relative; }
+.inspira-nav-btn {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,.6);
+  background: rgba(0,0,0,.45);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s, border-color .2s;
+  padding: 0;
+}
+.inspira-nav-btn:hover { background: rgba(0,0,0,.7); border-color: #fff; }
+.inspira-nav-btn:focus-visible { outline: 2px solid var(--brand-yellow); outline-offset: 2px; }
+.inspira-nav-prev { left: .5rem; }
+.inspira-nav-next { right: .5rem; }
+@media (min-width: 768px) {
+  .inspira-nav-btn { display: flex; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .inspira-nav-btn { transition: none; }
+}

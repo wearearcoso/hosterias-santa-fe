@@ -226,7 +226,7 @@ function buildCard(e) {
     + '<div class="rc-footer">'
     + '<div class="rc-price"><span class="rc-price-label">Desde</span><span class="rc-price-val">'+e.price+'</span><span class="rc-price-unit">/'+e.unit+'</span></div>'
     + '<div class="rc-actions">'
-    + '<button class="rc-btn-consult" data-lw-open data-lw-property-id="'+e.id+'" data-lw-property-name="'+e.name+'">Consultar</button>'
+    + '<button class="rc-btn-consult" data-lf-open data-lf-property-id="'+e.id+'" data-lf-property-name="'+e.name+'">Consultar</button>'
     + '<a href="'+e.url+'" class="rc-btn-detail">Ver →</a>'
     + '</div>'
     + '</div>'
@@ -236,7 +236,7 @@ function buildCard(e) {
 /* ---- Variante A: Tarjeta inspiración ---- */
 function buildInspirationCard(e) {
   var catLabel = e.cat==='hosterias' ? 'Hostería' : 'Hotel';
-  return '<a href="'+e.url+'" class="card-inspira" data-lw-open data-lw-property-id="'+e.id+'" data-lw-property-name="'+e.name+'" role="article">'
+  return '<a href="'+e.url+'" class="card-inspira" data-lf-open data-lf-property-id="'+e.id+'" data-lf-property-name="'+e.name+'" role="article">'
     + '<img src="assets/images/'+e.img1+'.webp" alt="'+e.name+'" loading="lazy" width="340" height="453">'
     + '<div class="card-inspira-overlay" aria-hidden="true"></div>'
     + '<span class="card-inspira-badge">'+catLabel+'</span>'
@@ -329,9 +329,26 @@ function initResultadosGrid() {
 function initInspirationCarousel() {
   var wrap = document.getElementById('inspiraCarousel');
   if (!wrap) return;
-  // Top 6 by stars/appeal
   var featured = ESTABLECIMIENTOS_DATA.slice(0, 6);
   wrap.innerHTML = featured.map(buildInspirationCard).join('');
+
+  var parent = wrap.parentElement;
+  if (!parent) return;
+  parent.classList.add('inspira-nav-host');
+
+  ['prev', 'next'].forEach(function(dir) {
+    var btn = document.createElement('button');
+    btn.className = 'inspira-nav-btn inspira-nav-' + dir;
+    btn.setAttribute('aria-label', dir === 'prev' ? 'Anterior' : 'Siguiente');
+    btn.innerHTML = dir === 'prev' ? '&#8249;' : '&#8250;';
+    btn.addEventListener('click', function() {
+      var card = wrap.querySelector('.card-inspira');
+      var gap  = 16;
+      var step = card ? card.offsetWidth + gap : 340;
+      wrap.scrollBy({ left: dir === 'next' ? step : -step, behavior: 'smooth' });
+    });
+    parent.appendChild(btn);
+  });
 }
 
 /* ---- Compact Carousel: Día de Sol (Variante C) ---- */
@@ -361,33 +378,145 @@ function initHeroChips() {
 /* ---- Bottom-sheet filtros ---- */
 var _activeFilters = { cat: 'todas', budget: null, amenidades: [] };
 
+var _CAT_LABELS   = { 'todas': 'Todos', 'hosterias': 'Hosterías', 'hoteles': 'Hoteles', 'dia-de-sol': 'Día de sol' };
+var _BUDGET_LABELS = { 'low': 'Hasta $90k', 'mid': '$90k–$160k', 'high': 'Más de $160k' };
+
 function applyFilters(overrides) {
   if (overrides) Object.assign(_activeFilters, overrides);
   var f = _activeFilters;
 
   document.querySelectorAll('.resultado-card').forEach(function(card) {
-    var catOk = f.cat === 'todas' || card.dataset.categoria === f.cat;
+    var catOk    = f.cat === 'todas' || card.dataset.categoria === f.cat;
     var budgetOk = !f.budget || card.dataset.priceRange === f.budget;
-    var amOk = !f.amenidades.length || f.amenidades.every(function(am) {
+    var amOk     = !f.amenidades.length || f.amenidades.every(function(am) {
       return (card.dataset.tags || '').indexOf(am.toLowerCase()) !== -1;
     });
     card.style.display = catOk && budgetOk && amOk ? '' : 'none';
   });
 
-  // Update apply button count
   var visible = document.querySelectorAll('.resultado-card:not([style*="none"])').length;
+
+  // Result counter
+  var counter = document.getElementById('resultadosCount');
+  if (counter) {
+    counter.textContent = visible + ' alojamiento' + (visible !== 1 ? 's' : '') + ' encontrado' + (visible !== 1 ? 's' : '');
+    counter.removeAttribute('hidden');
+  }
+
+  // Empty state
+  var emptyState = document.getElementById('emptyState');
+  if (emptyState) { if (visible > 0) emptyState.setAttribute('hidden', ''); else emptyState.removeAttribute('hidden'); }
+
+  // Active chips bar
+  _updateActiveChipsBar();
+
+  // URL sync
+  _syncFiltersURL();
+
+  // Apply button count
   var btn = document.getElementById('bsApplyBtn');
   if (btn) btn.textContent = 'Ver ' + visible + ' resultado' + (visible !== 1 ? 's' : '');
 
   // Badge on filter chip
   var filterChip = document.getElementById('heroFiltrosBtn');
   if (filterChip) {
-    var hasExtra = f.budget || f.amenidades.length;
-    filterChip.classList.toggle('has-filters', !!hasExtra);
+    var count = (f.budget ? 1 : 0) + f.amenidades.length + (f.cat && f.cat !== 'todas' ? 1 : 0);
+    filterChip.classList.toggle('has-filters', count > 0);
     var badge = filterChip.querySelector('.bs-badge');
-    if (badge) badge.textContent = (f.budget ? 1 : 0) + f.amenidades.length || '';
+    if (badge) badge.textContent = count > 0 ? count : '';
   }
 }
+
+function _updateActiveChipsBar() {
+  var f    = _activeFilters;
+  var bar  = document.getElementById('filtrosActivosBar');
+  var cont = document.getElementById('filtrosActivosChips');
+  if (!bar || !cont) return;
+
+  var chips = [];
+  if (f.cat && f.cat !== 'todas') {
+    chips.push({ label: _CAT_LABELS[f.cat] || f.cat, remove: function() {
+      document.querySelectorAll('.hc-chip[data-filter]').forEach(function(c) { c.classList.toggle('hc-chip--active', c.dataset.filter === 'todas'); });
+      document.querySelectorAll('.bs-chip[data-cat]').forEach(function(c) { c.classList.toggle('active', c.dataset.cat === 'todas'); });
+      applyFilters({ cat: 'todas' });
+    }});
+  }
+  if (f.budget) {
+    chips.push({ label: _BUDGET_LABELS[f.budget] || f.budget, remove: function() {
+      document.querySelectorAll('.bs-chip[data-budget]').forEach(function(c) { c.classList.remove('active'); });
+      applyFilters({ budget: null });
+    }});
+  }
+  f.amenidades.forEach(function(am) {
+    var captured = am;
+    chips.push({ label: captured, remove: function() {
+      _activeFilters.amenidades = _activeFilters.amenidades.filter(function(a) { return a !== captured; });
+      var cb = document.querySelector('.bs-am-check[value="'+captured+'"]');
+      if (cb) cb.checked = false;
+      applyFilters();
+    }});
+  });
+
+  if (chips.length === 0) { bar.setAttribute('hidden', ''); return; }
+  bar.removeAttribute('hidden');
+
+  cont.innerHTML = chips.map(function(c, i) {
+    return '<button class="fa-chip" data-fa-idx="'+i+'">'+c.label+' &times;</button>';
+  }).join('');
+  cont.querySelectorAll('.fa-chip').forEach(function(btn) {
+    var idx = parseInt(btn.dataset.faIdx, 10);
+    btn.addEventListener('click', function() { chips[idx].remove(); });
+  });
+}
+
+function _syncFiltersURL() {
+  if (!window.history || !window.history.replaceState) return;
+  var f = _activeFilters;
+  var params = new URLSearchParams();
+  if (f.cat && f.cat !== 'todas') params.set('cat', f.cat);
+  if (f.budget) params.set('budget', f.budget);
+  if (f.amenidades.length) params.set('am', f.amenidades.join(','));
+  var q = params.toString();
+  history.replaceState({ filters: true }, '', q ? '?' + q : window.location.pathname);
+}
+
+function _readFiltersFromURL() {
+  var params = new URLSearchParams(window.location.search);
+  var cat    = params.get('cat') || 'todas';
+  var budget = params.get('budget') || null;
+  var amStr  = params.get('am') || '';
+  var amenidades = amStr ? amStr.split(',').filter(Boolean) : [];
+  _activeFilters = { cat: cat, budget: budget, amenidades: amenidades };
+
+  document.querySelectorAll('.hc-chip[data-filter]').forEach(function(c) {
+    c.classList.toggle('hc-chip--active', c.dataset.filter === cat);
+  });
+  document.querySelectorAll('.bs-chip[data-cat]').forEach(function(c) {
+    c.classList.toggle('active', c.dataset.cat === cat);
+  });
+  document.querySelectorAll('.bs-chip[data-budget]').forEach(function(c) {
+    c.classList.toggle('active', budget && c.dataset.budget === budget);
+  });
+  amenidades.forEach(function(am) {
+    var cb = document.querySelector('.bs-am-check[value="'+am+'"]');
+    if (cb) cb.checked = true;
+  });
+}
+
+function clearFilters() {
+  _activeFilters = { cat: 'todas', budget: null, amenidades: [] };
+  document.querySelectorAll('.hc-chip[data-filter]').forEach(function(c) { c.classList.toggle('hc-chip--active', c.dataset.filter === 'todas'); });
+  document.querySelectorAll('.bs-chip[data-cat]').forEach(function(c) { c.classList.toggle('active', c.dataset.cat === 'todas'); });
+  document.querySelectorAll('.bs-chip[data-budget]').forEach(function(c) { c.classList.remove('active'); });
+  document.querySelectorAll('.bs-am-check').forEach(function(c) { c.checked = false; });
+  applyFilters();
+}
+window.clearFilters = clearFilters;
+
+window.addEventListener('popstate', function() {
+  _readFiltersFromURL();
+  applyFilters();
+});
 
 function initBottomSheet() {
   var sheet = document.getElementById('filtrosSheet');
@@ -448,7 +577,8 @@ function initBottomSheet() {
     if (e.key === 'Escape' && sheet.classList.contains('bs-open')) close();
   });
 
-  // Initial count
+  // Read URL filters then apply
+  _readFiltersFromURL();
   applyFilters();
 }
 
