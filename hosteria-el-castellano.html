@@ -299,128 +299,132 @@
      Material Icons · Colores #F5C800 + #0A0A0A
      ================================================ -->
 
-<!-- Lead Wizard Modal -->
-<div id="leadWizardModal" class="lw-modal" role="dialog" aria-modal="true" aria-labelledby="lwModalTitle" hidden>
-  <div class="lw-overlay" aria-hidden="true"></div>
-  <div class="lw-dialog">
-    <div class="lw-header">
-      <div class="lw-header-inner">
-        <p class="lw-step-label" id="lwStepLabel" aria-live="polite">Paso 1 de 7</p>
-        <h2 class="lw-modal-title" id="lwModalTitle">Encuentra tu plan ideal</h2>
+<!-- Lead Form -->
+<dialog id="leadModal" class="lf-modal" aria-labelledby="lf-title">
+  <div class="lf-inner">
+    <!-- Pantalla 1: Datos básicos -->
+    <div class="lf-screen" id="lf-screen-1">
+      <div class="lf-header">
+        <div class="lf-context-badge" id="lf-context-badge" hidden></div>
+        <button type="button" class="lf-close-btn" data-lf-close aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
       </div>
-      <button class="lw-close-btn" data-lw-close aria-label="Cerrar">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" width="22" height="22"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </button>
-    </div>
-    <div class="lw-progress" role="progressbar" aria-valuemin="1" aria-valuemax="7" aria-valuenow="1">
-      <div class="lw-progress-fill" id="lwProgressFill" style="width:14%"></div>
-    </div>
-    <div class="lw-dots" aria-hidden="true">
-      <span class="lw-dot lw-dot--active" data-dot="1"></span><span class="lw-dot" data-dot="2"></span><span class="lw-dot" data-dot="3"></span><span class="lw-dot" data-dot="4"></span><span class="lw-dot" data-dot="5"></span><span class="lw-dot" data-dot="6"></span><span class="lw-dot" data-dot="7"></span>
-    </div>
-    <div id="lwErrorZone" class="lw-error" role="alert" aria-live="assertive" hidden></div>
-    <div id="lwStepsContainer" class="lw-steps-container">
-      <div class="lw-step lw-active" data-lwstep="1">
-        <p class="lw-step-question">¿Qué tipo de plan buscas?</p>
-        <div class="lw-plan-grid" role="group" aria-label="Tipo de plan">
-          <button type="button" class="lw-plan-btn" data-val="alojamiento" aria-pressed="false"><span class="lw-plan-icon"><span class="material-icons">bed</span></span><span class="lw-plan-label">Alojamiento</span><span class="lw-plan-hint">Noche o fin de semana</span></button>
-          <button type="button" class="lw-plan-btn" data-val="dia-de-sol" aria-pressed="false"><span class="lw-plan-icon"><span class="material-icons">wb_sunny</span></span><span class="lw-plan-label">Día de sol</span><span class="lw-plan-hint">Pasadía sin alojamiento</span></button>
-          <button type="button" class="lw-plan-btn" data-val="todo-incluido" aria-pressed="false"><span class="lw-plan-icon"><span class="material-icons">restaurant</span></span><span class="lw-plan-label">Todo incluido</span><span class="lw-plan-hint">Alojamiento + comidas</span></button>
-          <button type="button" class="lw-plan-btn" data-val="celebracion" aria-pressed="false"><span class="lw-plan-icon"><span class="material-icons">celebration</span></span><span class="lw-plan-label">Celebración</span><span class="lw-plan-hint">Cumple, grado, aniversario</span></button>
-          <button type="button" class="lw-plan-btn" data-val="evento" aria-pressed="false"><span class="lw-plan-icon"><span class="material-icons">handshake</span></span><span class="lw-plan-label">Evento</span><span class="lw-plan-hint">Matrimonio, empresarial</span></button>
+      <h2 class="lf-title" id="lf-title">Encuentra tu plan ideal</h2>
+      <p class="lf-subtitle">Cuéntanos qué buscas y un asesor te enviará las mejores opciones disponibles.</p>
+      <input type="text" id="lf-hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
+      <div class="lf-field">
+        <label for="lf-nombre">Nombre completo <span class="lf-req" aria-hidden="true">*</span></label>
+        <input type="text" id="lf-nombre" autocomplete="name" maxlength="100">
+        <span class="lf-ferr" id="lf-err-nombre" hidden></span>
+      </div>
+      <div class="lf-field">
+        <label for="lf-tel">WhatsApp o teléfono <span class="lf-req" aria-hidden="true">*</span></label>
+        <input type="tel" id="lf-tel" autocomplete="tel" placeholder="300 123 4567" inputmode="numeric">
+        <span class="lf-ferr" id="lf-err-tel" hidden></span>
+      </div>
+      <div class="lf-field">
+        <label class="lf-chk-row" for="lf-flexible">
+          <input type="checkbox" id="lf-flexible">
+          <span>Fechas flexibles / aún no sé cuándo voy</span>
+        </label>
+        <div id="lf-date-wrap">
+          <input type="date" id="lf-fecha" aria-label="Fecha de entrada o visita">
         </div>
       </div>
-      <div class="lw-step" data-lwstep="2" aria-hidden="true">
-        <p class="lw-step-question">¿Cuándo quieres ir?</p>
-        <label class="lw-checkbox-row" for="lwFechasFlexibles"><input type="checkbox" id="lwFechasFlexibles"><span>Fechas flexibles / aún no sé la fecha</span></label>
-        <div id="lwDateFields" class="lw-date-fields">
-          <div class="lw-field-row"><label for="lwCheckIn">Fecha de entrada</label><input type="date" id="lwCheckIn"></div>
-          <div class="lw-field-row"><label for="lwCheckOut">Fecha de salida <span class="lw-optional">(opcional)</span></label><input type="date" id="lwCheckOut"></div>
-        </div>
-      </div>
-      <div class="lw-step" data-lwstep="3" aria-hidden="true">
-        <p class="lw-step-question">¿Cuántos viajan?</p>
-        <div class="lw-counter-row" role="group" aria-label="Adultos"><span class="lw-counter-label">Adultos</span><div class="lw-counter"><button type="button" class="lw-counter-btn" data-counter="adults" data-action="minus" aria-label="Menos adultos" disabled>−</button><span id="lwAdultsVal" class="lw-counter-val" aria-live="polite">2</span><button type="button" class="lw-counter-btn" data-counter="adults" data-action="plus" aria-label="Más adultos">+</button></div></div>
-        <div class="lw-counter-row" role="group" aria-label="Niños"><span class="lw-counter-label">Niños</span><div class="lw-counter"><button type="button" class="lw-counter-btn" data-counter="children" data-action="minus" aria-label="Menos niños" disabled>−</button><span id="lwChildrenVal" class="lw-counter-val" aria-live="polite">0</span><button type="button" class="lw-counter-btn" data-counter="children" data-action="plus" aria-label="Más niños">+</button></div></div>
-        <div class="lw-field-row" style="margin-top:1.5rem"><label for="lwPresupuesto">Presupuesto aproximado <span class="lw-optional">(opcional)</span></label><select id="lwPresupuesto"><option value="">Prefiero no indicarlo</option><option value="Menos de $300.000">Menos de $300.000</option><option value="$300.000 – $600.000">$300.000 – $600.000</option><option value="$600.000 – $1.000.000">$600.000 – $1.000.000</option><option value="$1.000.000 – $2.000.000">$1.000.000 – $2.000.000</option><option value="Más de $2.000.000">Más de $2.000.000</option></select></div>
-      </div>
-      <div class="lw-step" data-lwstep="4" aria-hidden="true">
-        <p class="lw-step-question">¿Cuál es la ocasión?</p>
-        <div class="lw-occasion-grid" role="group" aria-label="Ocasión">
-          <button type="button" class="lw-occasion-btn" data-val="Familia" aria-pressed="false"><span class="material-icons">family_restroom</span> Familia</button>
-          <button type="button" class="lw-occasion-btn" data-val="Pareja" aria-pressed="false"><span class="material-icons">favorite</span> Pareja</button>
-          <button type="button" class="lw-occasion-btn" data-val="Aniversario" aria-pressed="false"><span class="material-icons">diamond</span> Aniversario</button>
-          <button type="button" class="lw-occasion-btn" data-val="Cumpleaños" aria-pressed="false"><span class="material-icons">cake</span> Cumpleaños</button>
-          <button type="button" class="lw-occasion-btn" data-val="Matrimonio" aria-pressed="false"><span class="material-icons">church</span> Matrimonio</button>
-          <button type="button" class="lw-occasion-btn" data-val="Graduación" aria-pressed="false"><span class="material-icons">school</span> Graduación</button>
-          <button type="button" class="lw-occasion-btn" data-val="Evento empresarial" aria-pressed="false"><span class="material-icons">handshake</span> Empresarial</button>
-          <button type="button" class="lw-occasion-btn" data-val="Amigos" aria-pressed="false"><span class="material-icons">group</span> Amigos</button>
-          <button type="button" class="lw-occasion-btn" data-val="Otra" aria-pressed="false"><span class="material-icons">auto_awesome</span> Otra</button>
-        </div>
-      </div>
-      <div class="lw-step" data-lwstep="5" aria-hidden="true">
-        <p class="lw-step-question">¿Qué buscas? <span class="lw-optional">Selecciona todo lo que aplique</span></p>
-        <div class="lw-pref-grid" role="group" aria-label="Preferencias">
-          <button type="button" class="lw-pref-btn" data-val="Piscina" aria-pressed="false"><span class="material-icons">pool</span> Piscina</button>
-          <button type="button" class="lw-pref-btn" data-val="Jacuzzi" aria-pressed="false"><span class="material-icons">hot_tub</span> Jacuzzi</button>
-          <button type="button" class="lw-pref-btn" data-val="Spa" aria-pressed="false"><span class="material-icons">spa</span> Spa</button>
-          <button type="button" class="lw-pref-btn" data-val="Alimentación incluida" aria-pressed="false"><span class="material-icons">restaurant</span> Alimentación</button>
-          <button type="button" class="lw-pref-btn" data-val="Pet friendly" aria-pressed="false"><span class="material-icons">pets</span> Pet friendly</button>
-          <button type="button" class="lw-pref-btn" data-val="Cerca del parque" aria-pressed="false"><span class="material-icons">account_balance</span> Cerca del parque</button>
-          <button type="button" class="lw-pref-btn" data-val="Ambiente campestre" aria-pressed="false"><span class="material-icons">nature</span> Campestre</button>
-          <button type="button" class="lw-pref-btn" data-val="Transporte desde Medellín" aria-pressed="false"><span class="material-icons">directions_bus</span> Transporte</button>
-          <button type="button" class="lw-pref-btn" data-val="Accesibilidad" aria-pressed="false"><span class="material-icons">accessible</span> Accesibilidad</button>
-        </div>
-        <div class="lw-field-row" style="margin-top:1.25rem"><label for="lwNotas">Cuéntanos más <span class="lw-optional">(opcional)</span></label><textarea id="lwNotas" rows="3" maxlength="500" placeholder="Ej: viajamos con bebé, buscamos tobogán..."></textarea></div>
-      </div>
-      <div class="lw-step" data-lwstep="6" aria-hidden="true">
-        <div class="lw-preliminary">
-          <div class="lw-preliminary-icon" aria-hidden="true"><span class="material-icons">search</span></div>
-          <h3 class="lw-preliminary-title">Revisando opciones para ti</h3>
-          <div class="lw-preliminary-data" id="lwPrelimResult"></div>
-          <div class="lw-preliminary-notice">
-            <p>Basado en lo que nos contaste, hay opciones que podrían ajustarse a tu plan.</p>
-            <p><strong>Un asesor verificará precio exacto, disponibilidad e inclusiones para tus fechas.</strong></p>
-            <p class="lw-preliminary-price-note">Los precios mostrados en el sitio son orientativos. La tarifa final depende de la fecha y el plan.</p>
-          </div>
-          <p class="lw-preliminary-cta">Para recibir las opciones concretas, déjanos tus datos en el siguiente paso.</p>
-        </div>
-      </div>
-      <div class="lw-step" data-lwstep="7" aria-hidden="true">
-        <p class="lw-step-question">¿Cómo te contactamos?</p>
-        <input type="text" id="lwHoneypot" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
-        <div class="lw-field-row"><label for="lwNombre">Nombre completo <span class="lw-required" aria-hidden="true">*</span></label><input type="text" id="lwNombre" autocomplete="name" maxlength="100" required></div>
-        <div class="lw-field-row"><label for="lwTelefono">WhatsApp o teléfono <span class="lw-required" aria-hidden="true">*</span></label><input type="tel" id="lwTelefono" autocomplete="tel" placeholder="300 123 4567" required></div>
-        <div class="lw-field-row"><label for="lwCorreo">Correo electrónico <span class="lw-optional">(opcional)</span></label><input type="email" id="lwCorreo" autocomplete="email" maxlength="200"></div>
-        <div class="lw-field-row">
-          <p class="lw-field-label">¿Cómo prefieres que te contactemos?</p>
-          <div class="lw-radio-group" role="radiogroup">
-            <label class="lw-radio"><input type="radio" name="lwContactPref" value="undecided" checked><span>Aún no sé</span></label>
-            <label class="lw-radio"><input type="radio" name="lwContactPref" value="whatsapp"><span>Por WhatsApp</span></label>
-            <label class="lw-radio"><input type="radio" name="lwContactPref" value="phone"><span>Llamada</span></label>
+      <div class="lf-counters">
+        <div class="lf-counter-row" role="group" aria-label="Adultos">
+          <span class="lf-counter-lbl">Adultos</span>
+          <div class="lf-counter">
+            <button type="button" class="lf-ctr-btn" data-counter="adults" data-action="minus" aria-label="Menos adultos" disabled>−</button>
+            <span class="lf-ctr-val" id="lf-adults-val" aria-live="polite">2</span>
+            <button type="button" class="lf-ctr-btn" data-counter="adults" data-action="plus" aria-label="Más adultos">+</button>
           </div>
         </div>
-        <label class="lw-checkbox-row lw-consent" for="lwHabeas"><input type="checkbox" id="lwHabeas" required><span>Acepto el <a href="/politica-privacidad" target="_blank" rel="noopener">tratamiento de mis datos personales</a> para ser contactado con opciones de hospedaje.</span></label>
+        <div class="lf-counter-row" role="group" aria-label="Niños">
+          <span class="lf-counter-lbl">Niños</span>
+          <div class="lf-counter">
+            <button type="button" class="lf-ctr-btn" data-counter="children" data-action="minus" aria-label="Menos niños" disabled>−</button>
+            <span class="lf-ctr-val" id="lf-children-val" aria-live="polite">0</span>
+            <button type="button" class="lf-ctr-btn" data-counter="children" data-action="plus" aria-label="Más niños">+</button>
+          </div>
+        </div>
+      </div>
+      <div id="lf-plantype-wrap">
+        <p class="lf-field-lbl">¿Qué tipo de plan buscas?</p>
+        <div class="lf-plan-chips" role="group" aria-label="Tipo de plan">
+          <button type="button" class="lf-plan-chip" data-val="hospedaje" aria-pressed="false">Hospedaje</button>
+          <button type="button" class="lf-plan-chip" data-val="dia-de-sol" aria-pressed="false">Día de sol</button>
+          <button type="button" class="lf-plan-chip" data-val="celebracion" aria-pressed="false">Celebración</button>
+          <button type="button" class="lf-plan-chip" data-val="no-se" aria-pressed="false">Todavía no sé</button>
+        </div>
+      </div>
+      <label class="lf-chk-row lf-consent" for="lf-habeas">
+        <input type="checkbox" id="lf-habeas">
+        <span>Acepto el <a href="/politica-privacidad" target="_blank" rel="noopener">tratamiento de mis datos personales</a> para ser contactado con opciones.</span>
+      </label>
+      <div class="lf-err-zone" id="lf-err-zone" hidden></div>
+      <div class="lf-actions">
+        <button type="button" id="lf-btn-next" class="lf-btn-primary">Ver opciones y recibir asesoría →</button>
+        <button type="button" id="lf-btn-wa1" class="lf-btn-wa">Continuar por WhatsApp</button>
       </div>
     </div>
-    <div id="lwSuccess" class="lw-success" hidden data-wa-number="" data-wa-enabled="false">
-      <div class="lw-success-check" aria-hidden="true"><span class="material-icons">check_circle</span></div>
-      <h3 class="lw-success-title">Recibimos tu solicitud</h3>
-      <p class="lw-success-body">Un asesor revisará las opciones disponibles y confirmará contigo la tarifa, las condiciones y la alternativa que mejor se ajuste a tu plan.</p>
-      <p class="lw-success-ref-row">Referencia: <code class="lw-success-ref"></code></p>
-      <div class="lw-success-actions">
-        <button type="button" id="lwBtnWaitAgent" class="lw-btn-wait">Esperar que un asesor me contacte</button>
-        <button type="button" id="lwBtnWhatsapp" class="lw-btn-wa" hidden>Enviar mensaje por WhatsApp <span class="lw-wa-preview-badge">Prueba</span></button>
+    <!-- Pantalla 2: Preferencias -->
+    <div class="lf-screen" id="lf-screen-2" hidden>
+      <div class="lf-header">
+        <button type="button" class="lf-back-btn" id="lf-btn-back" aria-label="Volver al paso anterior">← Paso 1</button>
+        <button type="button" class="lf-close-btn" data-lf-close aria-label="Cerrar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="20" height="20"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <h2 class="lf-title">¿Qué sería ideal para tu plan?</h2>
+      <p class="lf-subtitle">Selecciona lo más importante. Puedes elegir varias opciones.</p>
+      <div class="lf-pref-chips" role="group" aria-label="Preferencias">
+        <button type="button" class="lf-pref-chip" data-val="Piscina" aria-pressed="false">Piscina</button>
+        <button type="button" class="lf-pref-chip" data-val="Alimentación incluida" aria-pressed="false">Alimentación incluida</button>
+        <button type="button" class="lf-pref-chip" data-val="Cerca del parque" aria-pressed="false">Cerca del parque</button>
+        <button type="button" class="lf-pref-chip" data-val="Ambiente tranquilo" aria-pressed="false">Ambiente tranquilo</button>
+        <button type="button" class="lf-pref-chip" data-val="Plan romántico" aria-pressed="false">Plan romántico</button>
+        <button type="button" class="lf-pref-chip" data-val="Ideal para niños" aria-pressed="false">Ideal para niños</button>
+        <button type="button" class="lf-pref-chip" data-val="Celebración" aria-pressed="false">Celebración</button>
+        <button type="button" class="lf-pref-chip" data-val="Evento o matrimonio" aria-pressed="false">Evento o matrimonio</button>
+        <button type="button" class="lf-pref-chip" data-val="Económico" aria-pressed="false">Económico</button>
+        <button type="button" class="lf-pref-chip" data-val="Colonial" aria-pressed="false">Hotel colonial</button>
+      </div>
+      <div class="lf-field">
+        <label for="lf-notas">¿Quieres contarnos algo más? <span class="lf-opt">(opcional)</span></label>
+        <textarea id="lf-notas" rows="3" maxlength="500" placeholder="Ej: viajamos con bebé, buscamos piscina..."></textarea>
+      </div>
+      <div class="lf-err-zone" id="lf-err-zone-2" hidden></div>
+      <div class="lf-actions">
+        <button type="button" id="lf-btn-submit" class="lf-btn-primary">Solicitar opciones y precios</button>
       </div>
     </div>
-    <div id="lwFooter" class="lw-footer">
-      <button type="button" id="lwBtnBack" class="lw-btn-back" style="display:none">← Atrás</button>
-      <div class="lw-footer-spacer"></div>
-      <button type="button" id="lwBtnNext" class="lw-btn-next">Continuar →</button>
-      <button type="button" id="lwBtnSubmit" class="lw-btn-submit" style="display:none">Enviar solicitud</button>
+    <!-- Confirmación -->
+    <div class="lf-screen lf-screen-confirm" id="lf-screen-confirm" hidden>
+      <div class="lf-success-icon" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" width="56" height="56"><circle cx="24" cy="24" r="24" fill="#F5C800"/><polyline points="13,24 21,32 35,16" stroke="#000" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h2 class="lf-title">¡Recibimos tu solicitud!</h2>
+      <p class="lf-body" id="lf-confirm-body">Un asesor revisará las opciones disponibles y te contactará para confirmar precios y disponibilidad.</p>
+      <p class="lf-ref-row" id="lf-ref-row" hidden>Referencia: <code id="lf-ref-code"></code></p>
+      <div class="lf-actions" style="margin-top:.75rem">
+        <button type="button" id="lf-btn-wa-confirm" class="lf-btn-wa" hidden>Enviar también por WhatsApp</button>
+        <button type="button" id="lf-btn-done" class="lf-btn-secondary">Listo, esperaré el contacto</button>
+      </div>
+    </div>
+    <!-- Error -->
+    <div class="lf-screen lf-screen-error" id="lf-screen-error" hidden>
+      <div class="lf-error-icon" aria-hidden="true">!</div>
+      <h2 class="lf-title">No pudimos registrar tu solicitud</h2>
+      <p class="lf-body">Puedes escribirnos directamente por WhatsApp y con gusto te ayudamos a encontrar tu plan ideal.</p>
+      <div class="lf-actions" style="margin-top:.75rem">
+        <button type="button" id="lf-btn-wa-error" class="lf-btn-wa">Continuar por WhatsApp</button>
+        <button type="button" id="lf-btn-retry" class="lf-btn-secondary">Volver a intentar</button>
+      </div>
     </div>
   </div>
-</div>
+</dialog>
 
 <div class="mobile-cta-bar" aria-label="Consultar opciones">
   <button class="mobile-cta-btn" data-lw-open>
@@ -518,6 +522,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script src="assets/js/analytics.js"></script>
 <script src="assets/js/main.js"></script>
-<script src="assets/js/lead-wizard.js"></script>
+<script src="assets/js/lead-form.js"></script>
 </body>
 </html>
