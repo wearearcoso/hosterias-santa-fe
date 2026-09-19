@@ -23,7 +23,7 @@ export async function createLead(payload, env) {
     throw new Error('GestionaLeads: credenciales no configuradas');
   }
 
-  // Payload plano según esquema de GestionaLeads
+  // Webhook schema expected by GestionaLeads /lead/web.
   const messageParts = [
     payload.request.notes,
     payload.request.preferences?.length
@@ -32,7 +32,7 @@ export async function createLead(payload, env) {
     payload.request.occasion ? `Ocasión: ${payload.request.occasion}` : null,
     payload.request.checkIn
       ? `Fechas: ${payload.request.checkIn}${payload.request.checkOut ? ' → ' + payload.request.checkOut : ''}`
-      : payload.request.flexibleDates ? 'Fechas: Flexibles' : null,
+      : payload.request.flexibleDates ? 'Fechas: flexibles' : null,
     payload.request.adults
       ? `Viajeros: ${payload.request.adults} adulto(s)${payload.request.children ? `, ${payload.request.children} niño(s)` : ''}`
       : null,
@@ -40,18 +40,17 @@ export async function createLead(payload, env) {
     payload.request.selectedPropertyName
       ? `Propiedad consultada: ${payload.request.selectedPropertyName}`
       : null,
-    payload.attribution?.utmSource ? `Origen: ${payload.attribution.utmSource}` : null,
   ].filter(Boolean);
 
   const glPayload = {
-    name:    payload.contact.fullName,
-    phone:   payload.contact.phoneE164,
-    email:   payload.contact.email || '',
-    city:    'Santa Fe de Antioquia',
-    sector:  payload.request.selectedPropertyName || '',
-    service: payload.request.planType || '',
-    message: messageParts.join('\n'),
-    website: payload.landingPage || 'https://hosterias-santa-fe.pages.dev',
+    nombre: payload.contact.fullName,
+    telefono: payload.contact.phoneE164,
+    email: payload.contact.email || '',
+    servicio: payload.request.planType || 'Hospedaje',
+    ubicacion: 'Santa Fe de Antioquia',
+    mensaje: messageParts.join('\n'),
+    fuente: payload.attribution?.utmSource || 'hosterias-santa-fe-web',
+    pagina: payload.landingPage || 'https://hosterias-santa-fe.pages.dev',
   };
 
   let lastError;
