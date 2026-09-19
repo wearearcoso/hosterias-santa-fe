@@ -78,7 +78,11 @@ export async function onRequestPost({ request, env }) {
   if (isProduction && mode !== 'real') return jsonError(503, 'Servicio temporalmente no disponible');
 
   // Pass the derived mode so production does not depend on an optional flag.
-  const runtimeEnv = { ...env, GESTIONALEADS_MODE: mode };
+  const runtimeEnv = {
+    ...env,
+    ENVIRONMENT: isProduction ? 'production' : (env?.ENVIRONMENT || 'preview'),
+    GESTIONALEADS_MODE: mode,
+  };
 
   const requestId = generateRequestId();
   const payload = {
@@ -102,9 +106,8 @@ export async function onRequestPost({ request, env }) {
   // Notificar Telegram (sin bloquear éxito)
   const notifResult = await sendTelegramLeadNotification(
     { ...payload, leadId },
-    env
+    runtimeEnv
   ).catch(err => {
-    console.error('[leads] error Telegram:', err?.message);
     return { status: 'failed' };
   });
 
