@@ -64,9 +64,9 @@ export async function sendTelegramLeadNotification(lead, env) {
   if (!token) return { status: 'skipped', reason: 'no token' };
 
   const isPreview = (env?.ENVIRONMENT || 'preview') !== 'production';
-  const chatId = isPreview
+  const chatId = (isPreview
     ? env?.TELEGRAM_CHAT_ID_PREVIEW
-    : env?.TELEGRAM_CHAT_ID_PRODUCTION;
+    : env?.TELEGRAM_CHAT_ID_PRODUCTION) || env?.TELEGRAM_CHAT_ID;
 
   if (!chatId) return { status: 'skipped', reason: 'no chat id' };
 
