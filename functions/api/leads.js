@@ -73,8 +73,12 @@ export async function onRequestPost({ request, env }) {
   // Guardar modo producción no puede ser mock
   const hostname = new URL(request.url).hostname.toLowerCase();
   const isProduction = env?.ENVIRONMENT === 'production' || hostname.endsWith('.pages.dev') || (!hostname.includes('localhost') && hostname !== '127.0.0.1');
-  const mode = env?.GESTIONALEADS_MODE;
+  const mode = env?.GESTIONALEADS_MODE ||
+    (env?.GESTIONALEADS_API_URL && env?.GESTIONALEADS_API_TOKEN ? 'real' : undefined);
   if (isProduction && mode !== 'real') return jsonError(503, 'Servicio temporalmente no disponible');
+
+  // Pass the derived mode so production does not depend on an optional flag.
+  const runtimeEnv = { ...env, GESTIONALEADS_MODE: mode };
 
   const requestId = generateRequestId();
   const payload = {
@@ -88,7 +92,7 @@ export async function onRequestPost({ request, env }) {
   // Crear lead en GestionaLeads
   let leadId;
   try {
-    const result = await createLead(payload, env);
+    const result = await createLead(payload, runtimeEnv);
     leadId = result.leadId;
   } catch (err) {
     console.error('[leads] error GestionaLeads:', err?.message);
