@@ -1,0 +1,12 @@
+{
+  "policy": "No image is licensed merely because it is public. Pending assets must be replaced or supported by written permission before production launch.",
+  "lastReviewed": "2026-09-19",
+  "images": [
+    {"file":"assets/images/hero-home.webp","property":null,"usage":"Home hero, destination reference","originalUrl":null,"rightsHolder":null,"photographer":null,"authorizationType":null,"evidenceDocument":null,"authorizedAt":null,"expiresAt":null,"attributionRequired":null,"status":"pending"},
+    {"file":"assets/images/florida-tropical-01.webp","property":"Hostería Florida Tropical","usage":"Home card","originalUrl":null,"rightsHolder":null,"photographer":null,"authorizationType":null,"evidenceDocument":null,"authorizedAt":null,"expiresAt":null,"attributionRequired":null,"status":"pending"},
+    {"file":"assets/images/fundadores-01.webp","property":"Hostería Los Fundadores","usage":"Home card","originalUrl":null,"rightsHolder":null,"photographer":null,"authorizationType":null,"evidenceDocument":null,"authorizedAt":null,"expiresAt":null,"attributionRequired":null,"status":"pending"},
+    {"file":"assets/images/mariscal-robledo-05.webp","property":"Hotel Mariscal Robledo","usage":"Home card","originalUrl":null,"rightsHolder":null,"photographer":null,"authorizationType":null,"evidenceDocument":null,"authorizedAt":null,"expiresAt":null,"attributionRequired":null,"status":"pending"},
+    {"file":"assets/images/porton-del-sol-01.webp","property":"Hotel Portón del Sol","usage":"Home card","originalUrl":null,"rightsHolder":null,"photographer":null,"authorizationType":null,"evidenceDocument":null,"authorizedAt":null,"expiresAt":null,"attributionRequired":null,"status":"pending"},
+    {"file":"assets/images/iguana-01.webp","property":"Hotel Iguana","usage":"Home card","originalUrl":null,"rightsHolder":null,"photographer":null,"authorizationType":null,"evidenceDocument":null,"authorizedAt":null,"expiresAt":null,"attributionRequired":null,"status":"pending"}
+  ]
+}

@@ -1,29 +1,19 @@
 /**
  * Adaptador de GestionaLeads.
- * GESTIONALEADS_MODE=mock  → devuelve leadId ficticio para preview/pruebas
- * GESTIONALEADS_MODE=real  → llama a la API real (requiere API_URL + API_TOKEN)
- *
- * Producción NUNCA puede arrancar en modo mock (verificado en leads.js).
+ * GESTIONALEADS_MODE=real llama a la API real (requiere API_URL + API_TOKEN).
+ * El adaptador falla cerrado: mock y valores ausentes nunca generan éxitos ficticios.
  */
 
-function mockLeadId() {
-  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-  let id = 'GL-';
-  for (let i = 0; i < 6; i++) id += chars[Math.floor(Math.random() * chars.length)];
-  return id;
-}
 
 async function sleep(ms) {
   return new Promise(r => setTimeout(r, ms));
 }
 
 export async function createLead(payload, env) {
-  const mode = env?.GESTIONALEADS_MODE || 'mock';
-
-  if (mode === 'mock') {
-    await sleep(200 + Math.random() * 100); // simula latencia de red
-    return { ok: true, leadId: mockLeadId(), mode: 'mock' };
-  }
+  const mode = env?.GESTIONALEADS_MODE;
+  if (!mode) throw new Error('GestionaLeads: mode real requerido');
+  if (mode === 'mock') throw new Error('GestionaLeads: mock deshabilitado');
+  if (mode !== 'real') throw new Error('GestionaLeads: mode inválido; use real');
 
   // Modo real
   const apiUrl = env?.GESTIONALEADS_API_URL;
@@ -79,7 +69,9 @@ export async function createLead(payload, env) {
 
       if (res.ok) {
         const data = await res.json();
-        return { ok: true, leadId: data.id || data.leadId || data.lead_id, mode: 'real' };
+        const leadId = data.id || data.leadId || data.lead_id;
+        if (!leadId) throw new Error('GestionaLeads: respuesta sin leadId');
+        return { ok: true, leadId, mode: 'real' };
       }
 
       // 4xx → no reintentar (error del cliente)
@@ -101,8 +93,8 @@ export async function createLead(payload, env) {
 }
 
 export async function updateLeadContactPreference(leadId, preference, env) {
-  const mode = env?.GESTIONALEADS_MODE || 'mock';
-  if (mode === 'mock') return { ok: true };
+  const mode = env?.GESTIONALEADS_MODE;
+  if (mode !== 'real') return { ok: false, error: 'modo real requerido' };
 
   const apiUrl = env?.GESTIONALEADS_API_URL;
   const token = env?.GESTIONALEADS_API_TOKEN;

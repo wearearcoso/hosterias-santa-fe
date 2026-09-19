@@ -1,27 +1,19 @@
-# Dependencies
 node_modules/
-
-# CSV research files
-*.csv
-!*.json
-
-# OS files
+.env
+.env.*
+!.env.example
+*.log
 .DS_Store
 Thumbs.db
-
-# Large images (keep processed webp)
+artifacts/qa/*.png
+playwright-report/
+test-results/
+coverage/
+.claude/
+/tmp/
+*.tmp
+*.csv
 assets/images/*.jpg
 assets/images/*.jpeg
 assets/images/*.png
 !assets/images/*.webp
-
-# Claude
-.claude/
-
-# Temp
-/tmp/
-*.tmp
-
-# .env (never commit)
-.env
-*.env

@@ -46,10 +46,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   // Honeypot
-  if (checkHoneypot(body)) {
-    // Respuesta falsa de éxito para no revelar la detección
-    return jsonSuccess({ leadId: generateRequestId(), notificationStatus: 'sent' });
-  }
+  if (checkHoneypot(body)) return jsonError(400, 'Solicitud rechazada');
 
   // Turnstile
   if (env?.TURNSTILE_SECRET_KEY) {
@@ -74,10 +71,10 @@ export async function onRequestPost({ request, env }) {
   }
 
   // Guardar modo producción no puede ser mock
-  const isProduction = env?.ENVIRONMENT === 'production';
-  if (isProduction && env?.GESTIONALEADS_MODE === 'mock') {
-    return jsonError(500, 'Configuración de producción incompleta');
-  }
+  const hostname = new URL(request.url).hostname.toLowerCase();
+  const isProduction = env?.ENVIRONMENT === 'production' || hostname.endsWith('.pages.dev') || (!hostname.includes('localhost') && hostname !== '127.0.0.1');
+  const mode = env?.GESTIONALEADS_MODE;
+  if (isProduction && mode !== 'real') return jsonError(503, 'Servicio temporalmente no disponible');
 
   const requestId = generateRequestId();
   const payload = {
