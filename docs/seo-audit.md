@@ -63,3 +63,7 @@ Las siguientes **12 rutas** siguen presentes como HTML, pero la función de Page
 | `/hoteles-todo-incluido-santa-fe-de-antioquia` | Inclusiones de plan sin condiciones verificadas |
 
 **Estado SEO:** staging coherente para revisión; **no aprobado aún para indexación pública** por los bloqueos y evidencias pendientes anteriores.
+
+## Actualización editorial — 2026-10-02
+
+La [FAQ oficial de Hostería Florida Tropical](https://www.hosteriafloridatropical.com/preguntas-frecuentes/) ubica el establecimiento entre Sopetrán y Santa Fe de Antioquia. El catálogo, su H1/meta y la portada se corrigieron a «cerca de Santa Fe» / «y alrededores». Las cinco fichas recibieron H2 propios, sin añadir servicios ni tarifas no verificados. Ver `docs/seo-architecture.md`.

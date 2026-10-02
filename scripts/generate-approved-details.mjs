@@ -12,26 +12,39 @@ const ratesAvailable = fs.existsSync(path.join(root, 'src', 'data', 'verified-ra
 // Curated copy references only the approved catalog and its documented source URLs.
 const seoBySlug = {
   'hosteria-florida-tropical': {
-    description: 'Conoce la ubicación general de Hostería Florida Tropical en Santa Fe de Antioquia y solicita confirmación de servicios, fechas y tarifa vigente.',
+    pageTitle: 'Hostería Florida Tropical | Cerca de Santa Fe de Antioquia',
+    pageHeading: 'Hostería Florida Tropical cerca de Santa Fe de Antioquia',
+    heroLocation: 'Cerca de Santa Fe de Antioquia',
+    overviewHeading: 'Ubicación y datos de Hostería Florida Tropical',
+    confirmationHeading: 'Antes de viajar a Hostería Florida Tropical',
+    description: 'Conoce Hostería Florida Tropical cerca de Santa Fe de Antioquia y solicita confirmación de servicios, fechas y tarifa vigente.',
     question: 'Si buscas una hostería campestre, confirma la dirección exacta, cómo llegar y qué servicios están disponibles en tus fechas.',
     related: ['hosteria-fundadores', 'hotel-mariscal-robledo'],
   },
   'hosteria-fundadores': {
+    overviewHeading: 'Dónde está Hostería Los Fundadores',
+    confirmationHeading: 'Qué confirmar con Hostería Los Fundadores',
     description: 'Explora la ficha de Hostería Los Fundadores en la Carrera 13 de Santa Fe de Antioquia. Consulta disponibilidad, condiciones y tarifa para tus fechas.',
     question: 'La dirección indicada es Carrera 13 No. 16-23. Confirma acceso, parqueo si lo necesitas y condiciones de la habitación antes de reservar.',
     related: ['hosteria-florida-tropical', 'hotel-porton-del-sol'],
   },
   'hotel-mariscal-robledo': {
+    overviewHeading: 'Hotel Mariscal Robledo en el Centro Histórico',
+    confirmationHeading: 'Antes de alojarte en Hotel Mariscal Robledo',
     description: 'Consulta la ficha de Hotel Mariscal Robledo en el Centro Histórico de Santa Fe de Antioquia y pide condiciones y tarifa vigentes para tus fechas.',
     question: 'La ubicación indicada es Carrera 12 # 9-70, Centro Histórico. Confirma cómo llegar y los servicios incluidos para las fechas de tu viaje.',
     related: ['hosteria-fundadores', 'hotel-la-iguana'],
   },
   'hotel-porton-del-sol': {
+    overviewHeading: 'Ubicación y datos de Hotel Portón del Sol',
+    confirmationHeading: 'Qué consultar sobre Hotel Portón del Sol',
     description: 'Revisa la ficha de Hotel Portón del Sol en Santa Fe de Antioquia y solicita la dirección, disponibilidad y condiciones para tus fechas.',
     question: 'Antes de elegir esta opción, solicita la dirección exacta y confirma la ocupación permitida, los servicios y las condiciones de pago.',
     related: ['hotel-la-iguana', 'hosteria-florida-tropical'],
   },
   'hotel-la-iguana': {
+    overviewHeading: 'Información inicial de Hotel Iguana',
+    confirmationHeading: 'Qué confirmar con Hotel Iguana',
     description: 'Explora la ficha de Hotel Iguana en Santa Fe de Antioquia y consulta ubicación exacta, disponibilidad y condiciones vigentes para tu viaje.',
     question: 'Pide la dirección exacta y verifica qué servicios y condiciones aplican a tu habitación y a las fechas elegidas.',
     related: ['hotel-porton-del-sol', 'hotel-mariscal-robledo'],
@@ -48,7 +61,9 @@ for (const property of verifiedProperties) {
   const type = category(property);
   const seo = seoBySlug[property.slug];
   if (!seo) throw new Error(`Missing approved SEO copy for ${property.slug}`);
-  const title = `${name} | Santa Fe de Antioquia`;
+  const title = esc(seo.pageTitle || `${property.name} | Santa Fe de Antioquia`);
+  const heading = esc(seo.pageHeading || `${property.name} en Santa Fe de Antioquia`);
+  const heroLocation = esc(seo.heroLocation || 'Santa Fe de Antioquia');
   const description = esc(seo.description);
   const related = seo.related.map(relatedSlug => {
     const other = verifiedProperties.find(item => item.slug === relatedSlug);
@@ -80,11 +95,11 @@ for (const property of verifiedProperties) {
     <section class="hero detail-hero">
       <img src="/assets/images/${image}" alt="" width="1600" height="900">
       <div class="hero-shade"></div>
-      <div class="hero-copy"><p class="eyebrow">${type} · Santa Fe de Antioquia</p><h1>${name} en Santa Fe de Antioquia</h1><p>${esc(property.shortDescription)}</p><button class="primary" data-lw-open data-property="${name}">Consultar esta opción <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button><small>Imagen de referencia. La disponibilidad, los servicios y la tarifa requieren confirmación.</small></div>
+      <div class="hero-copy"><p class="eyebrow">${type} · ${heroLocation}</p><h1>${heading}</h1><p>${esc(property.shortDescription)}</p><button class="primary" data-lw-open data-property="${name}">Consultar esta opción <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button><small>Imagen de referencia. La disponibilidad, los servicios y la tarifa requieren confirmación.</small></div>
     </section>
-    <section class="section detail-overview" aria-labelledby="detail-info-title"><div class="heading"><p class="eyebrow">Información inicial</p><h2 id="detail-info-title">Conoce esta opción</h2><p>Esta ficha presenta datos básicos para ayudarte a comparar alojamientos. Confirma los detalles vigentes antes de planear tu viaje.</p></div><div class="detail-facts"><article><span class="material-symbols-rounded" aria-hidden="true">location_on</span><h3>Ubicación indicada</h3><p>${sector}</p></article><article><span class="material-symbols-rounded" aria-hidden="true">hotel</span><h3>Tipo de alojamiento</h3><p>${type}</p></article><article><span class="material-symbols-rounded" aria-hidden="true">open_in_new</span><h3>Información directa</h3><p><a href="${officialUrl}" target="_blank" rel="noopener noreferrer">Visitar el sitio del establecimiento</a></p></article></div></section>
+    <section class="section detail-overview" aria-labelledby="detail-info-title"><div class="heading"><p class="eyebrow">Información inicial</p><h2 id="detail-info-title">${esc(seo.overviewHeading)}</h2><p>Esta ficha presenta datos básicos para ayudarte a comparar alojamientos. Confirma los detalles vigentes antes de planear tu viaje.</p></div><div class="detail-facts"><article><span class="material-symbols-rounded" aria-hidden="true">location_on</span><h3>Ubicación indicada</h3><p>${sector}</p></article><article><span class="material-symbols-rounded" aria-hidden="true">hotel</span><h3>Tipo de alojamiento</h3><p>${type}</p></article><article><span class="material-symbols-rounded" aria-hidden="true">open_in_new</span><h3>Información directa</h3><p><a href="${officialUrl}" target="_blank" rel="noopener noreferrer">Visitar el sitio del establecimiento</a></p></article></div></section>
 ${ratesAvailable ? `    <section class="section verified-rate" data-property-id="${esc(property.id)}" data-property-slug="${slug}" hidden aria-labelledby="rate-title"><div class="rate-panel"><p class="eyebrow">Referencia de tarifa</p><h2 id="rate-title">Rango orientativo verificado</h2><p class="rate-amount"></p><p class="rate-context"></p><p class="rate-note"></p><button class="primary" data-lw-open data-property="${name}">Consultar tarifa vigente <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button></div></section>` : ''}
-    <section class="section how"><div class="heading"><p class="eyebrow">Antes de viajar</p><h2>Confirma lo que importa para tu estancia</h2><p>${esc(seo.question)} Enviar la solicitud no crea una reserva.</p></div><button class="primary" data-lw-open data-property="${name}">Solicitar orientación <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button></section>
+    <section class="section how"><div class="heading"><p class="eyebrow">Antes de viajar</p><h2>${esc(seo.confirmationHeading)}</h2><p>${esc(seo.question)} Enviar la solicitud no crea una reserva.</p></div><button class="primary" data-lw-open data-property="${name}">Solicitar orientación <span class="material-symbols-rounded" aria-hidden="true">arrow_forward</span></button></section>
     <section class="section detail-overview" aria-labelledby="related-title"><div class="heading"><p class="eyebrow">Sigue comparando</p><h2 id="related-title">Otros alojamientos en Santa Fe de Antioquia</h2><p>Revisa otras fichas de la selección y consulta directamente las condiciones que te interesen.</p></div><div class="detail-facts">${related}</div></section>
     <section class="final-cta"><p class="eyebrow">Más opciones</p><h2>Compara alojamientos en Santa Fe de Antioquia</h2><p>Explora la selección inicial de hosterías y hoteles.</p><a class="primary" href="/">Ver las cinco opciones</a></section>
   </main>

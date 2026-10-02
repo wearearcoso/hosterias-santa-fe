@@ -25,7 +25,8 @@ test('the five approved detail pages omit unsupported commercial claims and stru
   const titles = new Set();
   for (const property of verifiedProperties) {
     const html = read(`${property.slug}.html`);
-    assert.match(html, new RegExp(`<h1>${property.name} en Santa Fe de Antioquia<\\/h1>`));
+    const expectedH1 = property.id === 'florida-tropical' ? `${property.name} cerca de Santa Fe de Antioquia` : `${property.name} en Santa Fe de Antioquia`;
+    assert.ok(html.includes(`<h1>${expectedH1}</h1>`), property.slug);
     assert.ok(html.includes(`data-property="${property.name}"`));
     assert.ok(!/\$\s*\d|TripAdvisor|aggregateRating|application\/ld\+json|FAQPage|amenityFeature/i.test(html), property.slug);
     const title = html.match(/<title>([^<]+)<\/title>/)?.[1];

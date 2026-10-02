@@ -30,3 +30,12 @@ Read `CLAUDE.md` before editing. This repository is the source for the Cloudflar
 - Added a gated, optional rate module: publication requires matching evidence, four comparable recent stays and written authorization; the browser rechecks open pages and hides expired/incomplete ranges; `sync` removes revoked prices from the publication JSON. No public rate JSON or numeric rate ships now.
 - Verified `npm test` (12/12), mobile QA at 320/390 px and desktop/tablet/detail QA at 768/1440/390 px; public launch is still blocked by photo rights, domain and real CRM delivery.
 - See `docs/booking-estimates.md`, `docs/domain-shortlist-2026-10-02.md` and `docs/launch-review-2026-10-02.md`.
+
+## Sprint 2026-10-02 — page headings and conditional landing briefs (append-only)
+
+- Applied property-specific H2 headings to all five approved detail pages through `scripts/generate-approved-details.mjs`; kept unique H1, metadata, six-URL sitemap and staging `noindex`.
+- Corrected Florida Tropical's location to near Santa Fe de Antioquia, between Sopetrán and Santa Fe, using its official FAQ; updated catalog, home, title/H1, detail copy and source record.
+- Prepared nine unpublished SEO landing briefs and a day-of-sun editorial draft with primary-source evidence and explicit publication gates. No legacy redirect, sitemap, navigation or public landing was opened.
+- Official day-of-sun pages for Florida Tropical and Los Fundadores exist, but operating days/hours and current conditions need direct confirmation before a commercial landing; other hotels lack sufficient offer detail.
+- Verified `npm test` 12/12, mobile QA 320/390, desktop/tablet QA 768/1440 and all five details at 390/1440; hero CTA remains visible at 320/390. Public launch remains blocked by photo rights, final domain and real CRM delivery.
+- See `docs/seo-architecture.md`, `docs/seo-landing-briefs.md` and `docs/launch-review-2026-10-02.md`.

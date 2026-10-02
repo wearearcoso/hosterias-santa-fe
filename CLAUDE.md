@@ -23,4 +23,4 @@ Static Cloudflare Pages site. Keep staging `noindex` until image permissions, pr
 
 ## Release review (2026-10-02)
 
-Read `docs/launch-review-2026-10-02.md` before any launch work. The public launch remains blocked until `node scripts/audit-photos.mjs --launch-gate` passes, a final domain is configured, and real CRM delivery is verified. Legacy routes receive temporary redirects through `functions/_middleware.js`; verify them on Cloudflare before indexing.
+Read `docs/launch-review-2026-10-02.md` and `docs/seo-landing-briefs.md` before any launch or new category-page work. The public launch remains blocked until `node scripts/audit-photos.mjs --launch-gate` passes, a final domain is configured, and real CRM delivery is verified. Legacy routes receive temporary redirects through `functions/_middleware.js`; verify them on Cloudflare before indexing.

@@ -1,8 +1,8 @@
 const PROPERTIES = [
   {
     id: 'florida-tropical', slug: 'hosteria-florida-tropical', name: 'Hostería Florida Tropical', type: 'hosteria', status: 'verified',
-    shortDescription: 'Alojamiento campestre en Santa Fe de Antioquia. Servicios y disponibilidad sujetos a confirmación.',
-    sector: 'Santa Fe de Antioquia', sourceUrls: ['https://www.hosteriafloridatropical.com/'], verifiedAt: '2026-09-19',
+    shortDescription: 'Alojamiento campestre cerca de Santa Fe de Antioquia. Servicios y disponibilidad sujetos a confirmación.',
+    sector: 'Entre Sopetrán y Santa Fe de Antioquia, vía antigua', sourceUrls: ['https://www.hosteriafloridatropical.com/', 'https://www.hosteriafloridatropical.com/preguntas-frecuentes/'], verifiedAt: '2026-10-02',
     images: [{ src: 'florida-tropical-01.webp', alt: 'Vista aérea de piscina entre palmeras y sombrillas', rightsStatus: 'pending' }]
   },
   {
