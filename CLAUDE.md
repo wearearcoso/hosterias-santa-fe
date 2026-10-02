@@ -10,6 +10,7 @@ Static Cloudflare Pages site. Keep staging `noindex` until image permissions, pr
 - `python3 -m http.server 4173 --bind 127.0.0.1`: local static server.
 - `npm run qa:desktop`: Playwright QA at 1440×900 and 768×1024, plus all five detail pages at 390 and 1440; writes screenshots to `docs/screenshots/`.
 - `npm run qa:mobile`: Playwright QA at 390×844 and 320×844; writes screenshots to `docs/screenshots/`.
+- `node scripts/booking-estimates.mjs init|report|public|sync`: offline manual-rate workflow; see `docs/booking-estimates.md`. Public output requires written approval and is absent by default. Regenerate detail pages after approved output.
 
 ## Non-negotiable rules
 

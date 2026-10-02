@@ -45,3 +45,10 @@ La referencia comunica una empresa de cruceros; se trasladaron patrones de compo
 3. Configurar el CRM con secretos fuera del repositorio, enviar un lead de prueba autorizado y confirmar un ID real. La API debe seguir fallando sin configuración.
 4. Validar en Cloudflare las doce redirecciones temporales, las seis rutas del sitemap, las políticas de indexación y el comportamiento móvil/desktop antes de activar indexación en el dominio final.
 5. Añadir contenido original y verificable a las fichas antes de competir por búsquedas de marca o activar las páginas de subcategorías.
+
+## Avance SEO y tarifas de referencia — 2026-10-02
+
+- La arquitectura por página, palabras objetivo y expansión condicionada se documenta en `docs/seo-architecture.md`. Se añadió una guía breve de comparación a la portada y contenido distintivo con enlaces internos a las cinco fichas. Se mantienen seis URL en sitemap y `noindex` en staging.
+- Se comprobaron cinco EMD `.com` disponibles al momento de la consulta; la recomendación es `hosteriassantafedeantioquia.com`, sujeta a nueva comprobación antes de registrar. Ver `docs/domain-shortlist-2026-10-02.md`. No se compró dominio ni se alteraron canonical.
+- Sin acceso a Demand API ni permiso escrito de Booking, las tarifas se observan manualmente como referencia interna mediante `scripts/booking-estimates.mjs`. Ninguna tarifa se publica sin confirmación escrita independiente del alojamiento o licencia específica, más evidencia y vigencia. El módulo opcional vuelve a comprobar vigencia mientras la ficha está abierta; `sync` retira rangos revocados del JSON antes del siguiente despliegue. No existe hoy JSON público de precios. Ver `docs/booking-estimates.md`.
+- Verificación tras la integración: `npm test` 12/12; QA móvil 320/390 y desktop/tablet 768/1440 más cinco fichas a 390/1440 sin fallas; diff sin espacios sobrantes. La aprobación para indexación y lanzamiento sigue condicionada a los gates anteriores.

@@ -165,3 +165,10 @@ button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visibl
   html { scroll-behavior: auto; }
   *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+.verified-rate[hidden] { display: none; }
+.verified-rate { background: var(--warm-paper); }
+.rate-panel { padding: clamp(30px, 5vw, 70px); border-top: 3px solid var(--gold); background: var(--paper); }
+.rate-panel h2 { font-size: clamp(30px, 4vw, 52px); }
+.rate-panel .rate-amount { margin: 22px 0 10px; font-size: clamp(28px, 4vw, 52px); line-height: 1.15; font-weight: 600; overflow-wrap: anywhere; }
+.rate-panel .rate-context, .rate-panel .rate-note { max-width: 800px; color: var(--ink-soft); }
+.rate-panel .primary { margin-top: 10px; }

@@ -21,3 +21,12 @@ Read `CLAUDE.md` before editing. This repository is the source for the Cloudflar
 - Added desktop/tablet QA and fixed lazy-image timing in mobile QA.
 - Launch decision: staging ready for visual review; public launch blocked by image permissions, final domain/indexing setup, real CRM delivery test, and live route validation.
 - See `docs/launch-review-2026-10-02.md`, `docs/seo-audit.md`, and `docs/photo-production.md`.
+
+## Sprint 2026-10-02 — SEO architecture and manual rate workflow (append-only)
+
+- Defined intent, title, H1, internal links and next evidence for the home page and all five approved property pages in `docs/seo-architecture.md`. Updated page content and the detail generator; sitemap remains six URLs and staging stays `noindex`.
+- Checked five currently available EMD `.com` candidates through Hostinger and recommended `hosteriassantafedeantioquia.com` for clarity, pending registration and final canonical setup.
+- Replaced automated Booking extraction for this scope with an offline, manual observation workflow. No Booking API access or written scraping permission exists; raw observations stay under ignored `.local/booking-prices/`.
+- Added a gated, optional rate module: publication requires matching evidence, four comparable recent stays and written authorization; the browser rechecks open pages and hides expired/incomplete ranges; `sync` removes revoked prices from the publication JSON. No public rate JSON or numeric rate ships now.
+- Verified `npm test` (12/12), mobile QA at 320/390 px and desktop/tablet/detail QA at 768/1440/390 px; public launch is still blocked by photo rights, domain and real CRM delivery.
+- See `docs/booking-estimates.md`, `docs/domain-shortlist-2026-10-02.md` and `docs/launch-review-2026-10-02.md`.
