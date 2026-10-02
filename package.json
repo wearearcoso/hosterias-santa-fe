@@ -2,7 +2,8 @@
   "type": "module",
   "scripts": {
     "test": "node --test tests/*.test.mjs",
-    "qa:mobile": "node scripts/qa-mobile.mjs"
+    "qa:mobile": "node scripts/qa-mobile.mjs",
+    "qa:desktop": "node scripts/qa-desktop.mjs"
   },
   "dependencies": {
     "playwright": "^1.62.1"

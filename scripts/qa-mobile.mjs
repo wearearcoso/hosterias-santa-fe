@@ -12,6 +12,8 @@ for (const viewport of sizes) {
   page.on('console', msg => { if (msg.type() === 'error') errors.push(msg.text()); });
   page.on('pageerror', err => errors.push(err.message));
   await page.goto(base, { waitUntil:'networkidle' });
+  await page.locator('img').evaluateAll(images => images.forEach(image => { image.loading = 'eager'; }));
+  await page.waitForFunction(() => [...document.images].every(image => image.complete));
   const result = await page.evaluate(() => {
     const images = [...document.images].map(img => ({src:img.currentSrc,complete:img.complete,naturalWidth:img.naturalWidth}));
     const links = [...document.querySelectorAll('a[href]')].map(a => a.getAttribute('href'));
