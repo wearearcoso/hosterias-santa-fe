@@ -9,6 +9,7 @@ artifacts/qa/*.png
 playwright-report/
 test-results/
 coverage/
+.local/booking-prices/
 .claude/
 /tmp/
 *.tmp

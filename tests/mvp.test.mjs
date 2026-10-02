@@ -29,8 +29,8 @@ test('image manifest covers every home image and does not claim approval', () =>
   const manifest = JSON.parse(read('src/data/image-rights.json'));
   const used = [...html.matchAll(/<img[^>]+src="\/assets\/images\/([^"]+)"/g)].map(m => m[1]);
   for (const image of used) assert.ok(manifest.images.some(x => x.file === `assets/images/${image}`), image);
-  assert.ok(manifest.images.every(x => ['pending','approved'].includes(x.status)));
-  assert.ok(manifest.images.every(x => x.status !== 'approved' || x.evidenceDocument));
+  assert.ok(manifest.images.every(x => ['pending','authorized'].includes(x.status)));
+  assert.ok(manifest.images.every(x => x.status !== 'authorized' || (x.evidenceDocument && x.rightsHolder && x.authorizationType && x.authorizedAt)));
 });
 
 test('catalog data is frozen to five and has no unsupported prices or licensed claims', async () => {
